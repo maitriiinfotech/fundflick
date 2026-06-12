@@ -1,6 +1,7 @@
 import VantaHero from "./components/landing/Hero";
 import HoverGallery from "./components/landing/HoverGallery";
 import LendingFocus from "./components/landing/LendingFocus";
+import WhyChoose from "./components/landing/WhyChoose";
 import AnimatedPipeline from "./components/landing/AnimatedPipeline";
 
 export default function Home() {
@@ -9,8 +10,10 @@ export default function Home() {
       <VantaHero />
       <HoverGallery />
       <LendingFocus />
+      <WhyChoose />
       <AnimatedPipeline />
     </div>
   );
 }
+
 
