@@ -145,39 +145,39 @@ export default function PricingSection() {
 
         </div>
 
-        {/* Right Column: Pricing Rounded Card (Unchanged) */}
+        {/* Right Column: Pricing Rounded Card (Updated Content) */}
         <div ref={rightCardRef} className="lg:col-span-5 w-full flex justify-center lg:justify-end">
           <div className="w-full max-w-[440px] bg-white border border-slate-200/80 rounded-[36px] p-8 sm:p-10 shadow-2xl flex flex-col justify-between">
             
             {/* Title */}
             <div>
               <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-900 tracking-tight mb-8">
-                Pricing & Integration
+                Pricing & Enrollment
               </h3>
 
-              {/* Information list */}
+              {/* Information list based exactly on screenshot content */}
               <div className="space-y-4 text-xs sm:text-sm text-slate-600 font-light font-sans mb-10">
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span>Status</span>
-                  <span className="font-bold text-slate-900">Scheduled Demo Required</span>
+                  <span className="font-bold text-slate-900">Application Based.</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span>Capacity</span>
-                  <span className="font-bold text-slate-900">Tailored to NBFC & Enterprise Scale</span>
+                  <span className="font-bold text-slate-900">Limited To 2,000 Students Per Year.</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-slate-100">
-                  <span>Setup Investment</span>
-                  <span className="font-bold text-[#2b7fff]">Custom Quote (Volume Based)</span>
+                  <span>One-Time Investment</span>
+                  <span className="font-bold text-[#2b7fff]">£699 (VAT Included)</span>
                 </div>
                 <div className="pt-2 text-slate-500 italic">
-                  Includes 24/7 API integration and custom compliance hooks.
+                  Includes Full 90-Day Program, Live Mentor Access.
                 </div>
               </div>
             </div>
 
             {/* CTA Button styled with electric blue accent #2b7fff */}
             <button className="pricing-cta-button w-full py-4 rounded-2xl bg-[#2b7fff] text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 font-display cursor-pointer">
-              Request Early Access
+              Join Waiting List
             </button>
 
           </div>
