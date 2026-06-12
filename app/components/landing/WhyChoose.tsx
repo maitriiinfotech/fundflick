@@ -5,31 +5,32 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface Feature {
-  id: string;
   num: string;
   title: string;
   desc: string;
+  bgGlow: string;
   visual: React.ReactNode;
 }
 
 export default function WhyChoose() {
   const containerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const rowsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const columnsContainerRef = useRef<HTMLDivElement>(null);
+  const columnsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const container = containerRef.current;
     const header = headerRef.current;
-    const rows = rowsRef.current.filter(Boolean) as HTMLDivElement[];
+    const columns = columnsRef.current.filter(Boolean) as HTMLDivElement[];
 
     if (!container) return;
 
-    // 1. Initial Page Load Scroll-Trigger Animations
-    gsap.set(header, { opacity: 0, y: 50 });
-    gsap.set(rows, { opacity: 0, y: 60 });
+    // 1. Scroll-triggered entry animations
+    gsap.set(header, { opacity: 0, y: 40 });
+    gsap.set(columns, { scaleX: 0, opacity: 0, transformOrigin: "left center" });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -42,83 +43,135 @@ export default function WhyChoose() {
     tl.to(header, {
       opacity: 1,
       y: 0,
-      duration: 0.9,
+      duration: 0.8,
       ease: "power3.out",
     }).to(
-      rows,
+      columns,
       {
         opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
+        scaleX: 1,
+        duration: 1.1,
+        stagger: 0.12,
+        ease: "power4.inOut",
       },
-      "-=0.5"
+      "-=0.4"
     );
 
-    // 2. Mouse-Follower (Magnetic hover preview) for each accordion row
-    rows.forEach((row, index) => {
-      const previewCard = row.querySelector(".hover-preview-card") as HTMLDivElement;
-      if (!previewCard) return;
-
-      // Reset preview card positioning to absolute center
-      gsap.set(previewCard, { xPercent: -50, yPercent: -50, scale: 0.7, opacity: 0 });
-
-      const onMouseMove = (e: MouseEvent) => {
-        const rect = row.getBoundingClientRect();
-        // Calculate mouse coordinate relative to the current row
-        const relX = e.clientX - rect.left;
-        const relY = e.clientY - rect.top;
-
-        // Smoothly move the card to cursor position
-        gsap.to(previewCard, {
-          x: relX,
-          y: relY,
-          duration: 0.6,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-      };
+    // 2. Expand columns on hover using GSAP
+    columns.forEach((col, index) => {
+      const details = col.querySelector(".col-details");
+      const num = col.querySelector(".col-num");
+      const title = col.querySelector(".col-title");
 
       const onMouseEnter = () => {
-        setHoveredIdx(index);
-        gsap.to(previewCard, {
-          scale: 1,
-          opacity: 1,
-          rotation: index % 2 === 0 ? 3 : -3, // subtle random rotation tilt like Awwwards
-          duration: 0.4,
-          ease: "back.out(1.5)",
-        });
+        setActiveIdx(index);
+
+        // Animate flex-grow using GSAP for desktop (md screens and up)
+        if (window.innerWidth >= 768) {
+          columns.forEach((otherCol, otherIdx) => {
+            if (otherCol === col) {
+              gsap.to(otherCol, {
+                flexGrow: 2.2,
+                backgroundColor: "rgba(43, 127, 255, 0.04)", // Light electric blue tint
+                borderColor: "rgba(43, 127, 255, 0.3)",
+                duration: 0.6,
+                ease: "power3.out",
+              });
+            } else {
+              gsap.to(otherCol, {
+                flexGrow: 0.6,
+                backgroundColor: "#ffffff",
+                borderColor: "rgba(226, 232, 240, 0.6)",
+                duration: 0.6,
+                ease: "power3.out",
+              });
+            }
+          });
+        }
+
+        // Reveal inner content
+        if (details) {
+          gsap.to(details, {
+            opacity: 1,
+            y: 0,
+            height: "auto",
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        }
+
+        // Highlight text elements
+        if (num) gsap.to(num, { color: "#2b7fff", duration: 0.3 });
+        if (title) gsap.to(title, { y: -5, duration: 0.3, ease: "power2.out" });
       };
 
       const onMouseLeave = () => {
-        setHoveredIdx(null);
-        gsap.to(previewCard, {
-          scale: 0.7,
-          opacity: 0,
-          rotation: 0,
-          duration: 0.4,
-          ease: "power2.out",
-        });
+        setActiveIdx(null);
+
+        // Reset all columns to equal flex-grow
+        if (window.innerWidth >= 768) {
+          columns.forEach((otherCol) => {
+            gsap.to(otherCol, {
+              flexGrow: 1,
+              backgroundColor: "#ffffff",
+              borderColor: "rgba(226, 232, 240, 0.8)",
+              duration: 0.6,
+              ease: "power3.out",
+            });
+          });
+        }
+
+        // Hide inner content
+        if (details) {
+          gsap.to(details, {
+            opacity: 0,
+            y: 15,
+            height: window.innerWidth >= 768 ? 0 : "auto",
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        }
+
+        // Reset texts
+        if (num) gsap.to(num, { color: "#94a3b8", duration: 0.3 });
+        if (title) gsap.to(title, { y: 0, duration: 0.3, ease: "power2.out" });
       };
 
-      row.addEventListener("mousemove", onMouseMove);
-      row.addEventListener("mouseenter", onMouseEnter);
-      row.addEventListener("mouseleave", onMouseLeave);
+      col.addEventListener("mouseenter", onMouseEnter);
+      col.addEventListener("mouseleave", onMouseLeave);
 
-      // Save listeners for cleanup
-      (row as any)._cleanupMouseMove = onMouseMove;
-      (row as any)._cleanupMouseEnter = onMouseEnter;
-      (row as any)._cleanupMouseLeave = onMouseLeave;
+      // Save listeners for clean up
+      (col as any)._cleanupMouseEnter = onMouseEnter;
+      (col as any)._cleanupMouseLeave = onMouseLeave;
     });
+
+    const handleResize = () => {
+      // If mobile, make sure heights and details are reset to full auto
+      if (window.innerWidth < 768) {
+        columns.forEach((col) => {
+          gsap.set(col, { flexGrow: 1 });
+          const details = col.querySelector(".col-details");
+          if (details) gsap.set(details, { opacity: 1, y: 0, height: "auto" });
+        });
+      } else {
+        // Reset columns back to baseline on transition to desktop
+        columns.forEach((col) => {
+          gsap.set(col, { flexGrow: 1 });
+          const details = col.querySelector(".col-details");
+          if (details) gsap.set(details, { opacity: 0, y: 15, height: 0 });
+        });
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      rows.forEach((row) => {
-        if ((row as any)._cleanupMouseMove) {
-          row.removeEventListener("mousemove", (row as any)._cleanupMouseMove);
-          row.removeEventListener("mouseenter", (row as any)._cleanupMouseEnter);
-          row.removeEventListener("mouseleave", (row as any)._cleanupMouseLeave);
+      window.removeEventListener("resize", handleResize);
+      columns.forEach((col) => {
+        if ((col as any)._cleanupMouseEnter) {
+          col.removeEventListener("mouseenter", (col as any)._cleanupMouseEnter);
+          col.removeEventListener("mouseleave", (col as any)._cleanupMouseLeave);
         }
       });
     };
@@ -126,93 +179,85 @@ export default function WhyChoose() {
 
   const features: Feature[] = [
     {
-      id: "speed",
       num: "01",
       title: "Lightning Fast",
       desc: "Deploy instantly and run operations with sub-second computation latency and real-time state updates.",
+      bgGlow: "rgba(43, 127, 255, 0.06)",
       visual: (
-        <div className="flex flex-col justify-between h-full font-mono text-white text-[11px]">
-          <div className="flex justify-between items-center border-b border-white/10 pb-2">
-            <span>PERFORMANCE METRIC</span>
-            <span className="text-[#a3e635] font-bold">100/100</span>
+        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
+          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
+            <span className="text-slate-400">LATENCY METER</span>
+            <span className="text-emerald-400 font-bold">OPTIMAL</span>
           </div>
-          <div className="my-4">
-            <div className="text-[10px] text-slate-400">LATENCY SPEED</div>
-            <div className="text-xl font-bold mt-1 text-[#2b7fff]">0.02s</div>
-          </div>
-          <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+          <div className="text-2xl font-bold text-[#2b7fff] tracking-tight font-display">0.02s</div>
+          <div className="text-slate-500 mt-1">Calculations executed</div>
+          <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-4">
             <div className="w-full h-full bg-[#2b7fff] origin-left animate-[gradientShift_2s_infinite]" />
           </div>
         </div>
       ),
     },
     {
-      id: "security",
       num: "02",
       title: "Secure & Compliant",
       desc: "Bank-grade data isolation, encrypted channels, and built-in audit trails that satisfy enterprise compliance.",
+      bgGlow: "rgba(16, 185, 129, 0.06)",
       visual: (
-        <div className="flex flex-col justify-between h-full font-mono text-white text-[11px]">
-          <div className="flex justify-between items-center border-b border-white/10 pb-2">
-            <span>COMPLIANCE STATUS</span>
-            <span className="text-emerald-400 font-bold">PASSED</span>
+        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
+          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
+            <span className="text-slate-400">CIPHER STATUS</span>
+            <span className="text-[#2b7fff] font-bold">AES-256</span>
           </div>
-          <div className="flex items-center gap-3 my-4">
-            <div className="w-8 h-8 rounded-full bg-[#2b7fff]/20 flex items-center justify-center text-[#2b7fff]">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9" />
+          <div className="flex items-center gap-3 py-2">
+            <div className="w-8 h-8 rounded-full bg-[#2b7fff]/15 flex items-center justify-center text-[#2b7fff] shrink-0">
+              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9" />
               </svg>
             </div>
             <div>
-              <div className="text-white font-bold">AES-256 Enabled</div>
-              <div className="text-[9px] text-slate-400">Audit Trail: Logged</div>
+              <div className="font-bold text-white">TLS 1.3 Secure</div>
+              <div className="text-[8px] text-slate-500">ISO-27001 Compliant</div>
             </div>
           </div>
-          <div className="text-[9px] text-slate-500 text-right">SECURE CHANNEL</div>
         </div>
       ),
     },
     {
-      id: "analytics",
       num: "03",
       title: "Smart Analytics",
       desc: "Make decisions with accurate business performance metrics, data trends, and clear interactive dashboards.",
+      bgGlow: "rgba(139, 92, 246, 0.06)",
       visual: (
-        <div className="flex flex-col justify-between h-full font-mono text-white text-[11px]">
-          <div className="flex justify-between items-center border-b border-white/10 pb-2">
-            <span>LIVE LEDGER DATA</span>
-            <span className="text-sky-400 font-bold">ACTIVE</span>
+        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
+          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
+            <span className="text-slate-400">LEDGER LOGS</span>
+            <span className="text-amber-400 font-bold">SYNCED</span>
           </div>
-          <div className="flex items-end justify-between gap-1 h-14 mt-3">
-            <div className="w-1/5 bg-[#2b7fff]/40 h-8 rounded-sm" />
-            <div className="w-1/5 bg-[#2b7fff]/60 h-10 rounded-sm" />
-            <div className="w-1/5 bg-[#2b7fff]/80 h-6 rounded-sm" />
-            <div className="w-1/5 bg-[#2b7fff] h-12 rounded-sm" />
-            <div className="w-1/5 bg-emerald-400 h-14 rounded-sm animate-pulse" />
+          <div className="flex items-end justify-between gap-1 h-12 mt-2">
+            <div className="w-1/5 bg-[#2b7fff]/30 h-6 rounded" />
+            <div className="w-1/5 bg-[#2b7fff]/50 h-9 rounded" />
+            <div className="w-1/5 bg-[#2b7fff]/70 h-5 rounded" />
+            <div className="w-1/5 bg-[#2b7fff] h-10 rounded" />
+            <div className="w-1/5 bg-emerald-400 h-12 rounded animate-pulse" />
           </div>
-          <div className="text-[9px] text-slate-400 mt-2">VOLUME PROJECTION</div>
         </div>
       ),
     },
     {
-      id: "collab",
       num: "04",
       title: "Collaborative",
       desc: "Work seamlessly across resources, assign tasks directly, and streamline standard team pipelines.",
+      bgGlow: "rgba(245, 158, 11, 0.06)",
       visual: (
-        <div className="flex flex-col justify-between h-full font-mono text-white text-[11px]">
-          <div className="flex justify-between items-center border-b border-white/10 pb-2">
-            <span>TEAM PIPELINES</span>
-            <span className="text-purple-400 font-bold">SYNCED</span>
+        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
+          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
+            <span className="text-slate-400">TEAM PIPELINES</span>
+            <span className="text-purple-400 font-bold">5 ACTIVE</span>
           </div>
-          <div className="my-3 flex -space-x-2 overflow-hidden">
-            <div className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 bg-blue-600 flex items-center justify-center font-bold text-[8px]">JD</div>
-            <div className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 bg-emerald-600 flex items-center justify-center font-bold text-[8px]">SK</div>
-            <div className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 bg-purple-600 flex items-center justify-center font-bold text-[8px]">AM</div>
-          </div>
-          <div className="flex items-center justify-between text-[9px] text-slate-400">
-            <span>Active Members</span>
-            <span className="text-white">5 online</span>
+          <div className="flex -space-x-1.5 overflow-hidden my-3">
+            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-[#131c33] bg-[#2b7fff] flex items-center justify-center font-bold text-[8px]">AM</div>
+            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-[#131c33] bg-emerald-500 flex items-center justify-center font-bold text-[8px]">JD</div>
+            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-[#131c33] bg-purple-500 flex items-center justify-center font-bold text-[8px]">SK</div>
           </div>
         </div>
       ),
@@ -228,12 +273,12 @@ export default function WhyChoose() {
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/10 via-white to-indigo-50/10 pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-24">
+        <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 max-w-6xl">
           <div className="max-w-xl">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#2b7fff] mb-4 font-display">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#2b7fff] mb-4 font-display">
               Platform Strengths
             </p>
             <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tighter text-slate-900 font-display leading-[0.95] uppercase">
@@ -245,65 +290,48 @@ export default function WhyChoose() {
           </p>
         </div>
 
-        {/* Accordion Rows */}
-        <div className="border-t border-slate-200">
+        {/* Awwwards Curtain Grid Columns Container */}
+        <div 
+          ref={columnsContainerRef}
+          className="flex flex-col md:flex-row w-full h-auto md:h-[520px] border border-slate-200 rounded-3xl overflow-hidden bg-white shadow-sm"
+        >
           {features.map((feature, index) => {
-            const isHovered = hoveredIdx === index;
             return (
               <div
-                key={feature.id}
+                key={feature.num}
                 ref={(el) => {
-                  rowsRef.current[index] = el;
+                  columnsRef.current[index] = el;
                 }}
-                className="relative flex flex-col md:flex-row justify-between items-start md:items-center py-12 border-b border-slate-200 cursor-pointer group select-none transition-colors duration-500"
+                className="flex-1 min-w-0 h-full border-b md:border-b-0 md:border-r border-slate-200/80 p-8 sm:p-10 flex flex-col justify-between transition-all duration-500 bg-white cursor-pointer relative overflow-hidden select-none"
               >
-                {/* Background overlay on hover */}
-                <div 
-                  className={`absolute inset-0 bg-slate-50/50 -z-10 transition-opacity duration-500 pointer-events-none ${
-                    isHovered ? "opacity-100" : "opacity-0"
-                  }`} 
-                />
+                {/* Number Indicator */}
+                <div className="col-num text-sm font-mono font-bold text-slate-400 mb-8 transition-colors duration-300">
+                  {feature.num}
+                </div>
 
-                {/* Left Side: Number and Title */}
-                <div className="flex items-center gap-8 md:gap-14 relative z-10 pointer-events-none">
-                  <span className="text-sm font-mono font-bold text-slate-400 group-hover:text-[#2b7fff] transition-colors duration-300">
-                    {feature.num}
-                  </span>
-                  <h3 
-                    className="text-2xl sm:text-4xl md:text-5xl font-extrabold font-display tracking-tight text-slate-900 group-hover:translate-x-4 transition-transform duration-500 ease-out"
-                  >
+                {/* Main Content Area */}
+                <div>
+                  <h3 className="col-title text-2xl sm:text-3xl font-extrabold font-display tracking-tight text-slate-900 mb-4 transform transition-all duration-300">
                     {feature.title}
                   </h3>
-                </div>
 
-                {/* Right Side: Description */}
-                <div className="mt-4 md:mt-0 md:max-w-md relative z-10 pointer-events-none">
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-light group-hover:text-slate-900 transition-colors duration-300">
-                    {feature.desc}
-                  </p>
-                </div>
+                  {/* Expandable Details Block */}
+                  <div className="col-details opacity-100 md:opacity-0 md:h-0 overflow-hidden space-y-6">
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-light">
+                      {feature.desc}
+                    </p>
 
-                {/* Arrow indicator */}
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:block opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 text-[#2b7fff]">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </div>
-
-                {/* Awwwards Mouse-Follower Hover Preview Card */}
-                <div 
-                  className="hover-preview-card absolute pointer-events-none w-56 h-40 rounded-2xl bg-slate-900 border border-slate-800 p-5 shadow-2xl z-50 overflow-hidden flex flex-col justify-between"
-                  style={{
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.4)",
-                  }}
-                >
-                  {/* Subtle inner card gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#2b7fff]/10 to-transparent opacity-40" />
-                  <div className="relative z-10 h-full">
-                    {feature.visual}
+                    {/* Interactive Mock Graphic */}
+                    <div className="w-full max-w-[280px] mt-4 shadow-xl rounded-xl overflow-hidden transform transition-all">
+                      {feature.visual}
+                    </div>
                   </div>
                 </div>
 
+                {/* Subtitle tag visible when collapsed */}
+                <div className="mt-8 text-[10px] font-mono tracking-widest text-slate-400 uppercase md:block hidden">
+                  EXPLORE {feature.num}
+                </div>
               </div>
             );
           })}
