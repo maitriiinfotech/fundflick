@@ -101,21 +101,22 @@ export default function AnimatedPipeline() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full py-28 px-6 sm:px-12 lg:px-20 bg-slate-950 text-white overflow-hidden border-t border-slate-900 font-sans"
+      className="relative w-full py-28 px-6 sm:px-12 lg:px-20 bg-white text-slate-900 overflow-hidden border-t border-slate-100 font-sans"
     >
-      {/* Decorative fine-line grid overlay to match Awwwards styling */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:40px_40px] opacity-60 pointer-events-none" />
+      {/* Light Theme Background matching VantaHero */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-60 pointer-events-none -z-20" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/10 via-white to-indigo-50/10 pointer-events-none -z-20" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header matching screenshot structure */}
+        {/* Header following Hero section colors and stylesheet rules */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-20">
-          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tighter font-display leading-[0.95] uppercase max-w-xl">
-            <span className="text-[#a3e635]">Tailored Services</span> <br />
+          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tighter font-display leading-[0.95] uppercase max-w-xl text-slate-900">
+            <span className="text-[#2b7fff] text-purple-600">Tailored Services</span> <br />
             for Specialized <br />
             Loan Products
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed font-light max-w-sm">
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-light max-w-sm">
             Our platform adapts to your specific needs and can be customized to suit your preferences.
           </p>
         </div>
@@ -123,7 +124,7 @@ export default function AnimatedPipeline() {
         {/* 2 Column Split Layout: Left vertical cards list, Right sticky image preview */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
-          {/* Left Column - Card List */}
+          {/* Left Column - Card List (Light Theme) */}
           <div ref={leftColumnRef} className="lg:col-span-5 flex flex-col gap-6 w-full">
             {PRODUCTS.map((product, index) => {
               const isActive = index === activeIdx;
@@ -136,8 +137,8 @@ export default function AnimatedPipeline() {
                   onClick={() => setActiveIdx(index)}
                   className={`w-full rounded-[28px] p-8 transition-all duration-500 cursor-pointer border select-none ${
                     isActive
-                      ? "bg-[#fdfbf7] border-[#fdfbf7] text-slate-900 shadow-xl scale-[1.02]"
-                      : "bg-[#131c33]/40 border-slate-900 text-white hover:border-slate-800 hover:bg-[#131c33]/60"
+                      ? "bg-white border-[#2b7fff] text-slate-900 shadow-lg scale-[1.02]"
+                      : "bg-slate-50/50 border-slate-100 text-slate-600 hover:border-slate-200 hover:bg-slate-100/50"
                   }`}
                 >
                   <h3 className="text-xl sm:text-2xl font-bold font-display tracking-tight mb-3">
@@ -145,7 +146,7 @@ export default function AnimatedPipeline() {
                   </h3>
                   <p
                     className={`text-xs sm:text-sm leading-relaxed font-light transition-colors duration-500 ${
-                      isActive ? "text-slate-700" : "text-slate-400"
+                      isActive ? "text-slate-700" : "text-slate-500"
                     }`}
                   >
                     {product.desc}
@@ -157,11 +158,8 @@ export default function AnimatedPipeline() {
 
           {/* Right Column - Sticky Visual Preview */}
           <div className="lg:col-span-7 w-full lg:sticky lg:top-28">
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-3xl overflow-hidden bg-slate-900 border border-slate-900/60 shadow-2xl">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-3xl overflow-hidden bg-white border border-slate-200/80 shadow-2xl">
               
-              {/* Overlay shadow wrapper inside the image container */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent z-10 pointer-events-none" />
-
               {/* Stack of absolute images corresponding to products */}
               {PRODUCTS.map((product, index) => {
                 const isActive = index === activeIdx;
