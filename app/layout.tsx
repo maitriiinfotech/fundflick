@@ -36,7 +36,7 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${plusJakartaSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0f1729] text-white">
+      <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
       </body>
