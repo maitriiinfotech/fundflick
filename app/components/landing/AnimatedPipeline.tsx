@@ -100,6 +100,7 @@ export default function AnimatedPipeline() {
 
   return (
     <section
+      id="products"
       ref={containerRef}
       className="relative w-full py-28 px-6 sm:px-12 lg:px-20 bg-white text-slate-900 overflow-hidden border-t border-slate-100 font-sans"
     >

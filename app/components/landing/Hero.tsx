@@ -149,10 +149,15 @@ export default function VantaHero() {
         </div>
       </div>
 
-      {/* Premium background grid & gradients */}
+      {/* Premium background image + grid & gradients */}
       <div className="absolute inset-0 bg-white z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/20 via-white to-indigo-50/20" />
+        <img
+          src="/hero-bg.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-30" />
+        <div className="absolute inset-0 bg-linear-to-t from-white/70 via-white/20 to-transparent" />
       </div>
 
       {/* Nav is now in layout.tsx */}

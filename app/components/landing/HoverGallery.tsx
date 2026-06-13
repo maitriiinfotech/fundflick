@@ -1,514 +1,392 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
-interface Project {
+interface CardData {
   title: string;
-  type: string;
+  subtitle: string;
   img: string;
-  link: string;
   bgColor: string;
   textColor: string;
   comingSoon?: boolean;
+  details: { label: string; value: string }[];
 }
 
-const DEFAULT_SERVICES: Project[] = [
+const STACK_CARDS: CardData[] = [
   {
     title: "Loan Origination",
-    type: "Automate loan application processing, credit check evaluation, and disbursals.",
+    subtitle: "Automate loan application processing, credit check evaluation, and disbursals.",
     img: "/loan_origination.png",
-    link: "/contactus",
-    bgColor: "#fdba74", // Premium Peach/Orange
+    bgColor: "#d4f73f", // Vibrant Lime Green
     textColor: "#131c33",
+    details: [
+      { label: "Verification", value: "Instant eKYC & Bureau Fetch" },
+      { label: "Target Segment", value: "SMEs & Retail Borrowers" },
+      { label: "Disbursals", value: "Instant bank transfers" },
+      { label: "Integration", value: "REST APIs & Webhooks" },
+    ],
   },
   {
     title: "Task Management",
-    type: "Streamline daily operations, assign tasks to resources, and monitor pipelines.",
+    subtitle: "Streamline daily operations, assign tasks to agents, and monitor lead pipelines.",
     img: "/task_management.png",
-    link: "/contactus",
-    bgColor: "#a3e635", // Vibrant Lime Green
+    bgColor: "#ffffff", // Pure White
     textColor: "#131c33",
+    details: [
+      { label: "Visual Boards", value: "Kanban & Lead Stages" },
+      { label: "Assignment", value: "Auto-allocation rules" },
+      { label: "SLA Tracker", value: "Turnaround Time (TAT) alerts" },
+      { label: "Collaboration", value: "Shared comments & files" },
+    ],
   },
   {
     title: "Collection System",
-    type: "Automated payment tracking, auto-debits, and instant EMI reminders.",
+    subtitle: "Automated payment tracking, auto-debits, and instant EMI reminders.",
     img: "/collection.png",
-    link: "/contactus",
-    bgColor: "#38bdf8", // Sky Blue
-    textColor: "#131c33",
+    bgColor: "#131c33", // Deep Navy
+    textColor: "#ffffff",
+    details: [
+      { label: "Gateway", value: "UPI, Netbanking & NACH" },
+      { label: "Dunning", value: "WhatsApp & SMS auto-reminders" },
+      { label: "Auto-Split", value: "Dynamic penalty calculations" },
+      { label: "Recovery Rate", value: "Avg. 98% success rate" },
+    ],
   },
   {
     title: "Smart Reports",
-    type: "In-depth business performance metrics, data trends, and analysis dashboards.",
+    subtitle: "In-depth business performance metrics, collection trends, and live analytics dashboards.",
     img: "/reports.png",
-    link: "/contactus",
-    bgColor: "#c084fc", // Purple/Violet
+    bgColor: "#38bdf8", // Sky Blue
     textColor: "#131c33",
+    details: [
+      { label: "Analytics", value: "Real-time NPA & Yield charts" },
+      { label: "Export formats", value: "Excel, PDF, CSV & JSON" },
+      { label: "Schedules", value: "Daily automated email reports" },
+      { label: "Security", value: "Role-based report access" },
+    ],
   },
   {
     title: "Loan Management",
-    type: "Comprehensive loan books, EMI schedules, accounts, and servicing tools.",
+    subtitle: "Comprehensive loan books, custom EMI schedules, ledgers, and servicing tools.",
     img: "/lms_hrms.png",
-    link: "/contactus",
-    comingSoon: true,
-    bgColor: "#fb7185", // Soft Rose/Pink
+    bgColor: "#fb7185", // Rose Pink
     textColor: "#131c33",
+    comingSoon: true,
+    details: [
+      { label: "Interest Engine", value: "Simple, Reducing & Custom models" },
+      { label: "Statements", value: "Instant NOC & SOA generation" },
+      { label: "Foreclosure", value: "Auto pre-closure calculations" },
+      { label: "Status", value: "Beta testing with select partners" },
+    ],
   },
   {
     title: "Bookkeeping & Accounts",
-    type: "Accurate transaction logging, automated ledger entries, and audit compliance.",
+    subtitle: "Accurate transaction logging, automated ledger entries, and audit compliance.",
     img: "/accounting.png",
-    link: "/contactus",
-    comingSoon: true,
-    bgColor: "#fde047", // Amber Yellow
+    bgColor: "#c084fc", // Purple/Violet
     textColor: "#131c33",
+    comingSoon: true,
+    details: [
+      { label: "Ledger", value: "Double-entry compliance tracking" },
+      { label: "Taxation", value: "GST & TDS worksheets" },
+      { label: "Audits", value: "One-click trial balance export" },
+      { label: "Status", value: "In active development" },
+    ],
   },
 ];
 
-interface SliderState {
-  target: number;
-  current: number;
-  isDragging: boolean;
-  startX: number;
-  touchStart: number;
-  maxScroll: number;
-  cardWidth: number;
-  gap: number;
-  viewWidth: number;
-}
-
 export default function HoverGallery() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  const state = useRef<SliderState>({
-    target: 0,
-    current: 0,
-    isDragging: false,
-    startX: 0,
-    touchStart: 0,
-    maxScroll: 0,
-    cardWidth: 360,
-    gap: 24,
-    viewWidth: 0,
-  });
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    // Register GSAP ScrollTrigger plugin on client-side
     gsap.registerPlugin(ScrollTrigger);
 
-    const calculateDimensions = () => {
-      const isMobile = window.innerWidth < 768;
-      const s = state.current;
+    const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
+    const section = sectionRef.current;
 
-      s.cardWidth = isMobile ? window.innerWidth * 0.82 : 360;
-      s.gap = isMobile ? 16 : 24;
+    if (!section || cards.length === 0) return;
 
-      const containerWidth =
-        containerRef.current?.getBoundingClientRect().width ||
-        window.innerWidth;
-      s.viewWidth = isMobile ? window.innerWidth : containerWidth;
+    // Create GSAP ScrollTrigger timeline that scrubs along the scroll height of the parent section
+    const tl = gsap.timeline();
 
-      // Mathematically calculate the exact maxScroll limit:
-      // total content width of all cards (including gaps between them, but no trailing gap)
-      // Add generous padding so the LAST card can be fully scrolled into view
-      const totalContentWidth =
-        (DEFAULT_SERVICES.length - 1) * (s.cardWidth + s.gap) + s.cardWidth;
-      // leftOffset (md:left-10 = 40px) + right breathing room so last card sits comfortably
-      const padding = isMobile ? 60 : 200;
+    cards.forEach((card, index) => {
+      if (index === 0) return; // Keep Card 0 at base
 
-      s.maxScroll = Math.max(0, totalContentWidth - s.viewWidth + padding);
-    };
+      // Set initial offscreen/stacked position for cards
+      gsap.set(card, { yPercent: 100, scale: 0.95 });
 
+      // Animate card sliding up
+      tl.to(
+        card,
+        {
+          yPercent: 0,
+          scale: 1,
+          duration: 1,
+          ease: "none",
+        },
+        `card-${index}`
+      );
 
-    // --- INTRO STATE ---
-    // Cards start hidden. IntersectionObserver (not ScrollTrigger) flips
-    // the flag so it works reliably with Lenis smooth scroll.
-    let introPlayed = false;
-    state.current.target = 0;
-    state.current.current = 0;
+      // Simultaneously animate scaling/dimming/offsetting of all previous cards
+      for (let i = 0; i < index; i++) {
+        const prevCard = cards[i];
+        const scaleVal = 0.96 - (index - i - 1) * 0.03;
+        const opacityVal = 0.8 - (index - i - 1) * 0.15;
+        const yOffset = -20 * (index - i);
 
-    // Hide cards initially
-    cardsRef.current.forEach((card) => {
-      if (card) gsap.set(card, { opacity: 0, x: 500 });
+        tl.to(
+          prevCard,
+          {
+            scale: scaleVal,
+            opacity: opacityVal,
+            y: yOffset,
+            transformOrigin: "top center",
+            duration: 1,
+            ease: "none",
+          },
+          `card-${index}`
+        );
+      }
     });
 
-    // Hide text initially
-    const textEls = document.querySelectorAll(".gallery-text-content > *");
-    textEls.forEach((el) => gsap.set(el, { opacity: 0, y: 35 }));
-
-    const calculateAndUpdate = () => {
-      const s = state.current;
-      const lerpFactor = s.isDragging ? 0.35 : 0.08;
-      s.current += (s.target - s.current) * lerpFactor;
-
-      if (Math.abs(s.target - s.current) < 0.01) {
-        s.current = s.target;
-      }
-
-      // Calculate progress index
-      const scrollPercent =
-        s.maxScroll > 0 ? Math.min(1, Math.max(0, s.current / s.maxScroll)) : 0;
-      const centerCardIdx = Math.max(
-        0,
-        Math.min(
-          DEFAULT_SERVICES.length - 1,
-          Math.round(scrollPercent * (DEFAULT_SERVICES.length - 1)),
-        ),
-      );
-      setActiveIdx(centerCardIdx);
-
-      cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-
-        // If intro hasn't played yet, keep cards hidden
-        if (!introPlayed) return;
-
-        const itemX = index * (s.cardWidth + s.gap) - s.current;
-        let displayX = itemX;
-        let rotateZ = 0;
-        let scale = 1;
-        let zIndex = DEFAULT_SERVICES.length - index;
-        let opacity = 1;
-
-        if (itemX < 0) {
-          displayX = itemX * 0.15;
-          rotateZ = Math.max(itemX * 0.04, -8);
-          scale = Math.max(1 + itemX * 0.0008, 0.88);
-          opacity = Math.max(1 + itemX * 0.0025, 0);
-        }
-
-        gsap.set(card, {
-          x: displayX,
-          rotation: rotateZ,
-          scale: scale,
-          zIndex: zIndex,
-          opacity: opacity,
-          transformOrigin: "left center",
-        });
-      });
-    };
-
-    calculateDimensions();
-    gsap.ticker.add(calculateAndUpdate);
-
-    // Use IntersectionObserver instead of ScrollTrigger (works with Lenis)
-    const sectionEl = document.querySelector(".gallery-section");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !introPlayed) {
-            introPlayed = true;
-
-            // Stagger-reveal each card from right
-            cardsRef.current.forEach((card, i) => {
-              if (!card) return;
-              const targetX = i * (state.current.cardWidth + state.current.gap);
-              gsap.fromTo(
-                card,
-                { x: 500 + i * 80, opacity: 0, scale: 0.9, rotation: 5 },
-                {
-                  x: targetX,
-                  opacity: 1,
-                  scale: 1,
-                  rotation: 0,
-                  duration: 0.9,
-                  delay: i * 0.1,
-                  ease: "power3.out",
-                },
-              );
-            });
-
-            // Fade-in text content
-            textEls.forEach((el, i) => {
-              gsap.to(el, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                delay: i * 0.15,
-                ease: "power2.out",
-              });
-            });
-
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 },
-    );
-
-    if (sectionEl) observer.observe(sectionEl);
-
-    const clampTarget = () => {
-      state.current.target = Math.max(
-        0,
-        Math.min(state.current.target, state.current.maxScroll),
-      );
-    };
-
-    const handleWheel = (e: WheelEvent) => {
-      if (state.current.maxScroll <= 0) return;
-      const delta =
-        Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-
-      // FIX: Check visual current position rather than raw target to prevent premature releasing of scroll lock
-      const atStart = state.current.current <= 5 && delta < 0;
-      const atEnd =
-        state.current.current >= state.current.maxScroll - 5 && delta > 0;
-
-      if (!atStart && !atEnd) {
-        e.preventDefault();
-        state.current.target += delta * 0.8;
-        clampTarget();
-      }
-    };
-
-    const handleStart = (clientX: number) => {
-      state.current.isDragging = true;
-      state.current.startX = clientX;
-      state.current.touchStart = state.current.target;
-      if (containerRef.current) {
-        containerRef.current.style.cursor = "grabbing";
-      }
-
-      window.addEventListener("mousemove", onMouseMove);
-      window.addEventListener("mouseup", onMouseUp);
-      window.addEventListener("touchmove", onTouchMove, { passive: false });
-      window.addEventListener("touchend", onTouchEnd);
-    };
-
-    const handleMove = (clientX: number) => {
-      if (!state.current.isDragging) return;
-      const diff = (state.current.startX - clientX) * 1.35;
-      state.current.target = state.current.touchStart + diff;
-      clampTarget();
-    };
-
-    const handleEnd = () => {
-      state.current.isDragging = false;
-      if (containerRef.current) {
-        containerRef.current.style.cursor = "grab";
-      }
-
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
-    };
-
-    const onMouseDown = (e: MouseEvent) => {
-      if ((e.target as HTMLElement).closest("a, button")) return;
-      handleStart(e.clientX);
-    };
-
-    const onMouseMove = (e: MouseEvent) => {
-      handleMove(e.clientX);
-    };
-
-    const onMouseUp = () => {
-      handleEnd();
-    };
-
-    const onTouchStart = (e: TouchEvent) => {
-      if ((e.target as HTMLElement).closest("a, button")) return;
-      handleStart(e.touches[0].clientX);
-    };
-
-    const onTouchMove = (e: TouchEvent) => {
-      if (e.cancelable) e.preventDefault();
-      handleMove(e.touches[0].clientX);
-    };
-
-    const onTouchEnd = () => {
-      handleEnd();
-    };
-
-    const resizeListener = () => {
-      calculateDimensions();
-      clampTarget();
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("wheel", handleWheel, { passive: false });
-      container.addEventListener("mousedown", onMouseDown);
-      container.addEventListener("touchstart", onTouchStart, { passive: true });
-    }
-
-    window.addEventListener("resize", resizeListener);
+    // Create ScrollTrigger to scrub the timeline over the native sticky section
+    const st = ScrollTrigger.create({
+      trigger: section,
+      start: "top 80px",
+      end: "bottom bottom",
+      scrub: 1,
+      animation: tl,
+    });
 
     return () => {
-      gsap.ticker.remove(calculateAndUpdate);
-      observer.disconnect();
-      window.removeEventListener("resize", resizeListener);
-      if (container) {
-        container.removeEventListener("wheel", handleWheel);
-        container.removeEventListener("mousedown", onMouseDown);
-        container.removeEventListener("touchstart", onTouchStart);
-      }
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
+      st.kill();
     };
   }, []);
 
   return (
-    <section className="gallery-section bg-white py-24 text-slate-800 font-sans overflow-hidden relative border-t border-slate-100">
-      {/* Background design elements */}
-      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[600px] h-[600px] bg-secondaryColor/5 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
+    <section
+      id="features"
+      ref={sectionRef}
+      className="relative w-full h-[350vh] bg-slate-50 border-t border-slate-100"
+      style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+    >
+      {/* Native Sticky Wrapper container for pinning effect */}
+      <div className="sticky top-[80px] w-full h-[calc(100vh-80px)] flex flex-col justify-between overflow-hidden py-10">
+        
+        {/* Background visual graphics */}
+        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-secondaryColor/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-40 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 lg:items-center">
-          {/* Left Column: Heading & Controls */}
-          <div className="w-full lg:w-5/12 flex flex-col justify-center gallery-text-content">
-            <p className="text-secondaryColor font-bold uppercase tracking-widest text-xs mb-3 font-display">
-              Core Capabilities
-            </p>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight font-display">
-              End-to-End <br />
-              Lending Suite
-            </h2>
-            <p className="text-slate-500 mt-6 text-sm md:text-base leading-relaxed max-w-lg">
-              Manage your entire loan operations lifecycle. From origination and
-              underwriting to automated collections, servicing, and ledger
-              accounting—tailored to save your time.
-            </p>
+        {/* Section Header */}
+        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
+          <p className="text-secondaryColor font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs mb-1">
+            Core Capabilities
+          </p>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            End-to-End <span className="text-secondaryColor">Lending Suite</span>
+          </h2>
+          <p className="text-slate-500 mt-2 text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
+            Manage your entire loan operations lifecycle. From origination and underwriting to automated collections, servicing, and ledger accounting.
+          </p>
+        </div>
 
-            {/* Pagination & Micro-interactions */}
-            <div className="mt-10 flex items-center gap-6">
-              <div className="flex items-baseline gap-2 font-display text-slate-900">
-                <span className="text-3xl font-extrabold">
-                  {String(activeIdx + 1).padStart(2, "0")}
-                </span>
-                <span className="text-slate-300 text-sm">/</span>
-                <span className="text-slate-400 text-sm font-semibold">
-                  {String(DEFAULT_SERVICES.length).padStart(2, "0")}
-                </span>
-              </div>
-
-              <div className="flex-1 max-w-[120px] h-[3px] bg-slate-100 rounded-full overflow-hidden">
+        {/* Absolute Stacking Cards Container */}
+        <div className="w-full max-w-5xl mx-auto px-4 md:px-6 relative z-10 flex-grow flex items-center justify-center">
+          <div className="relative w-full h-[480px] sm:h-[420px] md:h-[460px] lg:h-[380px] mx-auto">
+            {STACK_CARDS.map((card, index) => (
+              <div
+                key={index}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                className="absolute inset-0 w-full h-full will-change-transform"
+                style={{
+                  zIndex: (index + 1) * 10,
+                }}
+              >
                 <div
-                  className="h-full bg-secondaryColor transition-all duration-300 ease-out"
+                  className="w-full h-full rounded-[24px] md:rounded-[32px] overflow-hidden transition-all duration-300"
                   style={{
-                    width: `${((activeIdx + 1) / DEFAULT_SERVICES.length) * 100}%`,
-                  }}
-                />
-              </div>
-
-              <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider animate-pulse hidden md:inline">
-                Drag or scroll cards →
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: AuraStack Cards viewport */}
-          <div
-            ref={containerRef}
-            data-lenis-prevent
-            className="w-full lg:w-7/12 h-[520px] relative cursor-grab active:cursor-grabbing overflow-hidden"
-          >
-            <div className="absolute top-1/2 -translate-y-1/2 left-2 md:left-10 w-full h-[480px]">
-              {DEFAULT_SERVICES.map((project, index) => (
-                <div
-                  key={index}
-                  ref={(el) => {
-                    cardsRef.current[index] = el;
-                  }}
-                  className="absolute top-0 left-0 w-[290px] h-[450px] md:w-[340px] md:h-[480px] border rounded-[24px] p-5 flex flex-col justify-between select-none shadow-xl will-change-transform transition-colors"
-                  style={{
-                    backgroundColor: project.bgColor,
-                    color: project.textColor,
-                    borderColor: "rgba(19, 28, 51, 0.08)",
+                    backgroundColor: card.bgColor,
+                    color: card.textColor,
+                    border:
+                      card.bgColor === "#ffffff"
+                        ? "1px solid rgba(0, 0, 0, 0.08)"
+                        : "1px solid rgba(19, 28, 51, 0.06)",
+                    boxShadow:
+                      card.bgColor === "#ffffff"
+                        ? "0 20px 40px -15px rgba(0,0,0,0.06), 0 4px 12px -5px rgba(0,0,0,0.03)"
+                        : "0 25px 50px -12px rgba(19,28,51,0.15), 0 8px 20px -8px rgba(19,28,51,0.1)",
                   }}
                 >
-                  {/* Card Top: Number & Badge */}
-                  <div className="flex items-center justify-between">
-                    <span
-                      className="text-sm font-mono font-semibold opacity-60"
-                      style={{ color: project.textColor }}
-                    >
-                      0{index + 1}
-                    </span>
-                    {project.comingSoon ? (
-                      <span
-                        className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full border"
+                  {/* Card Padding */}
+                  <div className="p-5 md:p-8 lg:p-10 h-full flex flex-col justify-between">
+                    {/* Card Top Row */}
+                    <div className="flex items-center justify-between">
+                      <div
+                        className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[9px] md:text-xs font-bold uppercase tracking-wider"
                         style={{
-                          backgroundColor: "rgba(19, 28, 51, 0.05)",
-                          color: project.textColor,
-                          borderColor: "rgba(19, 28, 51, 0.1)",
+                          backgroundColor:
+                            card.textColor === "#ffffff"
+                              ? "rgba(255, 255, 255, 0.08)"
+                              : "rgba(0, 0, 0, 0.05)",
+                          color:
+                            card.textColor === "#ffffff"
+                              ? "rgba(255, 255, 255, 0.6)"
+                              : "rgba(0, 0, 0, 0.5)",
                         }}
                       >
-                        Coming Soon
-                      </span>
-                    ) : (
-                      <span
-                        className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full border"
-                        style={{
-                          backgroundColor: "rgba(19, 28, 51, 0.08)",
-                          color: project.textColor,
-                          borderColor: "rgba(19, 28, 51, 0.15)",
-                        }}
-                      >
-                        Active Feature
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Card Middle: Image (Premium presentation) */}
-                  <div className="w-full h-[180px] my-4 bg-white/20 border border-black/5 rounded-xl overflow-hidden relative">
-                    <img
-                      src={project.img}
-                      alt={project.title}
-                      className="w-full h-full object-cover select-none pointer-events-none"
-                    />
-                  </div>
-
-                  {/* Card Bottom: Content & Link */}
-                  <div className="flex flex-col gap-2">
-                    <h3
-                      className="text-lg md:text-xl font-bold tracking-tight font-display"
-                      style={{ color: project.textColor }}
-                    >
-                      {project.title}
-                    </h3>
-                    <p
-                      className="text-xs leading-relaxed font-medium opacity-80"
-                      style={{ color: project.textColor }}
-                    >
-                      {project.type}
-                    </p>
-
-                    <a
-                      href={project.link}
-                      className="mt-3 text-xs font-semibold inline-flex items-center gap-1 group/btn hover:underline"
-                      style={{ color: project.textColor }}
-                    >
-                      {project.comingSoon
-                        ? "Request Early Access"
-                        : "Learn More"}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                          clipRule="evenodd"
+                        <span
+                          className="w-1.5 h-1.5 rounded-full"
+                          style={{
+                            backgroundColor:
+                              card.bgColor === "#131c33"
+                                ? "#38bdf8"
+                                : "#2b7fff",
+                          }}
                         />
-                      </svg>
-                    </a>
+                        0{index + 1} / 0{STACK_CARDS.length}
+                      </div>
+
+                      {card.comingSoon ? (
+                        <span
+                          className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border"
+                          style={{
+                            backgroundColor:
+                              card.textColor === "#ffffff"
+                               ? "rgba(255, 255, 255, 0.05)"
+                               : "rgba(0, 0, 0, 0.03)",
+                            borderColor:
+                              card.textColor === "#ffffff"
+                               ? "rgba(255, 255, 255, 0.1)"
+                               : "rgba(0, 0, 0, 0.08)",
+                            color: card.textColor,
+                          }}
+                        >
+                          Coming Soon
+                        </span>
+                      ) : (
+                        <span
+                          className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border"
+                          style={{
+                            backgroundColor:
+                              card.textColor === "#ffffff"
+                               ? "rgba(255, 255, 255, 0.1)"
+                               : "rgba(0, 0, 0, 0.06)",
+                            borderColor:
+                              card.textColor === "#ffffff"
+                               ? "rgba(255, 255, 255, 0.15)"
+                               : "rgba(0, 0, 0, 0.12)",
+                            color: card.textColor,
+                          }}
+                        >
+                          Active Feature
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Main Content Layout */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center flex-grow">
+                      {/* Left Column: Text & Features Info */}
+                      <div className="lg:col-span-7 flex flex-col justify-center">
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight mb-1 md:mb-2 leading-tight">
+                          {card.title}
+                        </h3>
+                        <p
+                          className="text-[11px] md:text-xs lg:text-sm mb-3 md:mb-4 leading-relaxed max-w-xl"
+                          style={{
+                            color:
+                              card.textColor === "#ffffff"
+                                ? "rgba(255, 255, 255, 0.8)"
+                                : "rgba(15, 23, 42, 0.8)",
+                          }}
+                        >
+                          {card.subtitle}
+                        </p>
+
+                        {/* Features Detail Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-4">
+                          {card.details.map((detail, dIdx) => (
+                            <div key={dIdx} className="flex flex-col gap-0.5">
+                              <span
+                                className="text-[8px] md:text-[9px] font-bold uppercase tracking-wider"
+                                style={{
+                                  color:
+                                    card.textColor === "#ffffff"
+                                      ? "rgba(255, 255, 255, 0.45)"
+                                      : "rgba(15, 23, 42, 0.5)",
+                                }}
+                              >
+                                {detail.label}
+                              </span>
+                              <span className="text-[10px] md:text-xs font-semibold leading-tight">
+                                {detail.value}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* CTA Link */}
+                        <div>
+                          <Link
+                            href="/contactus"
+                            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider hover:underline group/btn"
+                            style={{ color: card.textColor }}
+                          >
+                            {card.comingSoon ? "Request Early Access" : "Learn More"}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              className="w-3 h-3 transition-transform group-hover/btn:translate-x-1"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Right Column: Visual Mockup Box */}
+                      <div className="lg:col-span-5 flex justify-center hidden sm:flex">
+                        <div
+                          className="w-full max-w-[280px] lg:max-w-none h-[120px] md:h-[150px] lg:h-[180px] rounded-xl overflow-hidden border relative shadow-sm transition-transform duration-500 hover:scale-[1.02]"
+                          style={{
+                            backgroundColor:
+                              card.textColor === "#ffffff"
+                                ? "rgba(255, 255, 255, 0.08)"
+                                : "rgba(0, 0, 0, 0.03)",
+                            borderColor:
+                              card.textColor === "#ffffff"
+                                ? "rgba(255, 255, 255, 0.15)"
+                                : "rgba(0, 0, 0, 0.08)",
+                          }}
+                        >
+                          <img
+                            src={card.img}
+                            alt={card.title}
+                            className="w-full h-full object-cover select-none pointer-events-none"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Footer spacer/info for styling */}
+        <div className="max-w-6xl mx-auto px-6 text-center text-[10px] text-slate-400 font-semibold uppercase tracking-widest relative z-10 animate-pulse">
+          Scroll to view capabilities ↓
         </div>
       </div>
     </section>

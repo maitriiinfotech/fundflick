@@ -5,6 +5,7 @@ import WhyChoose from "./components/landing/WhyChoose";
 import AnimatedPipeline from "./components/landing/AnimatedPipeline";
 import PricingSection from "./components/landing/PricingSection";
 import FAQ from "./components/landing/FAQ";
+import CTASection from "./components/landing/CTASection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <AnimatedPipeline />
       <PricingSection />
       <FAQ />
+      <CTASection />
     </div>
   );
 }

@@ -14,28 +14,38 @@ interface FAQItem {
 const FAQ_DATA: FAQItem[] = [
   {
     num: "01.",
-    question: "Do you guarantee automated loan disbursals?",
-    answer: "No. Disbursals are subject to final approval by your partner banks or NBFC integration rules. Fundflick provides the speed and workflow automation; you control the risk policy.",
+    question: "How quickly can I process loan applications with Fundflick?",
+    answer: "With our AI-powered automation, most loan applications can be processed within minutes. Simple applications may take as little as 4-5 minutes, while more complex cases typically complete within 25-30 minutes, compared to traditional methods that can take days.",
   },
   {
     num: "02.",
-    question: "How secure is the bank transaction data logged?",
-    answer: "We use enterprise-grade AES-256 encryption for data at rest and TLS 1.3 for data in transit, combined with bank-level sandbox tokens to isolate databases.",
+    question: "Can Fundflick integrate with my existing banking systems?",
+    answer: "Yes, Fundflick offers seamless integration with existing systems and third-party integrations through our robust API infrastructure. Our technical team provides full support during the integration process.",
   },
   {
     num: "03.",
-    question: "Can we customize the approval workflows later?",
-    answer: "Yes. Workflows are fully customizable. You can add stages, change checklist constraints, and adjust escalation rules in real-time through the settings panel.",
+    question: "What types of loans can I manage with Fundflick?",
+    answer: "Fundflick supports all major loan types including Mortgage loans, Home loans, vehicle loans, business loans, MSME loans, and gold loans. The platform is flexible and can be customized for specialized loan products as well.",
   },
   {
     num: "04.",
-    question: "Who manages the direct payment integration?",
-    answer: "We integrate directly with major secure payment gateways (like Razorpay, Stripe, or standard bank host-to-host APIs) to ensure instant EMI auto-debit recovery.",
+    question: "Is there a free trial available?",
+    answer: "Yes, we offer a 30-day free trial with access to all Professional plan features. Just a click away to start, and you can upgrade or downgrade at any time based on your needs.",
   },
   {
     num: "05.",
-    question: "Is real-time ledger accounting audit-compliant?",
-    answer: "Yes. Every log, ledger entry, and disbursal record is double-booked and generates an unalterable audit trail that complies with standard financial regulations.",
+    question: "What kind of support do you provide?",
+    answer: "We provide 24/7 technical support for Professional and Enterprise plans, with dedicated account managers for Enterprise customers. Our support includes phone, email, live chat, and comprehensive documentation and training resources.",
+  },
+  {
+    num: "06.",
+    question: "How does the AI-powered verification work?",
+    answer: "Our AI system automatically verifies documents, performs KYC checks, assesses creditworthiness, and detects fraud patterns on basis of business logics provided by you. It uses machine learning algorithms trained on millions of loan applications to make accurate decisions while reducing manual intervention by up to 90%.",
+  },
+  {
+    num: "07.",
+    question: "Can I customize the platform for my brand?",
+    answer: "Absolutely! Our Enterprise plan includes white-label options where you can customize the platform with your branding, colors, logos, and even custom domain names. The interface can be tailored to match your organization's look and feel.",
   },
 ];
 
@@ -159,6 +169,7 @@ export default function FAQ() {
 
   return (
     <section
+      id="faq"
       ref={containerRef}
       className="relative w-full py-28 px-6 sm:px-12 lg:px-20 bg-white text-slate-900 overflow-hidden border-t border-slate-100 font-sans"
     >

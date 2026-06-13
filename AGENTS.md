@@ -42,3 +42,16 @@ To avoid jitter and maintain seamless animations in [Hero.tsx](file:///c:/Users/
 * **Card Position Management**: All card layout percentages (`top`, `left`, `transform: scale() rotate()`) **MUST** be defined in [globals.css](file:///c:/Users/PC/Desktop/fundlfick2/fundflick-new/app/globals.css#L346-L365) inside `@media (max-width: 768px)` and `@media (min-width: 769px)` media queries targeting `.animated-grid .img-card:nth-child(i)`. Do not inline offsets or positional coordinates in TypeScript files.
 * **Organic Scattered Positions**: Keep cards scattered across all quadrants of the hero area (Top-Left, Top-Right, Center-Middle, Bottom-Left, Bottom-Right) rather than grouping them in one place, so the background looks balanced behind the front title.
 
+---
+
+## 5. Button Component Rules (STRICT)
+* **Always use the reusable `Button` component** from [Button.tsx](file:///c:/Users/PC/Desktop/fundlfick2/fundflick-new/app/components/ui/Button.tsx) for all CTA buttons, action buttons, and form submit buttons. **DO NOT** use raw `<button>` or `<a>` tags for button-styled elements.
+* **Default variant**: All primary CTA buttons ("Get Started", "Request a Demo", "Book a Demo", "Start Free Trial", etc.) **MUST** use `variant="primary"` — this renders the dark navy blue (`#131c33`) style matching the Navbar's "Get Started" button.
+* **Available variants**:
+  * `primary` — Dark navy `#131c33` (DEFAULT for all CTAs)
+  * `secondary` — Outline with `secondaryColor` border, transparent bg
+  * `outline` — Light slate border, neutral style
+  * `brand` — Solid electric blue `#2b7fff` (use sparingly, e.g. form submits)
+* **Navigation buttons**: If a button links to a page, pass the `href` prop — `Button` auto-renders as Next.js `Link`.
+* **Form buttons**: For `<form>` submit actions, use `type="submit"` prop — `Button` auto-renders as `<button>`.
+* **Social icon links** (Facebook, Instagram, X) are exempt — they use custom inline `<a>` tags with brand-specific hover colors.
