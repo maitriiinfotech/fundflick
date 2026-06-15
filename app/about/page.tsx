@@ -20,20 +20,43 @@ const STATS = [
 
 const VALUES = [
   {
-    title: "Customer Obsession",
-    desc: "Every feature starts with a lender's real pain point. We build for outcomes, not vanity metrics.",
+    title: "Vision",
+    desc: "Streamline lending with intelligent automation, cut approval time by 80%, and eliminate manual errors.",
   },
   {
-    title: "Built for Trust",
-    desc: "RBI-compliant, secure by design. Financial data deserves the highest bar of protection.",
+    title: "Core Values",
+    desc: "Empower lenders with AI-driven credit assessment and automated KYC for faster, safer decisions.",
   },
   {
-    title: "Relentless Velocity",
-    desc: "We ship fast, learn faster. Lending moves quickly — so does our roadmap.",
+    title: "Mission",
+    desc: "Digital-first, paperless lending — from application to disbursement with speed, compliance, and ease.",
+  },
+];
+
+const SOLUTIONS = [
+  {
+    title: "Compliance Management",
+    desc: "Ensure regulatory compliance with built-in tools and automated checks.",
   },
   {
-    title: "Intelligence First",
-    desc: "AI is woven into the core — automating ops, lifting conversion, and cutting busywork.",
+    title: "Process Automation",
+    desc: "Automate repetitive tasks and streamline your workflow for faster processing.",
+  },
+  {
+    title: "Cost Reduction",
+    desc: "Reduce operational costs by optimizing processes and minimizing errors.",
+  },
+  {
+    title: "Enhanced Collaboration",
+    desc: "Improve team collaboration with centralized data and communication tools.",
+  },
+  {
+    title: "Data-Driven Insights",
+    desc: "Gain valuable insights with real-time analytics and reporting dashboards.",
+  },
+  {
+    title: "Secure and Reliable",
+    desc: "Ensure data security and system reliability with robust infrastructure and protocols.",
   },
 ];
 
@@ -74,6 +97,40 @@ export default function AboutPage() {
           },
         }
       );
+
+      // Cinematic 3D staggered reveal for solution cards
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (reduceMotion) {
+        gsap.set(".solution-card", { opacity: 1 });
+      } else {
+        gsap.fromTo(
+          ".solution-card",
+          {
+            y: 90,
+            opacity: 0,
+            scale: 0.82,
+            rotateX: -45,
+            transformOrigin: "50% 100% -40px",
+          },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            rotateX: 0,
+            duration: 1.1,
+            ease: "power4.out",
+            stagger: { each: 0.09, from: "center", grid: "auto" },
+            scrollTrigger: {
+              trigger: ".solutions-grid",
+              start: "top 80%",
+              once: true,
+            },
+          },
+        );
+      }
 
       // Count-up stats
       gsap.utils.toArray<HTMLElement>(".stat-num").forEach((el) => {
@@ -172,7 +229,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               href="/contactus"
-              variant="brand"
+              variant="primary"
               className="px-8 py-3.5 text-sm whitespace-nowrap"
             >
               Get Started Free
@@ -180,7 +237,7 @@ export default function AboutPage() {
             <Button
               href="/contactus"
               variant="secondary"
-              className="px-8 py-3.5 text-sm whitespace-nowrap"
+              className="px-8 py-3.5 text-sm whitespace-nowrap !text-white !border-white/40 hover:!bg-white/10 hover:!text-white"
             >
               Talk to Sales
             </Button>
@@ -258,7 +315,7 @@ export default function AboutPage() {
         >
           Our core values
         </h2>
-        <div className="values-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="values-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {VALUES.map((v, i) => (
             <div
               key={v.title}
@@ -271,6 +328,54 @@ export default function AboutPage() {
                 {v.title}
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">{v.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ===================== SOLUTIONS ===================== */}
+      <section className="max-w-6xl mx-auto px-6 pb-20 md:pb-28">
+        <h2
+          className="reveal text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-5 leading-tight"
+          style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+        >
+          Our Solutions
+        </h2>
+        <div className="reveal h-0.5 w-full bg-secondaryColor mb-7" />
+        <div className="reveal space-y-3 text-slate-600 text-base sm:text-lg leading-relaxed max-w-3xl mb-12">
+          <p>
+            Fundflick offers tailored solutions to address key challenges in the
+            lending industry. From compliance to efficiency, we&apos;ve got you
+            covered.
+          </p>
+          <p>
+            Beyond our core solutions, Fundflick provides additional benefits to
+            enhance your lending operations.
+          </p>
+        </div>
+
+        <div className="solutions-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 perspective-distant">
+          {SOLUTIONS.map((s) => (
+            <div
+              key={s.title}
+              className="solution-card group relative overflow-hidden rounded-2xl bg-linear-to-br from-[#0f1729] to-[#2b3f6b] p-7 will-change-transform hover:-translate-y-1 transition-transform duration-300"
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 80% 100% at 100% 0%, rgba(43,127,255,0.35), transparent 70%)",
+                }}
+              />
+              <div className="relative z-10">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-3">
+                  {s.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>
