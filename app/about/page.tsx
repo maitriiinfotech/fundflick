@@ -44,28 +44,36 @@ export default function AboutPage() {
     const ctx = gsap.context(() => {
       // Reveal sections/elements on scroll
       gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => {
-        gsap.from(el, {
-          y: 40,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 85%", once: true },
-        });
+        gsap.fromTo(
+          el,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", once: true },
+          }
+        );
       });
 
       // Stagger value cards
-      gsap.from(".value-card", {
-        y: 50,
-        opacity: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: ".values-grid",
-          start: "top 85%",
-          once: true,
-        },
-      });
+      gsap.fromTo(
+        ".value-card",
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: ".values-grid",
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
 
       // Count-up stats
       gsap.utils.toArray<HTMLElement>(".stat-num").forEach((el) => {
