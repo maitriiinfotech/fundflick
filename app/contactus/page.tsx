@@ -69,295 +69,269 @@ export default function ContactUs() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen bg-slate-50 text-slate-900 pt-28 pb-20 flex flex-col justify-center relative overflow-hidden"
+      className="min-h-screen bg-white text-slate-900 pt-28 pb-24 relative overflow-hidden"
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
-      {/* Decorative background gradients */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-secondaryColor/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-40 pointer-events-none" />
+      {/* Awwwards-level premium background — clean white with refined dot grid + subtle navy/blue glows */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:26px_26px] opacity-60 pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-[620px] h-[620px] bg-[#131c33]/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-[-80px] w-[520px] h-[520px] bg-[#2b7fff]/5 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Main Content Grid */}
-      <div className="max-w-6xl w-full mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
-        {/* Left Column: Heading & Contact Info (Grid 5/12) */}
-        <div ref={leftColRef} className="lg:col-span-5 flex flex-col gap-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondaryColor hover:underline w-fit mb-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2.5"
-              stroke="currentColor"
-              className="w-4 h-4"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-            </svg>
-            Back to Home
-          </Link>
-
-          <h1
-            className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight"
-            style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-          >
-            Let's build the future of <span className="text-secondaryColor">lending</span> together.
-          </h1>
-
-          <p className="text-slate-500 text-sm sm:text-base leading-relaxed font-light max-w-md">
-            Have questions about our lending automation suite, pricing plans, custom integrations, or compliance? Our team is here to help you scale safely.
-          </p>
-
-          {/* Contact Details List */}
-          <div className="flex flex-col gap-5 mt-6">
-            {/* Email */}
-            <div className="flex items-center gap-4 bg-white border border-slate-200/60 p-4 rounded-2xl shadow-sm hover:border-secondaryColor/30 transition-all">
-              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-secondaryColor">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-                  />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Email Us</span>
-                <a href="mailto:support@fundflick.in" className="text-sm font-semibold text-slate-800 hover:underline">
-                  support@fundflick.in
-                </a>
-              </div>
-            </div>
-
-            {/* Address */}
-            <div className="flex items-center gap-4 bg-white border border-slate-200/60 p-4 rounded-2xl shadow-sm hover:border-secondaryColor/30 transition-all">
-              <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1 1 15 0Z"
-                  />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Our HQ</span>
-                <span className="text-sm font-semibold text-slate-800">Bangalore, India</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick response card */}
-          <div className="mt-4 p-4 rounded-2xl bg-secondaryColor/5 border border-secondaryColor/10 flex items-center gap-3 w-fit">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-xs font-semibold text-secondaryColor">
-              Integrations team active: Replies in Under 15 Minutes.
-            </span>
-          </div>
-        </div>
-
-        {/* Right Column: Lead Contact Form (Grid 7/12) */}
-        <div ref={rightColRef} className="lg:col-span-7 flex flex-col justify-center">
+      {/* Main Content — generous Awwwards spacing */}
+      <div className="max-w-6xl w-full mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start pt-8">
           
-          <div className="w-full bg-white border border-slate-200/80 rounded-[32px] p-6 sm:p-10 shadow-2xl relative">
-            
-            {isSubmitted ? (
-              // Success Thank You Panel
-              <div className="py-12 flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500 mb-6 shadow-lg shadow-emerald-500/10">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2.5"
-                    stroke="currentColor"
-                    className="w-8 h-8"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          {/* Left Column — Strong, confident copy + refined contact details */}
+          <div ref={leftColRef} className="lg:col-span-5 flex flex-col gap-10">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[1.5px] text-[#131c33] hover:text-[#2b7fff] transition-colors w-fit group"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2.5"
+                stroke="currentColor"
+                className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+              </svg>
+              BACK TO HOME
+            </Link>
+
+            <div>
+              <h1
+                className="text-[42px] sm:text-[52px] lg:text-[56px] font-extrabold tracking-[-1.8px] leading-[0.96] text-[#131c33] mb-6"
+                style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+              >
+                Let&apos;s build the<br /> future of lending<br /> together.
+              </h1>
+              <p className="text-lg text-slate-600 font-light max-w-[420px] leading-snug">
+                Questions about integrations, pricing, or custom workflows? 
+                Our team replies in under 15 minutes.
+              </p>
+            </div>
+
+            {/* Updated contact details matching live site + new info */}
+            <div className="flex flex-col gap-4">
+              {/* Customer Care */}
+              <div className="group bg-white border border-slate-200/70 hover:border-[#131c33]/30 p-5 rounded-3xl transition-all duration-300 hover:shadow-lg">
+                <div className="flex items-start gap-5">
+                  <div className="w-11 h-11 rounded-2xl bg-[#131c33] flex items-center justify-center text-white shrink-0 mt-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.25">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a.75.75 0 0 0 .75-.75v-4.5a.75.75 0 0 0-.75-.75h-1.5c-1.657 0-3-1.343-3-3V9.75c0-1.657 1.343-3 3-3h1.5a.75.75 0 0 0 .75-.75V3a.75.75 0 0 0-.75-.75h-1.5c-8.284 0-15 6.716-15 15Z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[10px] font-mono uppercase tracking-[1px] text-slate-400 mb-1">CUSTOMER CARE</div>
+                    <a href="tel:+918946808080" className="text-[#131c33] font-semibold hover:text-[#2b7fff] transition-colors block">+91 8946 808080</a>
+                    <a href="tel:+918946888888" className="text-[#131c33] font-semibold hover:text-[#2b7fff] transition-colors block">+91 8946 888888</a>
+                    <div className="mt-2 text-xs text-slate-500 leading-tight">
+                      Hours: 9:30 am - 7:00 pm<br />
+                      Monday to Friday<br />
+                      (excluding public holidays)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Email Us */}
+              <a 
+                href="mailto:info@fundflick.in"
+                className="group flex items-center gap-5 bg-white border border-slate-200/70 hover:border-[#131c33]/30 p-5 rounded-3xl transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="w-11 h-11 rounded-2xl bg-[#131c33] flex items-center justify-center text-white shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.25">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-2 font-display">Message Received!</h3>
-                <p className="text-slate-500 text-sm max-w-sm mb-8 leading-relaxed">
-                  Thank you for reaching out. A Fundflick integrations specialist will call or email you within 15 minutes.
-                </p>
-                <Button
-                  onClick={handleReset}
-                  variant="outline"
-                  className="px-6 py-2.5 text-xs uppercase tracking-wider"
-                >
-                  Send another message
-                </Button>
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-[1px] text-slate-400 mb-px">EMAIL US</div>
+                  <div className="text-[#131c33] font-semibold group-hover:text-[#2b7fff] transition-colors">info@fundflick.in</div>
+                </div>
+              </a>
+
+              {/* Visit Us */}
+              <div className="flex items-start gap-5 bg-white border border-slate-200/70 p-5 rounded-3xl">
+                <div className="w-11 h-11 rounded-2xl bg-[#131c33] flex items-center justify-center text-white shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.25">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1 1 15 0Z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-[1px] text-slate-400 mb-px">VISIT US</div>
+                  <div className="text-[#131c33] font-semibold leading-tight">
+                    11/70 Madhyam Marg,<br />
+                    Mansarovar, Jaipur - 302021
+                  </div>
+                </div>
               </div>
-            ) : (
-              // Main Interactive Contact Form
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div className="border-b border-slate-100 pb-4 mb-2">
-                  <h2
-                    className="text-2xl font-extrabold text-slate-900 tracking-tight"
+            </div>
+
+            {/* Trust bar — updated to match live hours style */}
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-[#131c33]/10 bg-[#131c33]/[0.015] text-sm">
+              <div className="flex items-center -space-x-1">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              </div>
+              <span className="font-medium text-[#131c33] tracking-tight">Customer Care • 9:30 am – 7:00 pm (Mon–Fri)</span>
+            </div>
+          </div>
+
+          {/* Right Column — The simple, beautiful form */}
+          <div ref={rightColRef} className="lg:col-span-7">
+            <div className="bg-white border border-slate-200/80 rounded-[28px] p-8 sm:p-12 shadow-[0_25px_70px_-15px_rgb(15,23,42,0.12)] relative overflow-hidden">
+              
+              {/* Subtle inner glow for premium feel */}
+              <div className="absolute inset-0 bg-[radial-gradient(#f8fafc_1px,transparent_1px)] [background-size:4px_4px] opacity-40 pointer-events-none" />
+
+              {isSubmitted ? (
+                // Success state — elegant & confident
+                <div className="py-14 flex flex-col items-center justify-center text-center relative z-10">
+                  <div className="w-20 h-20 rounded-full bg-[#131c33] flex items-center justify-center mb-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                    </svg>
+                  </div>
+                  <h3 
+                    className="text-3xl font-extrabold tracking-tight text-[#131c33] mb-3"
                     style={{ fontFamily: "var(--font-outfit), sans-serif" }}
                   >
-                    Request a Demo & Callback
-                  </h2>
-                  <p className="text-slate-400 text-xs mt-1">Fill out the details to initialize your sandbox setup.</p>
-                </div>
-
-                {/* Name & Email in parallel */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="name" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      placeholder="e.g. Rahul Sharma"
-                      value={formState.name}
-                      onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-secondaryColor focus:outline-none transition-all text-sm bg-slate-50/50"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="email" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                      Business Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      placeholder="e.g. rahul@company.com"
-                      value={formState.email}
-                      onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-secondaryColor focus:outline-none transition-all text-sm bg-slate-50/50"
-                    />
-                  </div>
-                </div>
-
-                {/* Phone & Company */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="phone" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      required
-                      placeholder="e.g. +91 98765 43210"
-                      value={formState.phone}
-                      onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-secondaryColor focus:outline-none transition-all text-sm bg-slate-50/50"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-1.5">
-                    <label htmlFor="company" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                      Company / NBFC Name
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      required
-                      placeholder="e.g. FinGrow Capital"
-                      value={formState.company}
-                      onChange={(e) => setFormState({ ...formState, company: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-secondaryColor focus:outline-none transition-all text-sm bg-slate-50/50"
-                    />
-                  </div>
-                </div>
-
-                {/* Monthly Volume Select dropdown */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="volume" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    Monthly Loan Disbursement Volume
-                  </label>
-                  <select
-                    id="volume"
-                    value={formState.volume}
-                    onChange={(e) => setFormState({ ...formState, volume: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white hover:border-slate-300 focus:border-secondaryColor focus:outline-none transition-all text-sm"
+                    Request received.
+                  </h3>
+                  <p className="text-slate-600 max-w-[320px] leading-relaxed mb-10 text-[15px]">
+                    Our team will get back to you within 24 hours (Mon–Fri, 9:30am–7pm).
+                  </p>
+                  <Button
+                    onClick={handleReset}
+                    variant="outline"
+                    className="px-8 py-3 text-xs uppercase tracking-[1px]"
                   >
-                    <option>Under ₹10 Lakhs</option>
-                    <option>₹10 Lakhs - ₹50 Lakhs</option>
-                    <option>₹50 Lakhs - ₹2 Crores</option>
-                    <option>₹2 Crores - ₹10 Crores</option>
-                    <option>Above ₹10 Crores</option>
-                  </select>
+                    Send another request
+                  </Button>
                 </div>
+              ) : (
+                // The simple, premium form
+                <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-6">
+                  <div className="mb-1">
+                    <div className="inline-block text-[10px] font-bold uppercase tracking-[2px] text-[#131c33]/60 mb-3">15-MINUTE CALLBACK</div>
+                    <h2 
+                      className="text-[28px] sm:text-[32px] font-extrabold tracking-[-0.6px] leading-none text-[#131c33]"
+                      style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+                    >
+                      Request a Demo
+                    </h2>
+                  </div>
 
-                {/* Message */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="message" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    Message / Special Integration Needs
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    placeholder="Tell us about your lending operations, workflows, or custom integration needs..."
-                    value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-secondaryColor focus:outline-none transition-all text-sm bg-slate-50/50 resize-none"
-                  />
-                </div>
+                  {/* Clean two-column fields */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="name" className="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Full Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        required
+                        placeholder="Rahul Sharma"
+                        value={formState.name}
+                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                        className="w-full px-5 py-[17px] rounded-2xl border border-slate-200 bg-white text-[15px] placeholder:text-slate-400 focus:border-[#131c33] focus:ring-1 focus:ring-[#131c33]/10 outline-none transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Business Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        required
+                        placeholder="you@company.com"
+                        value={formState.email}
+                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                        className="w-full px-5 py-[17px] rounded-2xl border border-slate-200 bg-white text-[15px] placeholder:text-slate-400 focus:border-[#131c33] focus:ring-1 focus:ring-[#131c33]/10 outline-none transition-all"
+                      />
+                    </div>
+                  </div>
 
-                {/* Submit button */}
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  variant="brand"
-                  className="w-full mt-2 py-4 rounded-xl text-xs uppercase tracking-wider gap-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <svg
-                        className="animate-spin -ml-1 mr-3 h-4.5 w-4.5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
-                      </svg>
-                      Sending...
-                    </>
-                  ) : (
-                    "Send Request & Get Callback"
-                  )}
-                </Button>
-              </form>
-            )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label htmlFor="phone" className="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Phone Number</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        required
+                        placeholder="+91 98765 43210"
+                        value={formState.phone}
+                        onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
+                        className="w-full px-5 py-[17px] rounded-2xl border border-slate-200 bg-white text-[15px] placeholder:text-slate-400 focus:border-[#131c33] focus:ring-1 focus:ring-[#131c33]/10 outline-none transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="company" className="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Company / NBFC</label>
+                      <input
+                        type="text"
+                        id="company"
+                        required
+                        placeholder="FinGrow Capital"
+                        value={formState.company}
+                        onChange={(e) => setFormState({ ...formState, company: e.target.value })}
+                        className="w-full px-5 py-[17px] rounded-2xl border border-slate-200 bg-white text-[15px] placeholder:text-slate-400 focus:border-[#131c33] focus:ring-1 focus:ring-[#131c33]/10 outline-none transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="volume" className="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">Monthly Disbursement Volume</label>
+                    <select
+                      id="volume"
+                      value={formState.volume}
+                      onChange={(e) => setFormState({ ...formState, volume: e.target.value })}
+                      className="w-full px-5 py-[17px] rounded-2xl border border-slate-200 bg-white text-[15px] text-slate-700 focus:border-[#131c33] focus:ring-1 focus:ring-[#131c33]/10 outline-none transition-all"
+                    >
+                      <option>Under ₹10 Lakhs</option>
+                      <option>₹10 Lakhs - ₹50 Lakhs</option>
+                      <option>₹50 Lakhs - ₹2 Crores</option>
+                      <option>₹2 Crores - ₹10 Crores</option>
+                      <option>Above ₹10 Crores</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">How can we help?</label>
+                    <textarea
+                      id="message"
+                      rows={4}
+                      placeholder="Tell us about your current challenges or what you're looking to achieve..."
+                      value={formState.message}
+                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                      className="w-full px-5 py-4 rounded-2xl border border-slate-200 bg-white text-[15px] placeholder:text-slate-400 focus:border-[#131c33] focus:ring-1 focus:ring-[#131c33]/10 outline-none transition-all resize-y min-h-[108px]"
+                      required
+                    />
+                  </div>
+
+                  {/* The button — exact same theme & color as Navbar "Get Started" */}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    variant="primary"
+                    className="w-full mt-2 py-[19px] text-sm tracking-[0.75px] rounded-2xl"
+                  >
+                    {isSubmitting ? (
+                      <span className="inline-flex items-center gap-3">
+                        <span className="animate-spin inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full" />
+                        PROCESSING...
+                      </span>
+                    ) : (
+                      "GET STARTED"
+                    )}
+                  </Button>
+
+                  <p className="text-center text-[10px] text-slate-400 tracking-wider mt-1">Your information is secure and never shared.</p>
+                </form>
+              )}
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   );
