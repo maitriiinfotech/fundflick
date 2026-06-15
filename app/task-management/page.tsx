@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TaskHero from "../components/task/TaskHero";
+import ReusableHero from "../components/ui/ReusableHero";
 import TaskFeatures from "../components/task/TaskFeatures";
 import ReusableShowcase, {
   ShowcaseTab,
@@ -85,7 +85,18 @@ export default function TaskManagementPage() {
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
       {/* Hero Section */}
-      <TaskHero />
+      <ReusableHero
+        bgImage="/task-hero-bg.png"
+        bgAlt="Task Management Background"
+        title={
+          <>
+            Task &amp; Workflow <br />
+            Management
+          </>
+        }
+        description="Organize, assign, and track every task across your operations. Create daily tasks, bulk assignments, automated reports, and real-time notifications — all in one powerful platform."
+        primaryLabel="Start Free Trial"
+      />
 
       {/* Features Grid */}
       <TaskFeatures />

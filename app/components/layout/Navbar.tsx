@@ -83,6 +83,9 @@ export default function Navbar() {
         <Link href="/#faq" className="text-sm hover:text-secondaryColor transition-colors cursor-pointer">
           FAQ
         </Link>
+        <Link href="/about" className="text-sm hover:text-secondaryColor transition-colors cursor-pointer">
+          About
+        </Link>
         <Link href="/contactus" className="text-sm hover:text-secondaryColor transition-colors cursor-pointer">
           Contact
         </Link>

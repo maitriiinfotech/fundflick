@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import HRMSHero from "../components/hrms/HRMSHero";
+import ReusableHero from "../components/ui/ReusableHero";
 import HRMSAIShowcard from "../components/hrms/HRMSAIShowcard";
 import HRMSFeatures from "../components/hrms/HRMSFeatures";
 import HRMSShowcase from "../components/hrms/HRMSShowcase";
@@ -53,7 +53,18 @@ export default function HRMSPage() {
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
       {/* Hero Section */}
-      <HRMSHero />
+      <ReusableHero
+        bgImage="/hero-hrmsai.jpg"
+        bgAlt="HRMS Background"
+        title={
+          <>
+            AI-first HR software <br />
+            for every business
+          </>
+        }
+        description="Streamline all your HR processes and deliver exceptional employee experiences with Fundflick HRMS—cloud-based AI HR software that's intuitive, agile, mobile-friendly."
+        primaryLabel="Sign up for free trial"
+      />
 
       {/* AI Showcard — overlaps hero bottom */}
       <HRMSAIShowcard />
