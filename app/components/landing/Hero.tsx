@@ -143,9 +143,9 @@ export default function VantaHero() {
 
         <div
           ref={counterWrapRef}
-          className="absolute bottom-6 right-6 md:bottom-15 md:right-10 flex h-16 md:h-24 overflow-hidden text-6xl md:text-9xl font-bold italic leading-none text-slate-900"
+          className="absolute bottom-6 right-6 md:bottom-15 md:right-10 flex items-end pr-2 text-6xl md:text-9xl font-bold italic leading-[1.1] text-slate-900"
         >
-          <div ref={counterNumberRef}>001</div>
+          <div ref={counterNumberRef} className="pr-3">001</div>
         </div>
       </div>
 
