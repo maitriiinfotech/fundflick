@@ -36,34 +36,7 @@ export default function TaskHero() {
         ref={heroRef}
         className="max-w-4xl mx-auto px-6 pt-28 pb-20 relative z-10 text-center flex flex-col items-center justify-center flex-1"
       >
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondaryColor hover:underline w-fit mb-8"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2.5"
-            stroke="currentColor"
-            className="w-4 h-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-            />
-          </svg>
-          Back to Home
-        </Link>
-
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50/80 border border-indigo-200/60 mb-8">
-          <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-          <span className="text-[11px] font-bold text-indigo-800 uppercase tracking-wider">
-            Smart Task Suite
-          </span>
-        </div>
-
+      
         <h1
           className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6 max-w-3xl"
           style={{ fontFamily: "var(--font-outfit), sans-serif" }}
