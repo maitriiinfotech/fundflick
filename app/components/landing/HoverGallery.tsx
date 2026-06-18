@@ -12,6 +12,7 @@ interface CardData {
   bgColor: string;
   textColor: string;
   comingSoon?: boolean;
+  badge?: string;
   details: { label: string; value: string }[];
 }
 
@@ -96,6 +97,20 @@ const STACK_CARDS: CardData[] = [
       { label: "Status", value: "In active development" },
     ],
   },
+  {
+    title: "Unified Operations Suite",
+    subtitle: "All 6 capabilities are integrated modules of one single, seamless ecosystem built to power your operations.",
+    img: "/logo.png",
+    bgColor: "#0f172a", // Premium Dark Slate
+    textColor: "#ffffff",
+    badge: "Fundflick Suite",
+    details: [
+      { label: "Integration", value: "Unified Database & SSO" },
+      { label: "Sync Speed", value: "Real-time, zero lag" },
+      { label: "Data Flow", value: "Cross-module automation" },
+      { label: "Setup", value: "Plug & play modules" },
+    ],
+  },
 ];
 
 export default function HoverGallery() {
@@ -171,7 +186,7 @@ export default function HoverGallery() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative w-full h-[350vh] bg-slate-50 border-t border-slate-100"
+      className="relative w-full h-[420vh] bg-slate-50 border-t border-slate-100"
       style={{ fontFamily: "var(--font-outfit), sans-serif" }}
     >
       {/* Native Sticky Wrapper container for pinning effect */}
@@ -252,7 +267,24 @@ export default function HoverGallery() {
                         0{index + 1} / 0{STACK_CARDS.length}
                       </div>
 
-                      {card.comingSoon ? (
+                      {card.badge ? (
+                        <span
+                          className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border"
+                          style={{
+                            backgroundColor:
+                              card.textColor === "#ffffff"
+                               ? "rgba(255, 255, 255, 0.15)"
+                               : "rgba(0, 0, 0, 0.06)",
+                            borderColor:
+                              card.textColor === "#ffffff"
+                               ? "rgba(255, 255, 255, 0.2)"
+                               : "rgba(0, 0, 0, 0.12)",
+                            color: card.textColor,
+                          }}
+                        >
+                          {card.badge}
+                        </span>
+                      ) : card.comingSoon ? (
                         <span
                           className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border"
                           style={{
@@ -357,10 +389,12 @@ export default function HoverGallery() {
                       {/* Right Column: Visual Mockup Box */}
                       <div className="lg:col-span-5 flex justify-center hidden sm:flex">
                         <div
-                          className="w-full max-w-[280px] lg:max-w-none h-[120px] md:h-[150px] lg:h-[180px] rounded-xl overflow-hidden border relative shadow-sm transition-transform duration-500 hover:scale-[1.02]"
+                          className={`w-full max-w-[280px] lg:max-w-none h-[120px] md:h-[150px] lg:h-[180px] rounded-xl overflow-hidden border relative shadow-sm transition-transform duration-500 hover:scale-[1.02] flex items-center justify-center`}
                           style={{
                             backgroundColor:
-                              card.textColor === "#ffffff"
+                              card.img === "/logo.png"
+                                ? "#ffffff"
+                                : card.textColor === "#ffffff"
                                 ? "rgba(255, 255, 255, 0.08)"
                                 : "rgba(0, 0, 0, 0.03)",
                             borderColor:
@@ -372,7 +406,11 @@ export default function HoverGallery() {
                           <img
                             src={card.img}
                             alt={card.title}
-                            className="w-full h-full object-cover select-none pointer-events-none"
+                            className={`select-none pointer-events-none ${
+                              card.img === "/logo.png"
+                                ? "max-h-[80%] max-w-[80%] object-contain p-4"
+                                : "w-full h-full object-cover"
+                            }`}
                           />
                         </div>
                       </div>

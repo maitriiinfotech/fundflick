@@ -62,8 +62,8 @@ export default function VantaHero() {
       const counterVal = { value: 1 };
       tl.to(counterVal, {
         value: 100,
-        duration: 2.5,
-        ease: "power2.inOut",
+        duration: 2.2,
+        ease: "power1.inOut",
         onUpdate: () => {
           if (counterNumberRef.current) {
             counterNumberRef.current.innerText = Math.floor(counterVal.value)
@@ -143,9 +143,9 @@ export default function VantaHero() {
 
         <div
           ref={counterWrapRef}
-          className="absolute bottom-6 right-6 md:bottom-15 md:right-10 flex items-end pr-2 text-6xl md:text-9xl font-bold italic leading-[1.1] text-slate-900"
+          className="absolute bottom-6 right-6 md:bottom-15 md:right-10 flex items-end pr-2 text-6xl md:text-9xl font-extrabold leading-[1.1] text-slate-900 font-mono tabular-nums select-none"
         >
-          <div ref={counterNumberRef} className="pr-3">
+          <div ref={counterNumberRef} className="pr-3 min-w-[3ch] text-right">
             001
           </div>
         </div>
