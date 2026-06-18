@@ -7,7 +7,7 @@ gsap.registerPlugin(Flip);
 
 const heroFeatures = [
   {
-    url: "/accounting.png",
+    url: "/hero/accounting.gif",
     label: "Accounting",
     desc: "Invoices, taxation & digital ledgers",
   },
@@ -17,17 +17,17 @@ const heroFeatures = [
     desc: "Employee training & profiles",
   },
   {
-    url: "/collection.png",
+    url: "/hero/emi.gif",
     label: "EMI Collection",
     desc: "Automated recovery & secure links",
   },
   {
-    url: "/reports.png",
+    url: "/hero/report.gif",
     label: "Reports & Analytics",
     desc: "Performance tracking charts",
   },
   {
-    url: "/task_management.png",
+    url: "/hero/task.gif",
     label: "Task Workflows",
     desc: "Kanban boards & task checklists",
   },
@@ -145,18 +145,20 @@ export default function VantaHero() {
           ref={counterWrapRef}
           className="absolute bottom-6 right-6 md:bottom-15 md:right-10 flex items-end pr-2 text-6xl md:text-9xl font-bold italic leading-[1.1] text-slate-900"
         >
-          <div ref={counterNumberRef} className="pr-3">001</div>
+          <div ref={counterNumberRef} className="pr-3">
+            001
+          </div>
         </div>
       </div>
 
       {/* Premium background image + grid & gradients */}
       <div className="absolute inset-0 bg-white z-0 overflow-hidden">
         <img
-          src="/hero-bg.jpg"
+          src="/hero_bg_pattern.png"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-25" />
         <div className="absolute inset-0 bg-linear-to-t from-white/70 via-white/20 to-transparent" />
       </div>
 
