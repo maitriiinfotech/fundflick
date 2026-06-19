@@ -210,7 +210,7 @@ export default function AIWorkflowSection() {
           id: "aiworkflow",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=420%",
+          end: "+=480%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -246,68 +246,71 @@ export default function AIWorkflowSection() {
         )
         .to(
           ".headline-layer",
-          { yPercent: -40, opacity: 0, duration: 0.5, ease: "power2.in" },
-          2.7,
+          { yPercent: -40, opacity: 0, duration: 0.4, ease: "power2.in" },
+          2.4,
         )
 
-        // 3 — scenes appear
-        .fromTo(".scenes-layer", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 2.7)
+        // 3 — scene 1 appears
+        .fromTo(".scenes-layer", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.4)
         .fromTo(
           ".s0 .scene-el",
           { y: 40, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
-          2.85,
+          2.5,
         )
-        .to(".c0", { strokeDashoffset: 0, duration: 0.6 }, 3.0)
+        .to(".c0", { strokeDashoffset: 0, duration: 0.6 }, 2.65)
         .fromTo(
           ".s0 .stack-card",
           { y: 24, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
-          3.15,
+          2.8,
         )
 
-        // 4 — slide to scene 2 (track is 300vw → -33.333% = one screen)
+        // 4 — slide to scene 2 (track 300vw → -33.333% = one screen)
         .to(
           ".scene-track",
-          { xPercent: -33.333, duration: 0.9, ease: "power2.inOut" },
-          3.65,
+          { xPercent: -33.333, duration: 0.8, ease: "power2.inOut" },
+          3.4,
         )
         .fromTo(
           ".s1 .scene-el",
           { y: 40, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
-          4.15,
+          3.9,
         )
-        .to(".c1", { strokeDashoffset: 0, duration: 0.6 }, 4.25)
+        .to(".c1", { strokeDashoffset: 0, duration: 0.6 }, 4.0)
         .fromTo(
           ".s1 .stack-card",
           { y: 24, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
-          4.4,
+          4.15,
         )
 
         // 5 — slide to scene 3 (-66.667% = two screens)
         .to(
           ".scene-track",
-          { xPercent: -66.667, duration: 0.9, ease: "power2.inOut" },
-          4.9,
+          { xPercent: -66.667, duration: 0.8, ease: "power2.inOut" },
+          4.7,
         )
         .fromTo(
           ".s2 .scene-el",
           { y: 40, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
-          5.4,
+          5.2,
         )
-        .to(".c2", { strokeDashoffset: 0, duration: 0.6 }, 5.5)
+        .to(".c2", { strokeDashoffset: 0, duration: 0.6 }, 5.3)
         .fromTo(
           ".s2 .stack-card",
           { y: 24, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
-          5.65,
+          5.45,
         )
 
+        // 6 — hold scene 3 centered before the pin releases into FAQ
+        .to(".scenes-layer", { opacity: 1, duration: 0.95 }, 5.95)
+
         // progress rail fills across the whole journey
-        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 6.1 }, 0);
+        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 6.9 }, 0);
     }, rootRef);
 
     // Pin start/end are measured against the giant 14vw web font + the heavy
