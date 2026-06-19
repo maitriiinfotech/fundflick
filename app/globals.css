@@ -21,6 +21,27 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* Text loader — letters dim, accent colour clips in bottom→top */
+.tl-text span {
+  display: inline-block;
+  position: relative;
+  color: #e2e8f0;
+  line-height: 1;
+  transform: translateY(110px);
+  --clipPath: inset(100% 0 0 0);
+}
+.tl-text span::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #131c33;
+  clip-path: var(--clipPath);
+  -webkit-clip-path: var(--clipPath);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

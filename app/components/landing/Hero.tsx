@@ -35,65 +35,24 @@ const heroFeatures = [
 
 export default function VantaHero() {
   const containerRef = useRef<HTMLElement>(null);
-  const curtainRef = useRef<HTMLDivElement>(null);
-  const counterWrapRef = useRef<HTMLDivElement>(null);
-  const counterNumberRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const preventDefault = (e: Event) => e.preventDefault();
-    document.body.style.overflow = "hidden";
-    window.addEventListener("wheel", preventDefault, { passive: false });
-    window.addEventListener("touchmove", preventDefault, { passive: false });
-
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          document.body.style.overflow = "auto";
-          window.removeEventListener("wheel", preventDefault);
-          window.removeEventListener("touchmove", preventDefault);
-        },
-      });
-
       gsap.set(".img-card", { scale: 0, opacity: 0 });
       gsap.set(".hero-text", { y: 50, opacity: 0 });
       gsap.set(".divider-h", { scaleX: 0 });
       gsap.set(".divider-v", { scaleY: 0 });
 
-      const counterVal = { value: 1 };
-      tl.to(counterVal, {
-        value: 100,
-        duration: 2.2,
-        ease: "power1.inOut",
-        onUpdate: () => {
-          if (counterNumberRef.current) {
-            counterNumberRef.current.innerText = Math.floor(counterVal.value)
-              .toString()
-              .padStart(3, "0");
-          }
-        },
-      });
+      // Start the reveal after the TextLoader has lifted off.
+      const tl = gsap.timeline({ delay: 2.5 });
 
-      tl.to(counterWrapRef.current, {
-        x: "110vw",
-        duration: 1.2,
-        ease: "power4.inOut",
+      tl.to(".img-card", {
+        scale: 1,
+        opacity: 1,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "back.out(1.5)",
       })
-        .to(
-          curtainRef.current,
-          { yPercent: -100, duration: 1.2, ease: "power4.inOut" },
-          "-=1",
-        )
-        .to(
-          ".img-card",
-          {
-            scale: 1,
-            opacity: 1,
-            stagger: 0.1,
-            duration: 0.8,
-            ease: "back.out(1.5)",
-          },
-          "-=0.2",
-        )
         .add(() => {
           const state = Flip.getState(".img-card");
           document
@@ -114,12 +73,7 @@ export default function VantaHero() {
         );
     }, containerRef);
 
-    return () => {
-      ctx.revert();
-      window.removeEventListener("wheel", preventDefault);
-      window.removeEventListener("touchmove", preventDefault);
-      document.body.style.overflow = "auto";
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -127,30 +81,6 @@ export default function VantaHero() {
       ref={containerRef}
       className="relative w-full h-screen  bg-white overflow-hidden font-sans text-slate-800"
     >
-      {/* Curtain */}
-      <div
-        ref={curtainRef}
-        className="fixed inset-0 bg-white z-[99999] pointer-events-none overflow-hidden"
-      >
-        {/* Centered Logo */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <img
-            src="/logo.png"
-            alt="Fundflick Logo"
-            className="h-16 md:h-24 object-contain"
-          />
-        </div>
-
-        <div
-          ref={counterWrapRef}
-          className="absolute bottom-6 right-6 md:bottom-15 md:right-10 flex items-end pr-2 text-6xl md:text-9xl font-extrabold leading-[1.1] text-slate-900 font-mono tabular-nums select-none"
-        >
-          <div ref={counterNumberRef} className="pr-3 min-w-[3ch] text-right">
-            001
-          </div>
-        </div>
-      </div>
-
       {/* Premium background image + grid & gradients */}
       <div className="absolute inset-0 bg-white z-0 overflow-hidden">
         <img
