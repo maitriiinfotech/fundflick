@@ -12,7 +12,7 @@ import CTASection from "./components/landing/CTASection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white pt-20 font-sans">
+    <div className="min-h-screen overflow-hidden bg-white pt-20 font-sans">
       <TextLoader />
       <VantaHero />
       <HoverGallery2 />

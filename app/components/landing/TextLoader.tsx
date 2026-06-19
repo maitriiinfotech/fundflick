@@ -67,7 +67,7 @@ export default function TextLoader() {
       className="fixed inset-0 z-[100000] flex items-center justify-center bg-white"
     >
       <div
-        className="tl-text flex overflow-hidden text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tight"
+        className="tl-text flex overflow-hidden px-4 leading-none text-[2.6rem] sm:text-7xl md:text-9xl font-extrabold tracking-tight"
         style={{ fontFamily: "var(--font-outfit), sans-serif" }}
       >
         {WORD.map((ch, i) => (

@@ -172,8 +172,26 @@ export default function HoverGallery2() {
 
     if (!section || cards.length === 0) return;
 
-    // The 3D book is desktop-only — skip all pinning/animation on mobile.
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+    // Mobile: the 3D book is hidden — animate the stacked cards on scroll instead.
+    if (!window.matchMedia("(min-width: 1024px)").matches) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const mctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>(".mobile-card").forEach((card) => {
+          gsap.fromTo(
+            card,
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power3.out",
+              scrollTrigger: { trigger: card, start: "top 88%", once: true },
+            },
+          );
+        });
+      }, section);
+      return () => mctx.revert();
+    }
 
     // Create GSAP ScrollTrigger timeline
     const tl = gsap.timeline();
@@ -614,7 +632,7 @@ export default function HoverGallery2() {
             return (
               <div
                 key={i}
-                className="rounded-2xl border border-black/5 p-6 shadow-sm"
+                className="mobile-card rounded-2xl border border-black/5 p-6 shadow-sm"
                 style={{ backgroundColor: card.bgColor, color: card.textColor }}
               >
                 <div className="flex justify-between items-center mb-4">
