@@ -2,75 +2,57 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface LoanProduct {
   id: string;
   num: string;
   title: string;
   tag: string;
-  image: string;
+  children?: string[];
 }
 
 const PRODUCTS: LoanProduct[] = [
-  { id: "morgage", num: "01", title: "Mortgage Loan", tag: "Secured", image: "/loan_origination.png" },
-  { id: "msme", num: "02", title: "MSME Loan", tag: "Business", image: "/task_management.png" },
-  { id: "home", num: "03", title: "Home Loan", tag: "Secured", image: "/lms_hrms.png" },
-  { id: "vehicle", num: "04", title: "Vehicle Loan", tag: "Asset-backed", image: "/collection.png" },
-  { id: "personal", num: "05", title: "Business & Personal Loan", tag: "Unsecured", image: "/reports.png" },
-  { id: "icd", num: "06", title: "Inter Corporate Deposit (ICD)", tag: "Corporate", image: "/loan_origination.png" },
+  { id: "lap", num: "01", title: "Loan Against Property (LAP)", tag: "Secured" },
+  { id: "msme", num: "02", title: "MSME Loan", tag: "Business" },
+  { id: "vehicle", num: "03", title: "Vehicle Loan", tag: "Asset-backed" },
+  { id: "personal", num: "04", title: "Business & Personal Loan", tag: "Unsecured" },
+  {
+    id: "icd",
+    num: "05",
+    title: "Inter Corporate Deposit (ICD)",
+    tag: "Corporate",
+    children: ["Co-Lending", "Direct Assignment (DA)"],
+  },
 ];
 
 export default function AnimatedPipeline() {
   const containerRef = useRef<HTMLElement>(null);
-  const thumbRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const hoverable = window.matchMedia("(hover: hover)").matches;
-    if (!hoverable) return;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduce) return;
 
-    const thumb = thumbRef.current;
-    const list = containerRef.current?.querySelector(".projects") as HTMLElement | null;
-    if (!thumb || !list) return;
-
-    const rows = gsap.utils.toArray<HTMLElement>(".project", list);
-    const slides = gsap.utils.toArray<HTMLElement>(".thumb-slide", thumb);
-
-    gsap.set(thumb, { scale: 0, xPercent: -50, yPercent: -50 });
-
-    const xTo = gsap.quickTo(thumb, "x", { duration: 0.5, ease: "power3.out" });
-    const yTo = gsap.quickTo(thumb, "y", { duration: 0.5, ease: "power3.out" });
-
-    const onMove = (e: MouseEvent) => {
-      xTo(e.clientX);
-      yTo(e.clientY);
-    };
-    const onLeave = () => {
-      gsap.to(thumb, { scale: 0, duration: 0.3, ease: "power2.out", overwrite: "auto" });
-    };
-
-    list.addEventListener("mousemove", onMove);
-    list.addEventListener("mouseleave", onLeave);
-
-    const cleanups: Array<() => void> = [];
-    rows.forEach((row, index) => {
-      const onEnter = () => {
-        gsap.to(thumb, { scale: 1, duration: 0.4, ease: "power2.out", overwrite: "auto" });
-        gsap.to(slides, {
-          yPercent: -100 * index,
-          duration: 0.45,
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".product-row",
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
           ease: "power3.out",
-          overwrite: "auto",
-        });
-      };
-      row.addEventListener("mouseenter", onEnter);
-      cleanups.push(() => row.removeEventListener("mouseenter", onEnter));
-    });
+          stagger: 0.08,
+          scrollTrigger: { trigger: ".products", start: "top 80%", once: true },
+        },
+      );
+    }, containerRef);
 
-    return () => {
-      list.removeEventListener("mousemove", onMove);
-      list.removeEventListener("mouseleave", onLeave);
-      cleanups.forEach((fn) => fn());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -92,66 +74,77 @@ export default function AnimatedPipeline() {
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-light max-w-sm">
             Our platform adapts to your specific needs and can be customized to
-            suit your preferences. Hover a product to preview.
+            suit your lending operations end to end.
           </p>
         </div>
 
-        {/* Editorial product list — hover reveals a cursor-tracked image */}
-        <div className="projects border-t border-slate-200">
+        {/* Editorial product list */}
+        <div className="products border-t border-slate-200">
           {PRODUCTS.map((p) => (
             <div
               key={p.id}
-              className="project group relative flex items-center justify-between gap-6 border-b border-slate-200 py-6 md:py-8 cursor-pointer"
+              className="product-row border-b border-slate-200 py-6 md:py-8"
             >
-              <div className="flex items-baseline gap-5 md:gap-8 min-w-0">
-                <span className="font-mono text-xs sm:text-sm text-slate-400 shrink-0">
-                  {p.num}
-                </span>
-                <h3
-                  className="text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 transition-all duration-500 group-hover:text-secondaryColor group-hover:translate-x-2 md:group-hover:translate-x-4 truncate"
-                  style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-                >
-                  {p.title}
-                </h3>
+              {/* main row */}
+              <div className="group/main relative flex items-center justify-between gap-6 cursor-pointer">
+                <div className="flex items-baseline gap-5 md:gap-8 min-w-0">
+                  <span className="font-mono text-xs sm:text-sm text-slate-400 shrink-0">
+                    {p.num}
+                  </span>
+                  <h3
+                    className="text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-slate-900 transition-all duration-500 group-hover/main:text-secondaryColor group-hover/main:translate-x-2 md:group-hover/main:translate-x-4 truncate"
+                    style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+                  >
+                    {p.title}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-5 shrink-0">
+                  <span className="hidden sm:block text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
+                    {p.tag}
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-slate-300 transition-all duration-500 group-hover/main:text-secondaryColor group-hover/main:translate-x-1 group-hover/main:-translate-y-1"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                  </svg>
+                </div>
               </div>
 
-              <div className="flex items-center gap-5 shrink-0">
-                <span className="hidden sm:block text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
-                  {p.tag}
-                </span>
-                {/* mobile inline preview (no cursor on touch) */}
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="lg:hidden h-12 w-16 object-cover rounded-md border border-slate-200"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="hidden lg:block w-6 h-6 text-slate-300 transition-all duration-500 group-hover:text-secondaryColor group-hover:translate-x-1 group-hover:-translate-y-1"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </div>
+              {/* children (sub-products) */}
+              {p.children && (
+                <div className="mt-5 ml-9 sm:ml-14 md:ml-[5.5rem] flex flex-col gap-3 border-l border-slate-200 pl-6">
+                  {p.children.map((c, ci) => (
+                    <div
+                      key={c}
+                      className="group/child flex items-center justify-between gap-4 cursor-pointer"
+                    >
+                      <div className="flex items-baseline gap-4 min-w-0">
+                        <span className="font-mono text-[0.65rem] text-slate-300 shrink-0">
+                          {p.num}.{ci + 1}
+                        </span>
+                        <h4
+                          className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-slate-600 transition-all duration-400 group-hover/child:text-secondaryColor group-hover/child:translate-x-2 truncate"
+                          style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+                        >
+                          {c}
+                        </h4>
+                      </div>
+                      <span className="hidden sm:block text-[0.6rem] uppercase tracking-[0.18em] text-slate-300">
+                        Sub-product
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Floating cursor-tracked thumbnail (desktop / hover devices) */}
-      <div
-        ref={thumbRef}
-        aria-hidden
-        className="pointer-events-none fixed top-0 left-0 z-50 hidden lg:block w-[240px] h-[320px] overflow-hidden rounded-2xl shadow-2xl shadow-slate-900/20 border border-white/40 will-change-transform"
-      >
-        {PRODUCTS.map((p) => (
-          <div key={p.id} className="thumb-slide w-full h-[320px]">
-            <img src={p.image} alt="" className="w-full h-full object-cover" />
-          </div>
-        ))}
       </div>
     </section>
   );

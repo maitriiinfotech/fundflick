@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../ui/Button";
@@ -44,39 +44,12 @@ const SCENES: Scene[] = [
       { name: "Follow up with NBFC partner", meta: "Due: Fri" },
     ],
   },
-  {
-    no: "03",
-    label: "AI Tele-Calling",
-    kicker: "Calls that convert",
-    title: "Supercharge your tele-calling with AI",
-    desc: "AI agents place and handle calls, qualify leads, and log every outcome — your tele-calling team scales without scaling headcount.",
-    nodes: ["Dial", "Converse", "Qualify", "Log"],
-    cards: [
-      { name: "Outbound call — Lead #4821", meta: "AI handled" },
-      { name: "Sentiment: interested", meta: "Score 0.86" },
-      { name: "Follow-up scheduled", meta: "Tomorrow 11am" },
-    ],
-  },
 ];
 
 const EMAILS = "FUND FLICK".split("");
 
 // Headline split into words for the scroll-scrub "text on scroll" reveal.
 const HEADLINE: { w: string; accent?: boolean }[] = [
-  { w: "We" },
-  { w: "don’t" },
-  { w: "just" },
-  { w: "provide" },
-  { w: "lending" },
-  { w: "—" },
-  { w: "we" },
-  { w: "run" },
-  { w: "the", accent: true },
-  { w: "overall", accent: true },
-  { w: "operation", accent: true },
-  { w: "of", accent: true },
-  { w: "your", accent: true },
-  { w: "company.", accent: true },
   { w: "In" },
   { w: "the" },
   { w: "world" },
@@ -86,7 +59,14 @@ const HEADLINE: { w: string; accent?: boolean }[] = [
   { w: "don’t" },
   { w: "just" },
   { w: "write" },
-  { w: "emails." },
+  { w: "emails" },
+  { w: "—" },
+  { w: "we", accent: true },
+  { w: "automate", accent: true },
+  { w: "the", accent: true },
+  { w: "work", accent: true },
+  { w: "behind", accent: true },
+  { w: "them.", accent: true },
 ];
 
 function SceneVisual({ scene, idx }: { scene: Scene; idx: number }) {
@@ -128,7 +108,6 @@ function SceneVisual({ scene, idx }: { scene: Scene; idx: number }) {
 
         {/* flow visual */}
         <div className="relative">
-          {/* node rail with drawing connector */}
           <div className="relative mb-6">
             <svg
               className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-2 overflow-visible"
@@ -157,7 +136,6 @@ function SceneVisual({ scene, idx }: { scene: Scene; idx: number }) {
             </div>
           </div>
 
-          {/* stack cards */}
           <div className="relative rounded-2xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/5">
             <div className="flex items-center gap-1.5 mb-3.5">
               <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
@@ -192,17 +170,8 @@ function SceneVisual({ scene, idx }: { scene: Scene; idx: number }) {
 
 export default function AIWorkflowSection() {
   const rootRef = useRef<HTMLElement>(null);
-  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduce) {
-      setReduced(true);
-      return;
-    }
-
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: "none" },
@@ -210,7 +179,7 @@ export default function AIWorkflowSection() {
           id: "aiworkflow",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=480%",
+          end: "+=360%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -218,7 +187,7 @@ export default function AIWorkflowSection() {
         },
       });
 
-      // 1 — EMAILS scatters
+      // 1 — FUND FLICK scatters
       tl.to(".email-char", {
         y: () => gsap.utils.random(-260, 260),
         x: () => gsap.utils.random(-160, 160),
@@ -230,18 +199,18 @@ export default function AIWorkflowSection() {
       })
         .to(".emails-layer", { scale: 1.35, opacity: 0, duration: 1 }, 0)
 
-        // 2a — once FUND FLICK has scattered, bring the (still dim) headline in
+        // 2a — bring the dim headline in once the word has scattered
         .fromTo(
           ".headline-layer",
           { opacity: 0 },
-          { opacity: 1, duration: 0.3, ease: "none" },
+          { opacity: 1, duration: 0.3 },
           1.0,
         )
-        // 2b — TEXT ON SCROLL: words light up one by one as you scroll
+        // 2b — TEXT ON SCROLL: words light up one by one
         .fromTo(
           ".hl-word",
           { opacity: 0.15 },
-          { opacity: 1, stagger: 0.05, duration: 1, ease: "none" },
+          { opacity: 1, stagger: 0.05, duration: 1 },
           1.15,
         )
         .to(
@@ -250,7 +219,7 @@ export default function AIWorkflowSection() {
           2.4,
         )
 
-        // 3 — scene 1 appears
+        // 3 — scene 1
         .fromTo(".scenes-layer", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.4)
         .fromTo(
           ".s0 .scene-el",
@@ -266,97 +235,44 @@ export default function AIWorkflowSection() {
           2.8,
         )
 
-        // 4 — slide to scene 2 (track 300vw → -33.333% = one screen)
+        // 4 — slide to scene 2 (track 200vw → -50% = one screen)
         .to(
           ".scene-track",
-          { xPercent: -33.333, duration: 0.8, ease: "power2.inOut" },
+          { xPercent: -50, duration: 0.9, ease: "power2.inOut" },
           3.4,
         )
         .fromTo(
           ".s1 .scene-el",
           { y: 40, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
-          3.9,
+          3.95,
         )
-        .to(".c1", { strokeDashoffset: 0, duration: 0.6 }, 4.0)
+        .to(".c1", { strokeDashoffset: 0, duration: 0.6 }, 4.05)
         .fromTo(
           ".s1 .stack-card",
           { y: 24, opacity: 0 },
           { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
-          4.15,
+          4.2,
         )
 
-        // 5 — slide to scene 3 (-66.667% = two screens)
-        .to(
-          ".scene-track",
-          { xPercent: -66.667, duration: 0.8, ease: "power2.inOut" },
-          4.7,
-        )
-        .fromTo(
-          ".s2 .scene-el",
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
-          5.2,
-        )
-        .to(".c2", { strokeDashoffset: 0, duration: 0.6 }, 5.3)
-        .fromTo(
-          ".s2 .stack-card",
-          { y: 24, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
-          5.45,
-        )
+        // 5 — hold scene 2 centered before the pin releases
+        .to(".scenes-layer", { opacity: 1, duration: 0.8 }, 4.7)
 
-        // 6 — hold scene 3 centered before the pin releases into FAQ
-        .to(".scenes-layer", { opacity: 1, duration: 0.95 }, 5.95)
-
-        // progress rail fills across the whole journey
-        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 6.9 }, 0);
+        // progress rail fills across the journey
+        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 5.5 }, 0);
     }, rootRef);
 
-    // Pin start/end are measured against the giant 14vw web font + the heavy
-    // sections above. Re-measure once layout + fonts settle, else the pin
-    // releases early and the scenes never come into range.
-    let disposed = false;
-    const refresh = () => {
-      if (!disposed) ScrollTrigger.refresh();
-    };
-    const raf = requestAnimationFrame(refresh);
-    if (document.fonts?.ready) document.fonts.ready.then(refresh);
+    const refresh = () => ScrollTrigger.refresh();
+    const t = setTimeout(refresh, 400);
     window.addEventListener("load", refresh);
 
     return () => {
-      disposed = true;
-      cancelAnimationFrame(raf);
+      clearTimeout(t);
       window.removeEventListener("load", refresh);
       ctx.revert();
     };
   }, []);
 
-  // ---------- Reduced-motion: simple stacked static layout ----------
-  if (reduced) {
-    return (
-      <section className="bg-white py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-16 leading-tight max-w-3xl"
-            style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-          >
-            In the world of AI, we don&apos;t just write emails —{" "}
-            <span className="text-secondaryColor">
-              we automate the work behind them.
-            </span>
-          </h2>
-          <div className="space-y-20">
-            {SCENES.map((s, i) => (
-              <SceneVisual key={s.no} scene={s} idx={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // ---------- Animated cinematic version ----------
   return (
     <section
       ref={rootRef}
@@ -368,7 +284,7 @@ export default function AIWorkflowSection() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:26px_26px] opacity-50"
       />
 
-      {/* 1 — giant kinetic EMAILS */}
+      {/* 1 — giant kinetic FUND FLICK */}
       <div className="emails-layer absolute inset-0 flex items-center justify-center">
         <div
           className="flex whitespace-nowrap leading-none font-extrabold select-none"
@@ -385,13 +301,13 @@ export default function AIWorkflowSection() {
               className="email-char inline-block"
               style={ch === " " ? { width: "0.35em" } : undefined}
             >
-              {ch === " " ? " " : ch}
+              {ch === " " ? " " : ch}
             </span>
           ))}
         </div>
       </div>
 
-      {/* 2 — headline (text on scroll: words light up as you scroll) */}
+      {/* 2 — headline (text on scroll) */}
       <div className="headline-layer absolute inset-0 flex items-center justify-center px-6 opacity-0">
         <h2
           className="flex flex-wrap justify-center gap-x-[0.28em] gap-y-1 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 text-center max-w-5xl leading-[1.12]"
@@ -412,12 +328,9 @@ export default function AIWorkflowSection() {
 
       {/* 3 — scroll-driven feature scenes */}
       <div className="scenes-layer absolute inset-0 flex items-center opacity-0">
-        <div className="scene-track flex w-[300vw]">
+        <div className="scene-track flex w-[200vw]">
           {SCENES.map((s, i) => (
-            <div
-              key={s.no}
-              className="w-screen shrink-0 flex items-center"
-            >
+            <div key={s.no} className="w-screen shrink-0 flex items-center">
               <SceneVisual scene={s} idx={i} />
             </div>
           ))}

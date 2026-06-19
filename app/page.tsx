@@ -5,6 +5,7 @@ import LendingFocus from "./components/landing/LendingFocus";
 import WhyChoose from "./components/landing/WhyChoose";
 import AnimatedPipeline from "./components/landing/AnimatedPipeline";
 import PricingSection from "./components/landing/PricingSection";
+import AIOperationsSection from "./components/landing/AIOperationsSection";
 import AIWorkflowSection from "./components/landing/AIWorkflowSection";
 import FAQ from "./components/landing/FAQ";
 import CTASection from "./components/landing/CTASection";
@@ -19,6 +20,7 @@ export default function Home() {
       <WhyChoose />
       <AnimatedPipeline />
       <PricingSection />
+      <AIOperationsSection />
       <AIWorkflowSection />
       <FAQ />
       <CTASection />
