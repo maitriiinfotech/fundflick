@@ -44,12 +44,39 @@ const SCENES: Scene[] = [
       { name: "Follow up with NBFC partner", meta: "Due: Fri" },
     ],
   },
+  {
+    no: "03",
+    label: "AI Tele-Calling",
+    kicker: "Calls that convert",
+    title: "Supercharge your tele-calling with AI",
+    desc: "AI agents place and handle calls, qualify leads, and log every outcome — your tele-calling team scales without scaling headcount.",
+    nodes: ["Dial", "Converse", "Qualify", "Log"],
+    cards: [
+      { name: "Outbound call — Lead #4821", meta: "AI handled" },
+      { name: "Sentiment: interested", meta: "Score 0.86" },
+      { name: "Follow-up scheduled", meta: "Tomorrow 11am" },
+    ],
+  },
 ];
 
 const EMAILS = "FUND FLICK".split("");
 
 // Headline split into words for the scroll-scrub "text on scroll" reveal.
 const HEADLINE: { w: string; accent?: boolean }[] = [
+  { w: "We" },
+  { w: "don’t" },
+  { w: "just" },
+  { w: "provide" },
+  { w: "lending" },
+  { w: "—" },
+  { w: "we" },
+  { w: "run" },
+  { w: "the", accent: true },
+  { w: "overall", accent: true },
+  { w: "operation", accent: true },
+  { w: "of", accent: true },
+  { w: "your", accent: true },
+  { w: "company.", accent: true },
   { w: "In" },
   { w: "the" },
   { w: "world" },
@@ -59,14 +86,7 @@ const HEADLINE: { w: string; accent?: boolean }[] = [
   { w: "don’t" },
   { w: "just" },
   { w: "write" },
-  { w: "emails" },
-  { w: "—" },
-  { w: "we", accent: true },
-  { w: "automate", accent: true },
-  { w: "the", accent: true },
-  { w: "work", accent: true },
-  { w: "behind", accent: true },
-  { w: "them.", accent: true },
+  { w: "emails." },
 ];
 
 function SceneVisual({ scene, idx }: { scene: Scene; idx: number }) {
@@ -190,7 +210,7 @@ export default function AIWorkflowSection() {
           id: "aiworkflow",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=300%",
+          end: "+=420%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -246,8 +266,12 @@ export default function AIWorkflowSection() {
           3.15,
         )
 
-        // 4 — slide to scene 2 (track is 200vw → xPercent -50 = one screen)
-        .to(".scene-track", { xPercent: -50, duration: 1, ease: "power2.inOut" }, 3.65)
+        // 4 — slide to scene 2 (track is 300vw → -33.333% = one screen)
+        .to(
+          ".scene-track",
+          { xPercent: -33.333, duration: 0.9, ease: "power2.inOut" },
+          3.65,
+        )
         .fromTo(
           ".s1 .scene-el",
           { y: 40, opacity: 0 },
@@ -262,8 +286,28 @@ export default function AIWorkflowSection() {
           4.4,
         )
 
+        // 5 — slide to scene 3 (-66.667% = two screens)
+        .to(
+          ".scene-track",
+          { xPercent: -66.667, duration: 0.9, ease: "power2.inOut" },
+          4.9,
+        )
+        .fromTo(
+          ".s2 .scene-el",
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
+          5.4,
+        )
+        .to(".c2", { strokeDashoffset: 0, duration: 0.6 }, 5.5)
+        .fromTo(
+          ".s2 .stack-card",
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
+          5.65,
+        )
+
         // progress rail fills across the whole journey
-        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 4.9 }, 0);
+        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 6.1 }, 0);
     }, rootRef);
 
     // Pin start/end are measured against the giant 14vw web font + the heavy
@@ -365,7 +409,7 @@ export default function AIWorkflowSection() {
 
       {/* 3 — scroll-driven feature scenes */}
       <div className="scenes-layer absolute inset-0 flex items-center opacity-0">
-        <div className="scene-track flex w-[200vw]">
+        <div className="scene-track flex w-[300vw]">
           {SCENES.map((s, i) => (
             <div
               key={s.no}
