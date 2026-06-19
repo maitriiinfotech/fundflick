@@ -1,0 +1,12 @@
+Loan Type,Case No,Customer,Contact No.,EMI Amt,Due EMI Amt,Due Emi,DMA Name,Last Payment Detail,Case Date,Gender,Caste,Father's Name,Address,Area,Expiry Date,Over Due,Status,Due Bounce Charge,Finance amount,Tenure,No. Received EMI,No. of Remaining EMIs
+HL,HL_1001,Aanya Rai,6767950141,8333,249999,3,DMA_5,"January 17, 2026(79574)",30-Nov-25,Female,OBC,Sai Rao,"House 46, Sector 10, Main Market",M110_Phulera,30-Nov-28,252999,Active,3000,2500000,36,5,31
+HL,HL_1002,Tarun Patel,9531860794,51666,258330,5,DMA_1,"November 27, 2025(79299)",30-May-25,Male,OBC,Amit Patel,"House 241, Sector 6, Station Road",M110_Phulera,30-May-28,262080,Active,3750,1550000,36,11,25
+LAP,LAP_1003,Amit Singh,7557060727,17500,10000,2,DMA_3,"February 13, 2026(16726)",30-Sep-16,Male,General,Rajesh Singh,"House 67, Sector 4, Civil Lines",M116_Parbatsar,30-Sep-26,37000,Active,2000,1750000,120,115,5
+PL,PL_1004,Aarav Verma,6100089274,5000,100,6,DMA_5,"October 25, 2025(50607)",30-Oct-21,Male,ST,Aditya Verma,"House 3, Sector 7, Adarsh Nagar",M116_Parbatsar,30-Oct-28,33000,Active,3000,350000,84,54,30
+HL,HL_10051,Tarun Sharma,8750641679,30000,10000,2,DMA_2,"February 12, 2026(17316)",30-Mar-24,Male,ST,Sai Sharma,"House 379, Sector 14, Civil Lines",M106_Chomu,30-Mar-29,73500,Active,1500,1800000,60,25,35
+VL,VL_1006,Vihaan Gupta,7271197856,7857,4560,5,DMA_3,"November 14, 2025(40658)",29-Feb-24,Male,OBC,Aditya Gupta,"House 61, Sector 14, Adarsh Nagar",M106_Chomu,28-Feb-31,43035,Active,3750,550000,84,26,58
+LAP,LAP_1008,Anjali Singh,7337533390,8000,48000,6,DMA_2,"October 19, 2025(38652)",30-Sep-21,Female,OBC,Manoj Singh,"House 197, Sector 5, Main Market",M102_Indore,30-Sep-26,54000,Active,6000,400000,60,55,5
+HL,HL_10091,Priya Verma,8161015639,30000,64000,3,DMA_5,"January 20, 2026(63652)",30-Dec-24,Female,SC,Arjun Verma,"House 82, Sector 5, Station Road",M109_Jaipur,30-Dec-34,56250,Active,2250,1800000,120,16,104
+HL,HL_10092,Priya tt,8161015639,30000,64000,3,DMA_5,"January 20, 2026(63652)",30-Dec-24,Female,SC,Arjun Verma,"House 82, Sector 5, Station Road",M109_Jaipur,30-Dec-34,56250,Active,2250,1800000,120,16,104
+HL,HL_10093,Priya k,8161015639,30000,64000,3,DMA_5,"January 20, 2026(63652)",30-Dec-24,Female,SC,Arjun Verma,"House 82, Sector 5, Station Road",M109_Jaipur,30-Dec-34,56250,Active,2250,1800000,120,16,104
+HL,HL_10094,Priya V,8161015639,30000,64000,3,DMA_5,"January 20, 2026(63652)",30-Dec-24,Female,SC,Arjun Verma,"House 82, Sector 5, Station Road",M109_Jaipur,30-Dec-34,56250,Active,2250,1800000,120,16,104

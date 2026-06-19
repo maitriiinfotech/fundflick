@@ -12,7 +12,7 @@ const heroFeatures = [
     desc: "Invoices, taxation & digital ledgers",
   },
   {
-    url: "/lms_hrms.png",
+    url: "/hero/hrmsandlms.gif",
     label: "LMS & HRMS",
     desc: "Employee training & profiles",
   },
