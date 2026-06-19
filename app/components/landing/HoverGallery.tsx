@@ -129,43 +129,56 @@ export default function HoverGallery() {
     const tl = gsap.timeline();
 
     cards.forEach((card, index) => {
-      if (index === 0) return; // Keep Card 0 at base
+      // 1. Initial setup
+      gsap.set(card, {
+        rotateY: 0,
+        z: 0,
+        zIndex: (cards.length - index) * 10,
+        transformOrigin: "left center"
+      });
 
-      // Set initial offscreen/stacked position for cards
-      gsap.set(card, { yPercent: 100, scale: 0.95 });
+      // Target the shadows
+      const frontShadow = card.querySelector(".front-shadow");
+      const backShadow = card.querySelector(".back-shadow");
 
-      // Animate card sliding up
-      tl.to(
-        card,
-        {
-          yPercent: 0,
-          scale: 1,
-          duration: 1,
-          ease: "none",
-        },
-        `card-${index}`
-      );
+      // Setup initial shadow opacities
+      gsap.set(frontShadow, { opacity: 0 });
+      gsap.set(backShadow, { opacity: 0.6 });
 
-      // Simultaneously animate scaling/dimming/offsetting of all previous cards
-      for (let i = 0; i < index; i++) {
-        const prevCard = cards[i];
-        const scaleVal = 0.96 - (index - i - 1) * 0.03;
-        const opacityVal = 0.8 - (index - i - 1) * 0.15;
-        const yOffset = -20 * (index - i);
+      // Create page flip sub-timeline
+      const pageTl = gsap.timeline();
 
-        tl.to(
-          prevCard,
-          {
-            scale: scaleVal,
-            opacity: opacityVal,
-            y: yOffset,
-            transformOrigin: "top center",
-            duration: 1,
-            ease: "none",
-          },
-          `card-${index}`
-        );
-      }
+      // First half of flip (0 to -90 deg): Lift page and fade front shadow
+      pageTl.to(card, {
+        rotateY: -90,
+        z: 200,
+        ease: "power2.out",
+        duration: 0.5
+      }, 0)
+      .to(frontShadow, {
+        opacity: 0.6,
+        ease: "power2.out",
+        duration: 0.5
+      }, 0)
+      
+      // Midpoint: Swap z-index to place page on left-hand stack
+      .set(card, { zIndex: index * 10 })
+
+      // Second half of flip (-90 to -180 deg): Settle page and fade out back shadow
+      .to(card, {
+        rotateY: -180,
+        z: 0,
+        ease: "power2.in",
+        duration: 0.5
+      }, 0.5)
+      .to(backShadow, {
+        opacity: 0,
+        ease: "power2.in",
+        duration: 0.5
+      }, 0.5);
+
+      // Add page flip sequence to the main timeline with overlap/delay configuration
+      tl.add(pageTl, index * 1.2);
     });
 
     // Create ScrollTrigger to scrub the timeline over the native sticky section
@@ -173,7 +186,7 @@ export default function HoverGallery() {
       trigger: section,
       start: "top 80px",
       end: "bottom bottom",
-      scrub: 1,
+      scrub: 1.2,
       animation: tl,
     });
 
@@ -186,11 +199,11 @@ export default function HoverGallery() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative w-full h-[420vh] bg-slate-50 border-t border-slate-100"
+      className="relative w-full h-[450vh] bg-slate-50 border-t border-slate-100"
       style={{ fontFamily: "var(--font-outfit), sans-serif" }}
     >
       {/* Native Sticky Wrapper container for pinning effect */}
-      <div className="sticky top-[80px] w-full h-[calc(100vh-80px)] flex flex-col justify-between overflow-hidden py-10">
+      <div className="sticky top-[80px] w-full h-[calc(100vh-80px)] flex flex-col justify-between overflow-hidden py-8">
         
         {/* Background visual graphics */}
         <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-secondaryColor/5 rounded-full blur-[140px] pointer-events-none" />
@@ -205,216 +218,166 @@ export default function HoverGallery() {
             End-to-End <span className="text-secondaryColor">Lending Suite</span>
           </h2>
           <p className="text-slate-500 mt-2 text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
-            Manage your entire loan operations lifecycle. From origination and underwriting to automated collections, servicing, and ledger accounting.
+            Manage your entire loan operations lifecycle. Turn the pages of our playbook to explore our origination, task management, automated collections, servicing, and ledger modules.
           </p>
         </div>
 
-        {/* Absolute Stacking Cards Container */}
-        <div className="w-full max-w-5xl mx-auto px-4 md:px-6 relative z-10 flex-grow flex items-center justify-center">
-          <div className="relative w-full h-[480px] sm:h-[420px] md:h-[460px] lg:h-[380px] mx-auto">
+        {/* 3D Book Container */}
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 relative z-10 flex-grow flex items-center justify-center overflow-visible">
+          {/* Proportional scaling wrapper for mobile, tablet, and desktop */}
+          <div className="relative w-[960px] h-[480px] max-w-full origin-center transition-transform duration-300 scale-[0.4] min-[390px]:scale-[0.43] min-[440px]:scale-[0.48] min-[520px]:scale-[0.58] sm:scale-[0.72] md:scale-[0.88] lg:scale-100 flex items-center justify-center">
+            
+            {/* Static Book Base/Cover (Behind pages) */}
+            <div 
+              className="absolute inset-0 w-full h-full rounded-[32px] bg-[#1a2238] border-2 border-slate-700 shadow-2xl flex overflow-hidden"
+              style={{ transform: "translateZ(-10px)" }}
+            >
+              {/* Left Cover Lining */}
+              <div className="w-1/2 h-full rounded-l-[30px] bg-[#111726] opacity-65 border-r border-slate-900/50" />
+              {/* Right Cover Lining */}
+              <div className="w-1/2 h-full rounded-r-[30px] bg-[#111726] opacity-65" />
+              {/* Center Spine Binder Shadow */}
+              <div className="absolute inset-y-0 left-1/2 w-[12px] -translate-x-1/2 bg-gradient-to-r from-slate-950/80 via-slate-900/40 to-slate-950/80 shadow-[0_0_15px_rgba(0,0,0,0.6)] border-x border-slate-950/20" />
+            </div>
+
+            {/* Interactive Double-Sided Pages */}
             {STACK_CARDS.map((card, index) => (
               <div
                 key={index}
                 ref={(el) => {
                   cardRefs.current[index] = el;
                 }}
-                className="absolute inset-0 w-full h-full will-change-transform"
+                className="absolute w-[50%] h-full top-0 right-0 will-change-transform"
                 style={{
-                  zIndex: (index + 1) * 10,
+                  left: "50%",
+                  transformStyle: "preserve-3d",
                 }}
               >
+                {/* FRONT FACE (Shown on the right side of the book) */}
                 <div
-                  className="w-full h-full rounded-[24px] md:rounded-[32px] overflow-hidden transition-all duration-300"
+                  className="absolute inset-0 w-full h-full rounded-r-[24px] overflow-hidden border border-l-0 border-slate-200/10 shadow-lg flex flex-col justify-between p-7 md:p-9"
                   style={{
+                    backfaceVisibility: "hidden",
                     backgroundColor: card.bgColor,
                     color: card.textColor,
-                    border:
-                      card.bgColor === "#ffffff"
-                        ? "1px solid rgba(0, 0, 0, 0.08)"
-                        : "1px solid rgba(19, 28, 51, 0.06)",
-                    boxShadow:
-                      card.bgColor === "#ffffff"
-                        ? "0 20px 40px -15px rgba(0,0,0,0.06), 0 4px 12px -5px rgba(0,0,0,0.03)"
-                        : "0 25px 50px -12px rgba(19,28,51,0.15), 0 8px 20px -8px rgba(19,28,51,0.1)",
                   }}
                 >
-                  {/* Card Padding */}
-                  <div className="p-5 md:p-8 lg:p-10 h-full flex flex-col justify-between">
-                    {/* Card Top Row */}
-                    <div className="flex items-center justify-between">
-                      <div
-                        className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[9px] md:text-xs font-bold uppercase tracking-wider"
-                        style={{
-                          backgroundColor:
-                            card.textColor === "#ffffff"
-                              ? "rgba(255, 255, 255, 0.08)"
-                              : "rgba(0, 0, 0, 0.05)",
-                          color:
-                            card.textColor === "#ffffff"
-                              ? "rgba(255, 255, 255, 0.6)"
-                              : "rgba(0, 0, 0, 0.5)",
-                        }}
-                      >
-                        <span
-                          className="w-1.5 h-1.5 rounded-full"
-                          style={{
-                            backgroundColor:
-                              card.bgColor === "#131c33"
-                                ? "#38bdf8"
-                                : "#2b7fff",
-                          }}
-                        />
-                        0{index + 1} / 0{STACK_CARDS.length}
-                      </div>
+                  {/* Front Shadow Overlay for 3D Lighting */}
+                  <div className="front-shadow absolute inset-0 bg-black pointer-events-none opacity-0 transition-opacity duration-75" />
 
-                      {card.badge ? (
-                        <span
-                          className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border"
-                          style={{
-                            backgroundColor:
-                              card.textColor === "#ffffff"
-                               ? "rgba(255, 255, 255, 0.15)"
-                               : "rgba(0, 0, 0, 0.06)",
-                            borderColor:
-                              card.textColor === "#ffffff"
-                               ? "rgba(255, 255, 255, 0.2)"
-                               : "rgba(0, 0, 0, 0.12)",
-                            color: card.textColor,
-                          }}
-                        >
-                          {card.badge}
-                        </span>
-                      ) : card.comingSoon ? (
-                        <span
-                          className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border"
-                          style={{
-                            backgroundColor:
-                              card.textColor === "#ffffff"
-                               ? "rgba(255, 255, 255, 0.05)"
-                               : "rgba(0, 0, 0, 0.03)",
-                            borderColor:
-                              card.textColor === "#ffffff"
-                               ? "rgba(255, 255, 255, 0.1)"
-                               : "rgba(0, 0, 0, 0.08)",
-                            color: card.textColor,
-                          }}
-                        >
-                          Coming Soon
-                        </span>
-                      ) : (
-                        <span
-                          className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border"
-                          style={{
-                            backgroundColor:
-                              card.textColor === "#ffffff"
-                               ? "rgba(255, 255, 255, 0.1)"
-                               : "rgba(0, 0, 0, 0.06)",
-                            borderColor:
-                              card.textColor === "#ffffff"
-                               ? "rgba(255, 255, 255, 0.15)"
-                               : "rgba(0, 0, 0, 0.12)",
-                            color: card.textColor,
-                          }}
-                        >
-                          Active Feature
-                        </span>
-                      )}
+                  {/* Header Row */}
+                  <div className="flex justify-between items-center z-10">
+                    <div
+                      className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider bg-black/5"
+                      style={{
+                        backgroundColor: card.textColor === "#ffffff" ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)",
+                        color: card.textColor === "#ffffff" ? "rgba(255, 255, 255, 0.7)" : "rgba(0, 0, 0, 0.6)",
+                      }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                      0{index + 1} / 0{STACK_CARDS.length}
                     </div>
 
-                    {/* Main Content Layout */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center flex-grow">
-                      {/* Left Column: Text & Features Info */}
-                      <div className="lg:col-span-7 flex flex-col justify-center">
-                        <h3 className="text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight mb-1 md:mb-2 leading-tight">
-                          {card.title}
-                        </h3>
-                        <p
-                          className="text-[11px] md:text-xs lg:text-sm mb-3 md:mb-4 leading-relaxed max-w-xl"
-                          style={{
-                            color:
-                              card.textColor === "#ffffff"
-                                ? "rgba(255, 255, 255, 0.8)"
-                                : "rgba(15, 23, 42, 0.8)",
-                          }}
-                        >
-                          {card.subtitle}
-                        </p>
+                    <span
+                      className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-current/10 bg-current/5"
+                    >
+                      {card.badge || (card.comingSoon ? "Coming Soon" : "Active Feature")}
+                    </span>
+                  </div>
 
-                        {/* Features Detail Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-4">
-                          {card.details.map((detail, dIdx) => (
-                            <div key={dIdx} className="flex flex-col gap-0.5">
-                              <span
-                                className="text-[8px] md:text-[9px] font-bold uppercase tracking-wider"
-                                style={{
-                                  color:
-                                    card.textColor === "#ffffff"
-                                      ? "rgba(255, 255, 255, 0.45)"
-                                      : "rgba(15, 23, 42, 0.5)",
-                                }}
-                              >
-                                {detail.label}
-                              </span>
-                              <span className="text-[10px] md:text-xs font-semibold leading-tight">
-                                {detail.value}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
+                  {/* Title and Subtitle */}
+                  <div className="my-auto z-10">
+                    <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-2 leading-tight">
+                      {card.title}
+                    </h3>
+                    <p
+                      className="text-xs md:text-sm leading-relaxed opacity-85"
+                    >
+                      {card.subtitle}
+                    </p>
+                  </div>
 
-                        {/* CTA Link */}
-                        <div>
-                          <Link
-                            href="/contactus"
-                            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider hover:underline group/btn"
-                            style={{ color: card.textColor }}
+                  {/* Visual Mockup Frame */}
+                  <div 
+                    className="h-[160px] rounded-xl border border-current/10 bg-current/5 p-4 flex items-center justify-center relative overflow-hidden shadow-inner z-10"
+                  >
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      className={`select-none pointer-events-none transition-transform duration-500 hover:scale-[1.03] ${
+                        card.img === "/logo.png"
+                          ? "max-h-[85%] max-w-[85%] object-contain"
+                          : "w-full h-full object-cover rounded-lg"
+                      }`}
+                    />
+                  </div>
+                </div>
+
+                {/* BACK FACE (Shown on the left side of the book when turned over) */}
+                <div
+                  className="absolute inset-0 w-full h-full rounded-l-[24px] overflow-hidden border border-r-0 border-slate-200/10 shadow-lg flex flex-col justify-between p-7 md:p-9"
+                  style={{
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                    backgroundColor: card.bgColor,
+                    color: card.textColor,
+                  }}
+                >
+                  {/* Back Shadow Overlay for 3D Lighting */}
+                  <div className="back-shadow absolute inset-0 bg-black pointer-events-none opacity-50 transition-opacity duration-75" />
+
+                  {/* Header Row */}
+                  <div className="flex justify-between items-center z-10 border-b border-current/10 pb-3">
+                    <span className="text-[10px] uppercase font-bold tracking-wider opacity-60">
+                      Technical Specs
+                    </span>
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider">
+                      Module 0{index + 1}
+                    </span>
+                  </div>
+
+                  {/* Specifications Details Grid */}
+                  <div className="flex-grow flex flex-col justify-center gap-3 z-10 my-4">
+                    <div className="grid grid-cols-2 gap-4 md:gap-6">
+                      {card.details.map((detail, dIdx) => (
+                        <div key={dIdx} className="flex flex-col gap-1 border-l-2 border-current/25 pl-3">
+                          <span
+                            className="text-[8px] md:text-[9px] font-bold uppercase tracking-wider opacity-65"
                           >
-                            {card.comingSoon ? "Request Early Access" : "Learn More"}
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              className="w-3 h-3 transition-transform group-hover/btn:translate-x-1"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </Link>
+                            {detail.label}
+                          </span>
+                          <span className="text-xs md:text-[13px] font-semibold leading-tight">
+                            {detail.value}
+                          </span>
                         </div>
-                      </div>
-
-                      {/* Right Column: Visual Mockup Box */}
-                      <div className="lg:col-span-5 flex justify-center hidden sm:flex">
-                        <div
-                          className={`w-full max-w-[280px] lg:max-w-none h-[120px] md:h-[150px] lg:h-[180px] rounded-xl overflow-hidden border relative shadow-sm transition-transform duration-500 hover:scale-[1.02] flex items-center justify-center`}
-                          style={{
-                            backgroundColor:
-                              card.img === "/logo.png"
-                                ? "#ffffff"
-                                : card.textColor === "#ffffff"
-                                ? "rgba(255, 255, 255, 0.08)"
-                                : "rgba(0, 0, 0, 0.03)",
-                            borderColor:
-                              card.textColor === "#ffffff"
-                                ? "rgba(255, 255, 255, 0.15)"
-                                : "rgba(0, 0, 0, 0.08)",
-                          }}
-                        >
-                          <img
-                            src={card.img}
-                            alt={card.title}
-                            className={`select-none pointer-events-none ${
-                              card.img === "/logo.png"
-                                ? "max-h-[80%] max-w-[80%] object-contain p-4"
-                                : "w-full h-full object-cover"
-                            }`}
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
+                  </div>
+
+                  {/* Bottom Action Area */}
+                  <div className="mt-auto pt-3 border-t border-current/10 flex justify-between items-center z-10">
+                    <span className="text-[9px] uppercase tracking-wider font-semibold opacity-50">
+                      Fundflick Playbook
+                    </span>
+                    <Link
+                      href="/contactus"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:underline group/btn"
+                      style={{ color: card.textColor }}
+                    >
+                      {card.comingSoon ? "Request Early Access" : "Explore Module"}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-4 h-4 transition-transform group-hover/btn:translate-x-1"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -424,7 +387,7 @@ export default function HoverGallery() {
 
         {/* Footer spacer/info for styling */}
         <div className="max-w-6xl mx-auto px-6 text-center text-[10px] text-slate-400 font-semibold uppercase tracking-widest relative z-10 animate-pulse">
-          Scroll to view capabilities ↓
+          Scroll down to turn pages and close playbook ↓
         </div>
       </div>
     </section>
