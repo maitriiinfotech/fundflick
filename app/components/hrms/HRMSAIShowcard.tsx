@@ -34,7 +34,7 @@ export default function HRMSAIShowcard() {
     <div className="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 -mt-32">
       <div
         ref={cardRef}
-        className="relative rounded-[20px] overflow-hidden grid grid-cols-1 md:grid-cols-[55%_45%] h-[320px] md:h-[350px]"
+        className="relative rounded-[20px] overflow-hidden grid grid-cols-1 md:grid-cols-[55%_45%] md:h-[400px]"
       >
         {/* LEFT HALF — starry sky bg + text overlay */}
         <div className="relative overflow-hidden">
@@ -88,11 +88,11 @@ export default function HRMSAIShowcard() {
         </div>
 
         {/* RIGHT HALF — phone/Zia chat image covers full right side */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden min-h-[280px] md:min-h-0">
           <img
             src="/rightextblackksky.jpg"
             alt="AI HR Assistant — Zia"
-            className="w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
       </div>

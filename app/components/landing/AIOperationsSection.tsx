@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Button from "../ui/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -186,6 +187,7 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
 export default function AIOperationsSection() {
   const rootRef = useRef<HTMLElement>(null);
   const [reduced, setReduced] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const reduce = window.matchMedia(
@@ -295,9 +297,35 @@ export default function AIOperationsSection() {
             </span>
           </h2>
         </div>
-        {FEATURES.map((f, i) => (
+        {(showAll ? FEATURES : FEATURES.slice(0, 1)).map((f, i) => (
           <Panel key={f.no} f={f} idx={i} />
         ))}
+
+        {!showAll && (
+          <div className="px-6 pt-2 flex justify-center">
+            <Button
+              onClick={() => setShowAll(true)}
+              variant="brand"
+              className="px-8 py-3.5 text-sm"
+            >
+              View More Features
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                strokeWidth={2.5}
+                stroke="currentColor"
+                className="ml-1 h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </Button>
+          </div>
+        )}
       </section>
 
       {/* DESKTOP — pinned immersive stage */}
