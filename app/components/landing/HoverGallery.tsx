@@ -199,33 +199,33 @@ export default function HoverGallery() {
     <section
       id="features-mobile"
       ref={sectionRef}
-      className="relative w-full h-[450vh] bg-slate-50 border-t border-slate-100 lg:hidden"
+      className="relative w-full h-[350vh] bg-slate-50 border-t border-slate-100 lg:hidden"
       style={{ fontFamily: "var(--font-outfit), sans-serif" }}
     >
       {/* Native Sticky Wrapper container for pinning effect */}
-      <div className="sticky top-[80px] w-full h-[calc(100vh-80px)] flex flex-col justify-between overflow-hidden py-8">
+      <div className="sticky top-[80px] w-full h-[calc(100vh-80px)] flex flex-col justify-between py-4">
         
         {/* Background visual graphics */}
         <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-secondaryColor/5 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-40 pointer-events-none" />
 
         {/* Section Header */}
-        <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <p className="text-secondaryColor font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs mb-1">
+        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
+          <p className="text-secondaryColor font-bold uppercase tracking-[0.2em] text-[9px] sm:text-[10px] mb-0.5">
             Core Capabilities
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 leading-tight">
             End-to-End <span className="text-secondaryColor">Lending Suite</span>
           </h2>
-          <p className="text-slate-500 mt-2 text-xs md:text-sm max-w-xl mx-auto leading-relaxed">
-            Manage your entire loan operations lifecycle. Turn the pages of our playbook to explore our origination, task management, automated collections, servicing, and ledger modules.
+          <p className="text-slate-500 mt-1 text-[10px] sm:text-xs max-w-xs mx-auto leading-relaxed">
+            Scroll to turn pages and explore our modules.
           </p>
         </div>
 
         {/* 3D Book Container */}
-        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 relative z-10 flex-grow flex items-center justify-center overflow-visible">
-          {/* Proportional scaling wrapper for mobile, tablet, and desktop */}
-          <div className="relative w-[960px] h-[480px] max-w-full origin-center transition-transform duration-300 scale-[0.4] min-[390px]:scale-[0.43] min-[440px]:scale-[0.48] min-[520px]:scale-[0.58] sm:scale-[0.72] md:scale-[0.88] lg:scale-100 flex items-center justify-center">
+        <div className="w-full max-w-6xl mx-auto px-2 relative z-10 flex-grow flex items-center justify-center overflow-visible" style={{ perspective: "1200px" }}>
+          {/* Proportional scaling wrapper — optimized for mobile */}
+          <div className="relative w-[960px] h-[480px] max-w-full origin-center transition-transform duration-300 scale-[0.38] min-[375px]:scale-[0.40] min-[390px]:scale-[0.42] min-[440px]:scale-[0.48] min-[520px]:scale-[0.58] sm:scale-[0.72] md:scale-[0.88] flex items-center justify-center">
             
             {/* Static Book Base/Cover (Behind pages) */}
             <div 
