@@ -163,10 +163,40 @@ export default function HoverGallery2() {
   const leftLiningRef = useRef<HTMLDivElement>(null);
   const rightLiningRef = useRef<HTMLDivElement>(null);
   const spineRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // ---- MOBILE: sticky stacking cards (the 3D book is desktop-only) ----
+    if (!isDesktop) {
+      if (reduce) return;
+      const mctx = gsap.context(() => {
+        const mcards = gsap.utils.toArray<HTMLElement>(".m-stack-card");
+        mcards.forEach((card, i) => {
+          if (i === mcards.length - 1) return;
+          // shrink each card as the next one scrolls up to cover it
+          gsap.to(card, {
+            scale: 0.92,
+            ease: "none",
+            scrollTrigger: {
+              trigger: mcards[i + 1],
+              start: "top bottom",
+              end: "top top",
+              scrub: true,
+            },
+          });
+        });
+      }, mobileRef);
+      return () => mctx.revert();
+    }
+
+    // ---- DESKTOP: 3D book ----
     const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
     const section = sectionRef.current;
 
@@ -310,6 +340,7 @@ export default function HoverGallery2() {
   }, []);
 
   return (
+    <>
     <section
       id="features"
       ref={sectionRef}
@@ -610,5 +641,151 @@ export default function HoverGallery2() {
         </div>
       </div>
     </section>
+
+    {/* ===================== MOBILE: sticky stacking cards ===================== */}
+    <section
+      ref={mobileRef}
+      className="lg:hidden relative w-full bg-slate-50 border-t border-slate-100 py-16 px-5"
+      style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-50 pointer-events-none" />
+
+      {/* header */}
+      <div className="relative z-10 text-center mb-10">
+        <p className="text-secondaryColor font-bold uppercase tracking-[0.2em] text-[10px] mb-1">
+          Core Capabilities
+        </p>
+        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight">
+          End-to-End <span className="text-secondaryColor">Lending Suite</span>
+        </h2>
+        <p className="text-slate-500 mt-2 text-xs leading-relaxed max-w-sm mx-auto">
+          Scroll to stack through every module of your loan operations.
+        </p>
+      </div>
+
+      {/* stacking cards */}
+      <div className="relative z-10">
+        {STACK_CARDS.map((card, i) => {
+          const dark = card.textColor === "#ffffff";
+          const isUnified = i === STACK_CARDS.length - 1;
+          return (
+            <div
+              key={i}
+              className="sticky"
+              style={{ top: `${90 + i * 12}px` }}
+            >
+              <div
+                className="m-stack-card rounded-3xl border border-black/5 shadow-xl p-6 mb-5"
+                style={{
+                  backgroundColor: card.bgColor,
+                  color: card.textColor,
+                  transformOrigin: "top center",
+                }}
+              >
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-[10px] font-bold uppercase tracking-wider opacity-60">
+                    Module 0{i + 1} / 0{STACK_CARDS.length}
+                  </span>
+                  <span
+                    className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full"
+                    style={{
+                      backgroundColor: dark
+                        ? "rgba(255,255,255,0.1)"
+                        : "rgba(0,0,0,0.06)",
+                    }}
+                  >
+                    {card.badge ||
+                      (card.comingSoon ? "Coming Soon" : "Active Feature")}
+                  </span>
+                </div>
+                {isUnified ? (
+                  <div className="flex flex-col items-center justify-center text-center py-4 mb-4">
+                    <div className="flex h-[170px] w-full items-center justify-center rounded-xl bg-white/5 mb-5">
+                      <img
+                        src="/logo.png"
+                        alt="Fundflick"
+                        className="max-h-[70px] object-contain brightness-0 invert"
+                      />
+                    </div>
+                    <p className="text-base font-bold leading-snug max-w-[15rem]">
+                      All 6 modules — one unified platform.
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <h3 className="text-xl font-extrabold tracking-tight mb-2 leading-tight">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed opacity-85 mb-4">
+                      {card.subtitle}
+                    </p>
+                    <div
+                      className="h-[150px] rounded-xl overflow-hidden mb-4 flex items-center justify-center"
+                      style={{
+                        backgroundColor: dark
+                          ? "rgba(255,255,255,0.05)"
+                          : "rgba(0,0,0,0.04)",
+                      }}
+                    >
+                      <img
+                        src={card.img}
+                        alt={card.title}
+                        className={
+                          card.img === "/logo.png"
+                            ? `max-h-[70%] max-w-[70%] object-contain ${
+                                dark ? "brightness-0 invert" : ""
+                              }`
+                            : "w-full h-full object-cover"
+                        }
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      {card.details.map((d, di) => (
+                        <div
+                          key={di}
+                          className="border-l-2 pl-3"
+                          style={{
+                            borderColor: dark
+                              ? "rgba(255,255,255,0.25)"
+                              : "rgba(0,0,0,0.15)",
+                          }}
+                        >
+                          <span className="block text-[8px] font-bold uppercase tracking-wider opacity-60">
+                            {d.label}
+                          </span>
+                          <span className="block text-xs font-semibold leading-tight">
+                            {d.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+                <Link
+                  href="/contactus"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider"
+                  style={{ color: card.textColor }}
+                >
+                  {card.comingSoon ? "Request Early Access" : "Explore Module"}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+    </>
   );
 }

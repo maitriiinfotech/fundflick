@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Button from "../ui/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -88,7 +87,9 @@ function renderTitle(f: Feature) {
 
 function Panel({ f, idx }: { f: Feature; idx: number }) {
   return (
-    <div className={`panel p${idx} h-screen w-full flex items-center relative`}>
+    <div
+      className={`panel p${idx} min-h-screen lg:h-screen w-full flex items-center relative py-20 lg:py-0`}
+    >
       {/* giant ghost number */}
       <span
         aria-hidden
@@ -145,11 +146,6 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
               </li>
             ))}
           </ul>
-          <div className="p-el">
-            <Button href="/contactus" variant="brand" className="px-7 py-3 text-sm">
-              Explore {f.label}
-            </Button>
-          </div>
         </div>
 
         {/* visual */}
@@ -199,6 +195,9 @@ export default function AIOperationsSection() {
       setReduced(true);
       return;
     }
+
+    // Pinned immersive stage is desktop-only; mobile uses a static layout.
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -277,12 +276,35 @@ export default function AIOperationsSection() {
     );
   }
 
-  // ---------- pinned immersive stage ----------
+  // ---------- mobile static + desktop pinned ----------
   return (
-    <section
-      ref={rootRef}
-      className="relative h-screen overflow-hidden bg-[#0a0e1a]"
-    >
+    <>
+      {/* MOBILE — static stacked (no pin, no overlap) */}
+      <section className="lg:hidden bg-[#0a0e1a] overflow-hidden pt-20 pb-8">
+        <div className="max-w-7xl mx-auto px-6 mb-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-secondaryColor font-bold mb-4">
+            Beyond Lending
+          </p>
+          <h2
+            className="text-3xl font-extrabold text-white leading-tight"
+            style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+          >
+            We don&apos;t just provide lending —{" "}
+            <span className="text-secondaryColor">
+              we run the overall operation of your company.
+            </span>
+          </h2>
+        </div>
+        {FEATURES.map((f, i) => (
+          <Panel key={f.no} f={f} idx={i} />
+        ))}
+      </section>
+
+      {/* DESKTOP — pinned immersive stage */}
+      <section
+        ref={rootRef}
+        className="hidden lg:block relative h-screen overflow-hidden bg-[#0a0e1a]"
+      >
       {/* atmosphere */}
       <div
         aria-hidden
@@ -332,5 +354,6 @@ export default function AIOperationsSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }
