@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ReusableFeatures from "../ui/ReusableFeatures";
 
 const TASK_FEATURES = [
   {
@@ -86,98 +84,17 @@ const TASK_FEATURES = [
 ];
 
 export default function TaskFeatures() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    if (titleRef.current) {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-
-    const cards = gridRef.current?.querySelectorAll(".feature-card");
-    if (cards) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 40, scale: 0.96 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "back.out(1.2)",
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 82%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
-  }, []);
-
   return (
-    <section ref={sectionRef} className="relative w-full py-20 sm:py-28 px-6 bg-white overflow-hidden">
-      {/* Dot grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-50 pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section title */}
-        <div ref={titleRef} className="mb-14 text-center">
-          <span className="inline-block text-xs font-bold uppercase tracking-wider text-secondaryColor mb-4">
-            Powerful Features
-          </span>
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900"
-            style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-          >
-            Everything you need to <br className="hidden sm:block" />
-            manage tasks at scale
-          </h2>
-        </div>
-
-        {/* Feature Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TASK_FEATURES.map((feature, idx) => (
-            <div
-              key={idx}
-              className={`feature-card bg-white border border-slate-200/80 rounded-[24px] p-7 flex flex-col gap-4 shadow-[0_8px_30px_rgba(0,0,0,0.02)] transition-all duration-300 hover:border-secondaryColor/30 hover:shadow-[0_12px_40px_rgba(43,127,255,0.06)] group ${idx === 6 ? "sm:col-span-2 lg:col-span-1" : ""}`}
-            >
-              <div
-                className={`w-12 h-12 rounded-2xl ${feature.color} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}
-              >
-                {feature.icon}
-              </div>
-              <h3
-                className="text-lg font-extrabold text-slate-900 tracking-tight"
-                style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-              >
-                {feature.title}
-              </h3>
-              <p className="text-slate-500 text-[13px] leading-relaxed font-light">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <ReusableFeatures
+      withSection
+      items={TASK_FEATURES}
+      eyebrow="Powerful Features"
+      heading={
+        <>
+          Everything you need to <br className="hidden sm:block" />
+          manage tasks at scale
+        </>
+      }
+    />
   );
 }

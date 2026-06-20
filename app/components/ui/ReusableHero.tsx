@@ -60,7 +60,7 @@ export default function ReusableHero({
       {/* Background Hero Image */}
       <div className="absolute inset-0 pointer-events-none z-0 select-none overflow-hidden">
         <img
-          src={bgImage}
+          src={"/hero_bg_pattern.png"}
           alt={bgAlt}
           className="w-full h-full object-cover object-bottom"
         />

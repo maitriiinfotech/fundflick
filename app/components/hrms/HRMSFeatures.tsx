@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ReusableFeatures from "../ui/ReusableFeatures";
 
 const HRMS_FEATURES = [
   {
@@ -69,56 +67,5 @@ const HRMS_FEATURES = [
 ];
 
 export default function HRMSFeatures() {
-  const gridRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const cards = gridRef.current?.querySelectorAll(".feature-card");
-    if (cards) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 40, scale: 0.96 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "back.out(1.2)",
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 82%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    }
-  }, []);
-
-  return (
-    <div ref={gridRef} className="max-w-6xl mx-auto px-6 mb-24 relative z-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {HRMS_FEATURES.map((feature, idx) => (
-          <div
-            key={idx}
-            className="feature-card bg-white border border-slate-200/80 rounded-[24px] p-7 flex flex-col gap-4 shadow-[0_8px_30px_rgba(0,0,0,0.02)] transition-all duration-300 hover:border-secondaryColor/30 hover:shadow-[0_12px_40px_rgba(43,127,255,0.06)] group"
-          >
-            <div className={`w-12 h-12 rounded-2xl ${feature.color} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
-              {feature.icon}
-            </div>
-            <h3
-              className="text-lg font-extrabold text-slate-900 tracking-tight"
-              style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-            >
-              {feature.title}
-            </h3>
-            <p className="text-slate-500 text-[13px] leading-relaxed font-light">
-              {feature.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <ReusableFeatures items={HRMS_FEATURES} className="mb-24" />;
 }

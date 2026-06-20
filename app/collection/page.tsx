@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
+import ReusableHero from "../components/ui/ReusableHero";
+import ReusableFAQ from "../components/ui/ReusableFAQ";
+import ReusableFeatures from "../components/ui/ReusableFeatures";
 import Button from "../components/ui/Button";
 
 const COLLECTION_FEATURES = [
@@ -69,49 +71,47 @@ const COLLECTION_FEATURES = [
   },
 ];
 
+const COLLECTION_FAQ = [
+  {
+    question: "How do automated EMI reminders work?",
+    answer:
+      "Reminders are sent automatically via SMS, Email, and WhatsApp before and after due dates. You can configure the frequency, templates, and escalation rules per product or DPD bucket.",
+  },
+  {
+    question: "Can borrowers pay through a link?",
+    answer:
+      "Yes — generate secure one-click payment links supporting UPI, net banking, cards, and wallets. Payments are confirmed instantly and reconciled against the loan account automatically.",
+  },
+  {
+    question: "How is field collection tracked?",
+    answer:
+      "Assign collection agents to overdue accounts and track field visits with GPS, call logs, and real-time performance dashboards — full visibility into every recovery action.",
+  },
+  {
+    question: "What NPA and overdue reporting is available?",
+    answer:
+      "Visual dashboards cover DPD buckets, NPA classification, and portfolio-at-risk metrics, with drill-down by branch, product, and agent for precise monitoring.",
+  },
+  {
+    question: "How does payment reconciliation work?",
+    answer:
+      "Incoming payments are auto-matched to loan accounts, including partial payments, bounce entries, and settlement discrepancies — no manual matching required.",
+  },
+  {
+    question: "Is a free trial available?",
+    answer:
+      "Absolutely! We offer a 14-day free trial with full access to all Collection Management features. No credit card required.",
+  },
+];
+
 export default function CollectionPage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Hero entrance
-      const heroChildren = heroRef.current?.children;
-      if (heroChildren) {
-        gsap.fromTo(
-          Array.from(heroChildren),
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }
-        );
-      }
-
-      // Feature cards staggered entrance
-      const cards = gridRef.current?.querySelectorAll(".feature-card");
-      if (cards) {
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 40, scale: 0.96 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: "back.out(1.2)",
-            scrollTrigger: {
-              trigger: gridRef.current,
-              start: "top 82%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-
-      // CTA section
       if (ctaRef.current) {
         gsap.fromTo(
           ctaRef.current,
@@ -126,7 +126,7 @@ export default function CollectionPage() {
               start: "top 88%",
               toggleActions: "play none none none",
             },
-          }
+          },
         );
       }
     }, containerRef);
@@ -137,75 +137,45 @@ export default function CollectionPage() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen bg-white text-slate-900 pt-28 pb-20 relative overflow-hidden"
+      className="min-h-screen bg-white text-slate-900 pb-20 relative overflow-hidden"
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-50 pointer-events-none" />
-      <div className="absolute top-1/4 right-1/3 w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[140px] pointer-events-none" />
+      {/* Hero Section — reusable (same as HRMS) */}
+      <ReusableHero
+        bgImage="/collection.png"
+        bgAlt="Collection Background"
+        title={
+          <>
+            EMI Collection <br />
+            Management
+          </>
+        }
+        description="End-to-end collection lifecycle — automated EMI reminders, payment links, field agent tracking, NPA dashboards, and recovery workflow automation, all in one platform."
+        primaryLabel="Request a Demo"
+      />
 
-      {/* Hero Section */}
-      <div ref={heroRef} className="max-w-5xl mx-auto px-6 mb-20 relative z-10">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondaryColor hover:underline w-fit mb-8"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4 h-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
-          Back to Home
-        </Link>
+      {/* Feature Grid — reusable */}
+      <ReusableFeatures
+        items={COLLECTION_FEATURES}
+        eyebrow="Collection Suite"
+        heading={
+          <>
+            Everything you need to{" "}
+            <span className="text-secondaryColor">recover faster</span>
+          </>
+        }
+        className="mt-20 mb-24"
+      />
 
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 mb-6">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider">Collection Suite</span>
-        </div>
-
-        <h1
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6"
-          style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-        >
-          EMI Collection <br />
-          <span className="text-secondaryColor">Management</span>
-        </h1>
-
-        <p className="text-slate-500 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mb-10 font-light">
-          End-to-end collection lifecycle management — from automated EMI reminders and payment link generation to field agent tracking, NPA dashboards, and recovery workflow automation.
-        </p>
-
-        <Button href="/contactus" variant="primary" className="px-8 py-3.5 text-sm">
-          Request a Demo
-        </Button>
-      </div>
-
-      {/* Feature Grid */}
-      <div ref={gridRef} className="max-w-6xl mx-auto px-6 mb-24 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {COLLECTION_FEATURES.map((feature, idx) => (
-            <div
-              key={idx}
-              className="feature-card bg-white border border-slate-200/80 rounded-[24px] p-7 flex flex-col gap-4 shadow-[0_8px_30px_rgba(0,0,0,0.02)] transition-all duration-300 hover:border-secondaryColor/30 hover:shadow-[0_12px_40px_rgba(43,127,255,0.06)] group"
-            >
-              <div className={`w-12 h-12 rounded-2xl ${feature.color} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
-                {feature.icon}
-              </div>
-              <h3
-                className="text-lg font-extrabold text-slate-900 tracking-tight"
-                style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-              >
-                {feature.title}
-              </h3>
-              <p className="text-slate-500 text-[13px] leading-relaxed font-light">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* FAQ Section — reusable (same as HRMS) */}
+      <ReusableFAQ
+        title="Got a Question?"
+        subtitle="Everything you need to know about Fundflick Collection Management."
+        items={COLLECTION_FAQ}
+      />
 
       {/* CTA Section */}
-      <div ref={ctaRef} className="max-w-3xl mx-auto px-6 relative z-10">
+      <div ref={ctaRef} className="max-w-3xl mx-auto px-6 mt-24 relative z-10">
         <div className="bg-gradient-to-r from-[#131c33] to-[#1e3a75] rounded-[28px] px-8 py-14 md:px-16 md:py-20 text-center text-white relative overflow-hidden">
           <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
@@ -217,7 +187,8 @@ export default function CollectionPage() {
             Maximize your collection efficiency
           </h2>
           <p className="text-slate-300 text-sm md:text-base leading-relaxed max-w-lg mx-auto mb-8 relative z-10 font-light">
-            Reduce NPAs, automate follow-ups, and track every rupee with Fundflick&apos;s intelligent collection management platform.
+            Reduce NPAs, automate follow-ups, and track every rupee with
+            Fundflick&apos;s intelligent collection management platform.
           </p>
           <Button href="/contactus" variant="brand" className="px-8 py-3.5 text-sm relative z-10">
             Start Managing Collections

@@ -152,9 +152,6 @@ export default function ReusableShowcase({
               {tab.label}
             </button>
           ))}
-          <div className="w-10 h-10 rounded-full bg-[#131c33] text-white flex items-center justify-center text-xs font-bold">
-            {tabs.length}+
-          </div>
         </div>
 
         {/* Content: Left text + Right image */}
