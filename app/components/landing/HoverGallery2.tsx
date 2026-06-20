@@ -172,27 +172,6 @@ export default function HoverGallery2() {
 
     if (!section || cards.length === 0) return;
 
-    // Mobile: the 3D book is hidden — animate the stacked cards on scroll instead.
-    if (!window.matchMedia("(min-width: 1024px)").matches) {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      const mctx = gsap.context(() => {
-        gsap.utils.toArray<HTMLElement>(".mobile-card").forEach((card) => {
-          gsap.fromTo(
-            card,
-            { y: 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.7,
-              ease: "power3.out",
-              scrollTrigger: { trigger: card, start: "top 88%", once: true },
-            },
-          );
-        });
-      }, section);
-      return () => mctx.revert();
-    }
-
     // Create GSAP ScrollTrigger timeline
     const tl = gsap.timeline();
 
@@ -334,7 +313,7 @@ export default function HoverGallery2() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative w-full lg:h-[520vh] bg-slate-50 border-t border-slate-100"
+      className="relative w-full lg:h-[520vh] bg-slate-50 border-t border-slate-100 hidden lg:block"
       style={{ fontFamily: "var(--font-outfit), sans-serif" }}
     >
       {/* Sticky container for pinning */}
@@ -359,7 +338,7 @@ export default function HoverGallery2() {
         </div>
 
         {/* 3D Book Container */}
-        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 relative z-10 flex-grow hidden lg:flex items-center justify-center overflow-visible">
+        <div className="w-full max-w-6xl mx-auto px-4 md:px-6 relative z-10 flex-grow flex items-center justify-center overflow-visible">
           {/* Proportional scaling wrapper for responsiveness */}
           <div className="relative w-[960px] h-[480px] max-w-full origin-center transition-transform duration-300 scale-[0.4] min-[390px]:scale-[0.43] min-[440px]:scale-[0.48] min-[520px]:scale-[0.58] sm:scale-[0.72] md:scale-[0.88] lg:scale-100 flex items-center justify-center">
             {/* Book Base/Backing Cover - Split into Left and Right Wings to prevent left side visibility when closed */}
@@ -625,104 +604,8 @@ export default function HoverGallery2() {
           </div>
         </div>
 
-        {/* ===== Mobile: readable stacked cards (book is desktop-only) ===== */}
-        <div className="lg:hidden mt-10 space-y-5 relative z-10">
-          {STACK_CARDS.map((card, i) => {
-            const dark = card.textColor === "#ffffff";
-            return (
-              <div
-                key={i}
-                className="mobile-card rounded-2xl border border-black/5 p-6 shadow-sm"
-                style={{ backgroundColor: card.bgColor, color: card.textColor }}
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-bold uppercase tracking-wider opacity-60">
-                    Module 0{i + 1} / 0{STACK_CARDS.length}
-                  </span>
-                  <span
-                    className="text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full"
-                    style={{
-                      backgroundColor: dark
-                        ? "rgba(255,255,255,0.1)"
-                        : "rgba(0,0,0,0.06)",
-                    }}
-                  >
-                    {card.badge ||
-                      (card.comingSoon ? "Coming Soon" : "Active Feature")}
-                  </span>
-                </div>
-                <h3 className="text-xl font-extrabold tracking-tight mb-2 leading-tight">
-                  {card.title}
-                </h3>
-                <p className="text-sm leading-relaxed opacity-85 mb-4">
-                  {card.subtitle}
-                </p>
-                <div
-                  className="h-[160px] rounded-xl overflow-hidden mb-4 flex items-center justify-center"
-                  style={{
-                    backgroundColor: dark
-                      ? "rgba(255,255,255,0.05)"
-                      : "rgba(0,0,0,0.04)",
-                  }}
-                >
-                  <img
-                    src={card.img}
-                    alt={card.title}
-                    className={
-                      card.img === "/logo.png"
-                        ? `max-h-[70%] max-w-[70%] object-contain ${
-                            dark ? "brightness-0 invert" : ""
-                          }`
-                        : "w-full h-full object-cover"
-                    }
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  {card.details.map((d, di) => (
-                    <div
-                      key={di}
-                      className="border-l-2 pl-3"
-                      style={{
-                        borderColor: dark
-                          ? "rgba(255,255,255,0.25)"
-                          : "rgba(0,0,0,0.15)",
-                      }}
-                    >
-                      <span className="block text-[8px] font-bold uppercase tracking-wider opacity-60">
-                        {d.label}
-                      </span>
-                      <span className="block text-xs font-semibold leading-tight">
-                        {d.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  href="/contactus"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider"
-                  style={{ color: card.textColor }}
-                >
-                  {card.comingSoon ? "Request Early Access" : "Explore Module"}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-
         {/* Footer spacer/info for styling — desktop only */}
-        <div className="hidden lg:block max-w-6xl mx-auto px-6 text-center text-[10px] text-slate-400 font-semibold uppercase tracking-widest relative z-10 animate-pulse">
+        <div className="max-w-6xl mx-auto px-6 text-center text-[10px] text-slate-400 font-semibold uppercase tracking-widest relative z-10 animate-pulse">
           Scroll down to open playbook, turn pages & close playbook ↓
         </div>
       </div>

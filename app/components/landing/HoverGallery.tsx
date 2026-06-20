@@ -197,9 +197,9 @@ export default function HoverGallery() {
 
   return (
     <section
-      id="features"
+      id="features-mobile"
       ref={sectionRef}
-      className="relative w-full h-[450vh] bg-slate-50 border-t border-slate-100"
+      className="relative w-full h-[450vh] bg-slate-50 border-t border-slate-100 lg:hidden"
       style={{ fontFamily: "var(--font-outfit), sans-serif" }}
     >
       {/* Native Sticky Wrapper container for pinning effect */}

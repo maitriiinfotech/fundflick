@@ -8,7 +8,7 @@ import AboutStats from "../components/about/AboutStats";
 import AboutStory from "../components/about/AboutStory";
 import AboutValues from "../components/about/AboutValues";
 import AboutJourney from "../components/about/AboutJourney";
-// import PlaneJourney from "../components/landing/PlaneJourney";
+import PlaneJourney from "../components/landing/PlaneJourney";
 import useAboutAnimations from "../components/about/useAboutAnimations";
 
 export default function AboutPage() {
@@ -27,7 +27,7 @@ export default function AboutPage() {
       <AboutValues />
       <AboutSolutions />
       <AboutJourney />
-      {/* <PlaneJourney /> */}
+      <PlaneJourney />
       <AboutCTA />
     </main>
   );

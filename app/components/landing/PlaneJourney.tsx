@@ -81,7 +81,7 @@ export default function PlaneJourney() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[220vh] overflow-hidden bg-[#f7c948]"
+      className="relative w-full h-[220vh] overflow-hidden bg-white"
       style={{ fontFamily: "var(--font-outfit), sans-serif" }}
     >
       {/* dashed flight path (fills the whole section) */}
@@ -108,6 +108,7 @@ export default function PlaneJourney() {
           src="/plan/plane.webp"
           alt="Plane"
           className="w-full h-auto drop-shadow-xl select-none pointer-events-none"
+          style={{ transform: "scaleX(-1)" }}
         />
       </div>
 
@@ -141,7 +142,10 @@ export default function PlaneJourney() {
         >
           <span
             className="text-3xl sm:text-5xl font-black uppercase italic text-[#e11d48]"
-            style={{ textShadow: "2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff" }}
+            style={{
+              textShadow:
+                "2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff",
+            }}
           >
             {s.label}&rdquo;
           </span>
@@ -167,9 +171,7 @@ export default function PlaneJourney() {
 
       {/* ===== Outro (bottom) ===== */}
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 text-center px-6">
-        <h3
-          className="pj-rise text-4xl sm:text-6xl font-black uppercase leading-none text-[#1f1300]"
-        >
+        <h3 className="pj-rise text-4xl sm:text-6xl font-black uppercase leading-none text-[#1f1300]">
           Anywhere. Anytime.
         </h3>
         <p className="pj-rise mt-4 text-sm font-bold uppercase tracking-widest text-[#b91c1c]">
