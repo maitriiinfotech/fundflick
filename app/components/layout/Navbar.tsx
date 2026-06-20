@@ -1,14 +1,88 @@
 "use client";
 
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { gsap } from "gsap";
 import Button from "../ui/Button";
 
+const MOBILE_LINKS = [
+  { label: "Features", href: "/#features" },
+  { label: "HRMS", href: "/hrms" },
+  { label: "Collection", href: "/collection" },
+  { label: "Task Management", href: "/task-management" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contactus" },
+];
+
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Open / close animation + body scroll lock
+  useEffect(() => {
+    const menu = menuRef.current;
+    if (!menu) return;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (open) {
+      document.body.style.overflow = "hidden";
+      gsap.set(menu, { display: "flex" });
+      if (reduce) {
+        gsap.set(menu, { clipPath: "inset(0 0 0% 0)" });
+        gsap.set(".mnav-item", { y: 0, opacity: 1 });
+        return;
+      }
+      gsap
+        .timeline()
+        .fromTo(
+          menu,
+          { clipPath: "inset(0 0 100% 0)" },
+          { clipPath: "inset(0 0 0% 0)", duration: 0.6, ease: "power4.inOut" },
+        )
+        .fromTo(
+          ".mnav-item",
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.06,
+            ease: "power3.out",
+          },
+          "-=0.2",
+        );
+    } else {
+      document.body.style.overflow = "";
+      if (reduce) {
+        gsap.set(menu, { display: "none" });
+        return;
+      }
+      gsap.to(menu, {
+        clipPath: "inset(0 0 100% 0)",
+        duration: 0.5,
+        ease: "power4.inOut",
+        onComplete: () => gsap.set(menu, { display: "none" }),
+      });
+    }
+  }, [open]);
+
+  // Close the menu if the viewport grows to desktop
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
+    <>
     <nav className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-4 md:py-6 z-[9999] bg-white/80 backdrop-blur-md border-b border-slate-100/60">
       <div className="flex items-center gap-2">
-        <Link href="/">
+        <Link href="/" onClick={() => setOpen(false)}>
           <img
             src="/logo.png"
             alt="Fundflick Logo"
@@ -16,6 +90,8 @@ export default function Navbar() {
           />
         </Link>
       </div>
+
+      {/* ===== Desktop links ===== */}
       <div className="hidden md:flex gap-8 lg:gap-12 text-slate-800 font-semibold tracking-tight items-center">
         <Link href="/#features" className="text-sm hover:text-secondaryColor transition-colors cursor-pointer">
           Features
@@ -90,12 +166,95 @@ export default function Navbar() {
           Contact
         </Link>
       </div>
-      <div className="pointer-events-auto">
-        <Button href="/contactus" variant="primary">
-          Get Started
-        </Button>
+
+      {/* ===== Right: desktop CTA + mobile hamburger ===== */}
+      <div className="flex items-center gap-3">
+        <div className="hidden md:block pointer-events-auto">
+          <Button href="/contactus" variant="primary">
+            Get Started
+          </Button>
+        </div>
+
+        {/* hamburger / X (mobile) */}
+        <button
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="md:hidden relative z-[10000] flex h-10 w-10 items-center justify-center text-slate-900"
+        >
+          <span className="relative block h-4 w-6">
+            <span
+              className={`absolute left-0 block h-0.5 w-6 bg-current transition-all duration-300 ${
+                open ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-1/2 -translate-y-1/2 block h-0.5 w-6 bg-current transition-all duration-300 ${
+                open ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute left-0 block h-0.5 w-6 bg-current transition-all duration-300 ${
+                open ? "top-1/2 -translate-y-1/2 -rotate-45" : "bottom-0"
+              }`}
+            />
+          </span>
+        </button>
       </div>
     </nav>
+
+      {/* ===== Mobile full-screen menu — sibling of <nav> so it escapes the
+           navbar's backdrop-blur containing block (else fixed = nav bar only) ===== */}
+      <div
+        ref={menuRef}
+        className="mnav fixed inset-0 z-[9990] hidden flex-col bg-[#0f1729] md:!hidden"
+        style={{ clipPath: "inset(0 0 100% 0)" }}
+      >
+        {/* texture */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-30"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(148,163,184,0.16) 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+
+        <div className="relative flex-1 flex flex-col justify-center px-8 pt-24">
+          {MOBILE_LINKS.map((l, i) => (
+            <Link
+              key={l.href + l.label}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="mnav-item group flex items-baseline gap-5 border-b border-white/5 py-3.5"
+            >
+              <span className="font-mono text-xs text-secondaryColor">
+                0{i + 1}
+              </span>
+              <span
+                className="text-3xl font-extrabold tracking-tight text-white transition-colors duration-300 group-hover:text-secondaryColor"
+                style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+              >
+                {l.label}
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mnav-item relative px-8 pb-12">
+          <Button
+            href="/contactus"
+            variant="brand"
+            className="w-full justify-center py-4 text-base"
+          >
+            Get Started
+          </Button>
+          <p className="mt-5 text-center text-xs text-slate-500">
+            © {new Date().getFullYear()} Fundflick · Lending Operations Suite
+          </p>
+        </div>
+      </div>
+    </>
   );
 }
-
