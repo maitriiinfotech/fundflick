@@ -54,6 +54,13 @@ export default function HRMSPage() {
     >
       {/* Hero Section — cinematic image-reveal */}
       <RevealHero
+        images={[
+          "/reveal/1.jpg",
+          "/reveal/2.jpg",
+          "/reveal/hrms-hero.png",
+          "/reveal/4.jpg",
+          "/reveal/5.jpg",
+        ]}
         heroIndex={2}
         heading={
           <>
