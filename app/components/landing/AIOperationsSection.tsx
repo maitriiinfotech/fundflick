@@ -17,6 +17,7 @@ interface Feature {
   bullets: string[];
   rows: { name: string; meta: string }[];
   href?: string; // optional "Know more" deep-link
+  comingSoon?: boolean;
 }
 
 const FEATURES: Feature[] = [
@@ -37,6 +38,7 @@ const FEATURES: Feature[] = [
       { name: "Sentiment: interested", meta: "0.86" },
       { name: "Follow-up booked", meta: "Tomorrow" },
     ],
+    comingSoon: true,
   },
   {
     no: "02",
@@ -114,6 +116,11 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
             <span className="h-1.5 w-1.5 rounded-full bg-secondaryColor animate-pulse" />
             {f.badge}
           </span>
+          {f.comingSoon && (
+            <span className="p-el ml-2 inline-flex items-center rounded-full border border-amber-400/30 bg-amber-400/15 px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-wider text-amber-300 mb-6">
+              Coming Soon
+            </span>
+          )}
           <h3
             className="p-el text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.05] tracking-tight mb-6"
             style={{ fontFamily: "var(--font-outfit), sans-serif" }}
@@ -160,7 +167,7 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-secondaryColor/20 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-[#8ec0ff]">
                 <span className="h-1.5 w-1.5 rounded-full bg-secondaryColor animate-pulse" />
-                AI Live
+                {f.comingSoon ? "Coming Soon" : "AI Live"}
               </span>
             </div>
             <div className="space-y-2.5">
