@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ReusableHero from "../components/ui/ReusableHero";
+import RevealHero from "../components/ui/RevealHero";
 import ReusableFAQ from "../components/ui/ReusableFAQ";
 import ReusableFeatures from "../components/ui/ReusableFeatures";
 import Button from "../components/ui/Button";
@@ -140,18 +140,20 @@ export default function CollectionPage() {
       className="min-h-screen bg-white text-slate-900 pb-20 relative overflow-hidden"
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
-      {/* Hero Section — reusable (same as HRMS) */}
-      <ReusableHero
-        bgImage="/collection.png"
-        bgAlt="Collection Background"
-        title={
+      {/* Hero Section — cinematic image-reveal (same as HRMS) */}
+      <RevealHero
+        heroIndex={1}
+        heading={
           <>
-            EMI Collection <br />
-            Management
+            EMI collection on autopilot — automated reminders, payment links,
+            field tracking and recovery workflows in one platform.
           </>
         }
-        description="End-to-end collection lifecycle — automated EMI reminders, payment links, field agent tracking, NPA dashboards, and recovery workflow automation, all in one platform."
-        primaryLabel="Request a Demo"
+        socialLabel="Get started"
+        links={[
+          { label: "Request a demo", href: "/contactus" },
+          { label: "Talk to sales", href: "/contactus" },
+        ]}
       />
 
       {/* Feature Grid — reusable */}

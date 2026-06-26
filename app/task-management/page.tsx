@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ReusableHero from "../components/ui/ReusableHero";
+import RevealHero from "../components/ui/RevealHero";
 import TaskFeatures from "../components/task/TaskFeatures";
 import ReusableShowcase, {
   ShowcaseTab,
@@ -84,18 +84,21 @@ export default function TaskManagementPage() {
       className="min-h-screen bg-white text-slate-900 pb-20 relative overflow-hidden"
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
-      {/* Hero Section */}
-      <ReusableHero
-        bgImage="/task-hero-bg.png"
-        bgAlt="Task Management Background"
-        title={
+      {/* Hero Section — cinematic image-reveal (same as HRMS) */}
+      <RevealHero
+        heroIndex={3}
+        heading={
           <>
-            Task &amp; Workflow <br />
-            Management
+            Task &amp; workflow management that runs your operations — daily
+            tasks, bulk assignments, reports and real-time alerts, all in one
+            place.
           </>
         }
-        description="Organize, assign, and track every task across your operations. Create daily tasks, bulk assignments, automated reports, and real-time notifications — all in one powerful platform."
-        primaryLabel="Start Free Trial"
+        socialLabel="Get started"
+        links={[
+          { label: "Start free trial", href: "/contactus" },
+          { label: "Book a demo", href: "/contactus" },
+        ]}
       />
 
       {/* Features Grid */}
