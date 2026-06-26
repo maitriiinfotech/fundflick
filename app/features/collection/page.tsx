@@ -3,10 +3,10 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import RevealHero from "../components/ui/RevealHero";
-import ReusableFAQ from "../components/ui/ReusableFAQ";
-import ReusableFeatures from "../components/ui/ReusableFeatures";
-import Button from "../components/ui/Button";
+import RevealHero from "../../components/ui/RevealHero";
+import ReusableFAQ from "../../components/ui/ReusableFAQ";
+import ReusableFeatures from "../../components/ui/ReusableFeatures";
+import Button from "../../components/ui/Button";
 
 const COLLECTION_FEATURES = [
   {

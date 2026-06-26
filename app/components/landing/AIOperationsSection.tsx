@@ -55,7 +55,7 @@ const FEATURES: Feature[] = [
       { name: "Attrition risk: 3 flagged", meta: "AI alert" },
       { name: "5 resumes shortlisted", meta: "AI" },
     ],
-    href: "/hrms",
+    href: "/features/hrms",
   },
   {
     no: "03",

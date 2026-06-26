@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import RevealHero from "../components/ui/RevealHero";
-import TaskFeatures from "../components/task/TaskFeatures";
+import RevealHero from "../../components/ui/RevealHero";
+import TaskFeatures from "../../components/task/TaskFeatures";
 import ReusableShowcase, {
   ShowcaseTab,
-} from "../components/ui/ReusableShowcase";
-import TaskCTA from "../components/task/TaskCTA";
-import ReusableFAQ from "../components/ui/ReusableFAQ";
+} from "../../components/ui/ReusableShowcase";
+import TaskCTA from "../../components/task/TaskCTA";
+import ReusableFAQ from "../../components/ui/ReusableFAQ";
 
 const TASK_SHOWCASE_TABS: ShowcaseTab[] = [
   {
