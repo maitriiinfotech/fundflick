@@ -14,8 +14,10 @@ export interface RevealHeroLink {
 }
 
 interface RevealHeroProps {
-  /** Exactly 5 image URLs — index 2 (the middle one) becomes the fullscreen hero. */
-  images: string[];
+  /** 5 image URLs (shared set). Defaults to the shared /reveal images. */
+  images?: string[];
+  /** Which image (0-based) expands to the fullscreen hero. The rest fly off. */
+  heroIndex?: number;
   heading: ReactNode;
   /** Small label above the links (e.g. "Get started"). */
   socialLabel?: string;
@@ -26,8 +28,18 @@ interface RevealHeroProps {
 
 const ROTATIONS = [-15, 5, -7.5, 10, -2.5];
 
+// One shared image set across pages — each page just picks a different heroIndex.
+const SHARED_IMAGES = [
+  "/reveal/1.jpg",
+  "/reveal/2.jpg",
+  "/reveal/3.jpg",
+  "/reveal/4.jpg",
+  "/reveal/5.jpg",
+];
+
 export default function RevealHero({
-  images,
+  images = SHARED_IMAGES,
+  heroIndex = 2,
   heading,
   socialLabel = "Get started",
   links = [],
@@ -91,9 +103,10 @@ export default function RevealHero({
 
       // ---------- reduced motion: jump straight to the final frame ----------
       if (reduce) {
-        gsap.set([introImages[0], introImages[1], introImages[3], introImages[4]], {
-          autoAlpha: 0,
-        });
+        gsap.set(
+          introImages.filter((_, i) => i !== heroIndex),
+          { autoAlpha: 0 },
+        );
         gsap.set(".hero-img", {
           scale: 1,
           x: 0,
@@ -150,17 +163,16 @@ export default function RevealHero({
         "<0.3",
       );
 
-      // 5 — outer pairs fly off, the middle image expands to fullscreen
-      tl.to(
-        [introImages[0], introImages[1]],
-        { x: "-100vw", duration: 1.5, ease: "glide" },
-        "spread",
-      );
-      tl.to(
-        [introImages[3], introImages[4]],
-        { x: "100vw", duration: 1.5, ease: "glide" },
-        "spread",
-      );
+      // 5 — images before heroIndex fly left, those after fly right,
+      //     the hero image expands to fullscreen
+      const leftImgs = introImages.filter((_, i) => i < heroIndex);
+      const rightImgs = introImages.filter((_, i) => i > heroIndex);
+      if (leftImgs.length) {
+        tl.to(leftImgs, { x: "-100vw", duration: 1.5, ease: "glide" }, "spread");
+      }
+      if (rightImgs.length) {
+        tl.to(rightImgs, { x: "100vw", duration: 1.5, ease: "glide" }, "spread");
+      }
       tl.to(
         ".hero-img",
         {
@@ -171,7 +183,7 @@ export default function RevealHero({
           duration: 1.5,
           ease: "glide",
         },
-        "<",
+        "spread",
       );
 
       // 4 — masked text lines rise into place
@@ -185,6 +197,9 @@ export default function RevealHero({
         { yPercent: 0, duration: 1, stagger: 0.1, ease: "power3.out" },
         "spread+=1.25",
       );
+
+      // free GPU layers once the reveal has settled
+      tl.set(introImages, { willChange: "auto" }, ">");
     }, scopeRef);
 
     return () => {
@@ -218,11 +233,12 @@ export default function RevealHero({
         <div
           key={i}
           className={`intro-img absolute inset-0 w-full h-full overflow-hidden ${
-            i === 2 ? "hero-img" : ""
+            i === heroIndex ? "hero-img" : ""
           }`}
           style={{
             transformOrigin: "center center",
             backfaceVisibility: "hidden",
+            willChange: "transform",
             contain: "layout style",
           }}
         >
@@ -230,6 +246,7 @@ export default function RevealHero({
             src={src}
             alt=""
             aria-hidden="true"
+            decoding="async"
             className="w-full h-full object-cover select-none"
           />
         </div>
@@ -239,7 +256,7 @@ export default function RevealHero({
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 via-black/15 to-black/20 pointer-events-none" />
 
       {/* Hero content */}
-      <div className="hero-content absolute inset-0 z-[2] h-[100svh] flex flex-col justify-between px-8 py-[15svh]">
+      <div className="hero-content absolute inset-0 z-[2] h-[100svh] flex flex-col justify-between px-8 pt-[10svh] pb-[16svh] sm:pt-[12svh] lg:pt-[15svh]">
         <div className="hero-header w-full lg:w-3/5">
           <h1
             className="text-[2rem] sm:text-4xl md:text-5xl font-normal leading-[1.1] tracking-tight text-white"

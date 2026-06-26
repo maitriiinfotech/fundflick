@@ -54,13 +54,7 @@ export default function HRMSPage() {
     >
       {/* Hero Section — cinematic image-reveal */}
       <RevealHero
-        images={[
-          "/reveal/img-1.jpg",
-          "/reveal/img-2.jpg",
-          "/reveal/img-3.jpg",
-          "/reveal/img-4.jpg",
-          "/reveal/img-5.jpg",
-        ]}
+        heroIndex={2}
         heading={
           <>
             AI-first HR software that runs attendance, payroll, leave and

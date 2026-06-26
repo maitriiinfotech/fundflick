@@ -31,7 +31,7 @@ export default function HRMSAIShowcard() {
   }, []);
 
   return (
-    <div className="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 -mt-32">
+    <div className="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 -mt-[9svh]">
       <div
         ref={cardRef}
         className="relative rounded-[20px] overflow-hidden grid grid-cols-1 md:grid-cols-[55%_45%] md:h-[400px]"
