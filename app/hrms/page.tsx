@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ReusableHero from "../components/ui/ReusableHero";
+import RevealHero from "../components/ui/RevealHero";
 import HRMSAIShowcard from "../components/hrms/HRMSAIShowcard";
 import HRMSFeatures from "../components/hrms/HRMSFeatures";
 import HRMSShowcase from "../components/hrms/HRMSShowcase";
@@ -52,18 +52,27 @@ export default function HRMSPage() {
       className="min-h-screen bg-white text-slate-900 pb-20 relative overflow-hidden"
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
-      {/* Hero Section */}
-      <ReusableHero
-        bgImage="/hero-hrmsai.jpg"
-        bgAlt="HRMS Background"
-        title={
+      {/* Hero Section — cinematic image-reveal */}
+      <RevealHero
+        images={[
+          "/reveal/img-1.jpg",
+          "/reveal/img-2.jpg",
+          "/reveal/img-3.jpg",
+          "/reveal/img-4.jpg",
+          "/reveal/img-5.jpg",
+        ]}
+        heading={
           <>
-            AI-first HR software <br />
-            for every business
+            AI-first HR software that runs attendance, payroll, leave and
+            people ops on autopilot — so your team focuses on people, not
+            paperwork.
           </>
         }
-        description="Streamline all your HR processes and deliver exceptional employee experiences with Fundflick HRMS—cloud-based AI HR software that's intuitive, agile, mobile-friendly."
-        primaryLabel="Sign up for free trial"
+        socialLabel="Get started"
+        links={[
+          { label: "Start free trial", href: "/contactus" },
+          { label: "Book a demo", href: "/contactus" },
+        ]}
       />
 
       {/* AI Showcard — overlaps hero bottom */}
