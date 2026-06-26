@@ -22,10 +22,10 @@ const COMPANY_LINKS = [
 ];
 
 const RESOURCE_LINKS = [
-  { label: "Features", href: "/#features" },
-  { label: "System Overview", href: "/#overview" },
+  { label: "Guides", href: "/guides" },
+ 
   { label: "FAQ", href: "/#faq" },
-  { label: "Documentation", href: "/contactus" },
+
 ];
 
 const LEGAL_LINKS = [
