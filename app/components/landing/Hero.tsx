@@ -95,7 +95,7 @@ export default function VantaHero() {
       {/* Nav is now in layout.tsx */}
 
       {/* Hero Header */}
-      <header className="absolute top-1/4 md:top-1/3 left-6 md:left-12 z-10 w-full pr-12 pointer-events-none">
+      <header className="absolute top-1/4 md:top-1/4 left-6 md:left-12 z-10 w-full pr-12 pointer-events-none">
         <h1 className="hero-text text-6xl sm:text-7xl md:text-9xl lg:text-[10vw] font-extrabold leading-[0.85] tracking-tighter uppercase text-slate-900 drop-shadow-sm">
           Fundflick
         </h1>
