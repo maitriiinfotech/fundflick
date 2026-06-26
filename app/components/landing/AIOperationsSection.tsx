@@ -16,6 +16,7 @@ interface Feature {
   desc: string;
   bullets: string[];
   rows: { name: string; meta: string }[];
+  href?: string; // optional "Know more" deep-link
 }
 
 const FEATURES: Feature[] = [
@@ -54,6 +55,7 @@ const FEATURES: Feature[] = [
       { name: "Attrition risk: 3 flagged", meta: "AI alert" },
       { name: "5 resumes shortlisted", meta: "AI" },
     ],
+    href: "/hrms",
   },
   {
     no: "03",
@@ -178,6 +180,32 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
               ))}
             </div>
           </div>
+
+          {f.href && (
+            <div className="mt-6 flex justify-end">
+              <Button
+                href={f.href}
+                variant="brand"
+                className="px-6 py-3 text-xs sm:text-sm inline-flex items-center gap-2"
+              >
+                Know more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-4 w-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

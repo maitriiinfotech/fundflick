@@ -69,7 +69,15 @@ const HEADLINE: { w: string; accent?: boolean }[] = [
   { w: "them.", accent: true },
 ];
 
-function SceneVisual({ scene, idx }: { scene: Scene; idx: number }) {
+function SceneVisual({
+  scene,
+  idx,
+  revealed = false,
+}: {
+  scene: Scene;
+  idx: number;
+  revealed?: boolean;
+}) {
   return (
     <div className={`s${idx} w-full`}>
       <div className="max-w-6xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -121,7 +129,7 @@ function SceneVisual({ scene, idx }: { scene: Scene; idx: number }) {
                 fill="none"
                 stroke="#2b7fff"
                 strokeWidth={0.6}
-                style={{ strokeDasharray: 1, strokeDashoffset: 1 }}
+                style={{ strokeDasharray: 1, strokeDashoffset: revealed ? 0 : 1 }}
               />
             </svg>
             <div className="relative flex justify-between">
@@ -172,6 +180,10 @@ export default function AIWorkflowSection() {
   const rootRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Pinned cinematic stage is desktop-only; mobile uses a static stacked layout.
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: "none" },
@@ -274,10 +286,32 @@ export default function AIWorkflowSection() {
   }, []);
 
   return (
-    <section
-      ref={rootRef}
-      className="relative h-screen overflow-hidden bg-white"
-    >
+    <>
+      {/* MOBILE — static stacked (no pin, no overlap with AIOperations) */}
+      <section className="lg:hidden bg-white overflow-hidden py-20">
+        <div className="max-w-6xl mx-auto px-6 mb-12">
+          <h2
+            className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight"
+            style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+          >
+            In the world of AI, we don&apos;t just write emails —{" "}
+            <span className="text-secondaryColor">
+              we automate the work behind them.
+            </span>
+          </h2>
+        </div>
+        <div className="space-y-16">
+          {SCENES.map((s, i) => (
+            <SceneVisual key={s.no} scene={s} idx={i} revealed />
+          ))}
+        </div>
+      </section>
+
+      {/* DESKTOP — pinned cinematic stage */}
+      <section
+        ref={rootRef}
+        className="hidden lg:block relative h-screen overflow-hidden bg-white"
+      >
       {/* dotted grid texture */}
       <div
         aria-hidden
@@ -344,5 +378,6 @@ export default function AIWorkflowSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }
