@@ -5,9 +5,13 @@ import Link from "next/link";
 import Button from "../ui/Button";
 
 const PRODUCT_LINKS = [
-  { label: "HRMS", href: "/hrms" },
-  { label: "Collection Management", href: "/collection" },
-  { label: "Task Management", href: "/task-management" },
+  { label: "HRMS", href: "/features/hrms" },
+  { label: "Collection Management", href: "/features/collection" },
+  { label: "Task Management", href: "/features/task-management" },
+  { label: "Loan Origination", href: "/features/loan-origination" },
+  { label: "Loan Management", href: "/features/loan-management" },
+  { label: "Smart Reports", href: "/features/smart-reports" },
+  { label: "Bookkeeping & Accounts", href: "/features/bookkeeping" },
 ];
 
 const COMPANY_LINKS = [

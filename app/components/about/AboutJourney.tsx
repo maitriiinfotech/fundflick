@@ -48,13 +48,7 @@ export default function AboutJourney() {
           {/* dashed connector */}
           <div className="hidden md:block absolute top-14 left-[16%] right-[16%] border-t-2 border-dashed border-slate-200" />
           {/* static plane riding the line */}
-          <img
-            src="/plan/plane.webp"
-            alt=""
-            aria-hidden
-            className="hidden md:block absolute -top-2 right-[10%] w-20 lg:w-24 rotate-[28deg] drop-shadow-xl select-none pointer-events-none"
-          />
-
+        
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative">
             {STAGES.map((s) => (
               <div key={s.no} className="text-center px-2">

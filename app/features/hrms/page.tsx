@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import RevealHero from "../components/ui/RevealHero";
-import HRMSAIShowcard from "../components/hrms/HRMSAIShowcard";
-import HRMSFeatures from "../components/hrms/HRMSFeatures";
-import HRMSShowcase from "../components/hrms/HRMSShowcase";
-import HRMSCTA from "../components/hrms/HRMSCTA";
-import ReusableFAQ from "../components/ui/ReusableFAQ";
+import RevealHero from "../../components/ui/RevealHero";
+import HRMSAIShowcard from "../../components/hrms/HRMSAIShowcard";
+import HRMSFeatures from "../../components/hrms/HRMSFeatures";
+import HRMSShowcase from "../../components/hrms/HRMSShowcase";
+import HRMSCTA from "../../components/hrms/HRMSCTA";
+import ReusableFAQ from "../../components/ui/ReusableFAQ";
 
 const HRMS_FAQ = [
   {
