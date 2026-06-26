@@ -1,5 +1,8 @@
-// Server Component — the parent company behind Fundflick.
+"use client";
 
+// The parent company behind Fundflick.
+
+import { useState } from "react";
 import Button from "../ui/Button";
 
 const STATS = [
@@ -9,6 +12,8 @@ const STATS = [
 ];
 
 export default function AboutCompany() {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <section className="relative w-full overflow-hidden bg-white border-t border-slate-100 py-24 md:py-32 px-6">
       {/* dotted texture */}
@@ -17,12 +22,40 @@ export default function AboutCompany() {
       <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Image */}
         <div className="reveal relative">
-          <div className="relative rounded-[28px] overflow-hidden border border-slate-200 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-            <img
-              src="/company/company.png"
-              alt="The team behind Fundflick"
-              className="w-full h-auto object-cover select-none"
-            />
+          <div className="relative aspect-[4/3] rounded-[28px] overflow-hidden border border-slate-200 shadow-[0_20px_60px_rgba(0,0,0,0.08)] bg-gradient-to-br from-[#131c33] to-[#1e3a75]">
+            {/* placeholder (shown until the real image loads) */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-white/90">
+              <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:22px_22px]" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.4"
+                stroke="currentColor"
+                className="w-12 h-12 relative"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21a.75.75 0 0 1 .75.75V21"
+                />
+              </svg>
+              <span
+                className="relative text-sm font-bold tracking-wide"
+                style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+              >
+                Maitrii Infotech
+              </span>
+            </div>
+
+            {!imgError && (
+              <img
+                src="/company/company.png"
+                alt="Maitrii Infotech — the team behind Fundflick"
+                onError={() => setImgError(true)}
+                className="absolute inset-0 w-full h-full object-cover select-none"
+              />
+            )}
           </div>
           {/* accent glow */}
           <div className="absolute -z-10 -bottom-8 -right-8 w-48 h-48 bg-secondaryColor/10 rounded-full blur-[80px] pointer-events-none" />
