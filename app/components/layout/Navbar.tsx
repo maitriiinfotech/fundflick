@@ -9,8 +9,8 @@ const FEATURE_LINKS = [
   { label: "HRMS", href: "/features/hrms" },
   { label: "Collection", href: "/features/collection" },
   { label: "Task Management", href: "/features/task-management" },
-  { label: "Loan Origination", href: "/features/loan-origination" },
-  { label: "Loan Management", href: "/features/loan-management" },
+  { label: "Loan Origination System", href: "/features/loan-origination" },
+  { label: "Loan Management System", href: "/features/loan-management" },
   { label: "Smart Reports", href: "/features/smart-reports" },
   { label: "Bookkeeping", href: "/features/bookkeeping" },
 ];
@@ -185,7 +185,7 @@ export default function Navbar() {
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold text-slate-900">Loan Origination</span>
+                  <span className="text-xs font-bold text-slate-900">Loan Origination System</span>
                   <span className="text-[10px] text-slate-400 font-medium">Apply, score & disburse</span>
                 </div>
               </Link>
@@ -199,7 +199,7 @@ export default function Navbar() {
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold text-slate-900">Loan Management</span>
+                  <span className="text-xs font-bold text-slate-900">Loan Management System</span>
                   <span className="text-[10px] text-slate-400 font-medium">Ledgers, EMI & servicing</span>
                 </div>
               </Link>

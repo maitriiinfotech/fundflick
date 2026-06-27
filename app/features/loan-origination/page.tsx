@@ -178,7 +178,7 @@ export default function LoanOriginationPage() {
             flow with login-fee collection.
           </>
         }
-        loaderLabel="LOS"
+        loaderLabel="Loan Origination System"
         socialLabel="Get started"
         links={[
           { label: "Request a demo", href: "/contactus" },
