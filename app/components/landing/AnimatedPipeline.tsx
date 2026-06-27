@@ -19,6 +19,7 @@ const PRODUCTS: LoanProduct[] = [
   { id: "msme", num: "02", title: "MSME Loan", tag: "Business" },
   { id: "vehicle", num: "03", title: "Vehicle Loan", tag: "Asset-backed" },
   { id: "personal", num: "04", title: "Business & Personal Loan", tag: "Unsecured" },
+ {id: "gold", num: "05", title: "Gold Loan", tag: "Secured"},
   {
     id: "icd",
     num: "05",
@@ -99,7 +100,7 @@ export default function AnimatedPipeline() {
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-5 shrink-0">
+                <div className="hidden">
                   <span className="hidden sm:block text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
                     {p.tag}
                   </span>

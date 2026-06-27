@@ -44,6 +44,32 @@ const SCENES: Scene[] = [
       { name: "Follow up with NBFC partner", meta: "Due: Fri" },
     ],
   },
+  {
+    no: "03",
+    label: "AI Tele-Calling",
+    kicker: "AI Voice Agents",
+    title: "Tele-calling, run end to end by AI",
+    desc: "AI agents dial, converse, qualify and log every call — your tele-calling scales without scaling headcount.",
+    nodes: ["Dial", "Converse", "Qualify", "Log"],
+    cards: [
+      { name: "Call — Lead #4821", meta: "AI handled" },
+      { name: "Sentiment: interested", meta: "0.86" },
+      { name: "Follow-up booked", meta: "Tomorrow" },
+    ],
+  },
+  {
+    no: "04",
+    label: "AI Chatbot",
+    kicker: "Always-on support",
+    title: "Customers get instant answers, around the clock",
+    desc: "An AI assistant handles queries, qualifies leads and hands complex cases to a human — instant replies, day or night.",
+    nodes: ["Ask", "Understand", "Answer", "Handoff"],
+    cards: [
+      { name: "Query — EMI due date", meta: "AI replied" },
+      { name: "Lead captured", meta: "Routed" },
+      { name: "Escalated to agent", meta: "Complex" },
+    ],
+  },
 ];
 
 const EMAILS = "FUND FLICK".split("");
@@ -191,7 +217,7 @@ export default function AIWorkflowSection() {
           id: "aiworkflow",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=360%",
+          end: "+=600%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -247,10 +273,10 @@ export default function AIWorkflowSection() {
           2.8,
         )
 
-        // 4 — slide to scene 2 (track 200vw → -50% = one screen)
+        // 4 — slide to scene 2 (track 400vw → -1/4 = one screen)
         .to(
           ".scene-track",
-          { xPercent: -50, duration: 0.9, ease: "power2.inOut" },
+          { xPercent: -25, duration: 0.9, ease: "power2.inOut" },
           3.4,
         )
         .fromTo(
@@ -267,11 +293,51 @@ export default function AIWorkflowSection() {
           4.2,
         )
 
-        // 5 — hold scene 2 centered before the pin releases
-        .to(".scenes-layer", { opacity: 1, duration: 0.8 }, 4.7)
+        // 5 — slide to scene 3 (-2/4)
+        .to(
+          ".scene-track",
+          { xPercent: -50, duration: 0.9, ease: "power2.inOut" },
+          4.9,
+        )
+        .fromTo(
+          ".s2 .scene-el",
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
+          5.45,
+        )
+        .to(".c2", { strokeDashoffset: 0, duration: 0.6 }, 5.55)
+        .fromTo(
+          ".s2 .stack-card",
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
+          5.7,
+        )
+
+        // 6 — slide to scene 4 (-3/4)
+        .to(
+          ".scene-track",
+          { xPercent: -75, duration: 0.9, ease: "power2.inOut" },
+          6.4,
+        )
+        .fromTo(
+          ".s3 .scene-el",
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.08, duration: 0.5, ease: "power3.out" },
+          6.95,
+        )
+        .to(".c3", { strokeDashoffset: 0, duration: 0.6 }, 7.05)
+        .fromTo(
+          ".s3 .stack-card",
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" },
+          7.2,
+        )
+
+        // 7 — hold scene 4 centered before the pin releases
+        .to(".scenes-layer", { opacity: 1, duration: 0.8 }, 7.7)
 
         // progress rail fills across the journey
-        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 5.5 }, 0);
+        .fromTo(".rail-fill", { scaleX: 0 }, { scaleX: 1, duration: 8.5 }, 0);
     }, rootRef);
 
     const refresh = () => ScrollTrigger.refresh();
@@ -362,7 +428,7 @@ export default function AIWorkflowSection() {
 
       {/* 3 — scroll-driven feature scenes */}
       <div className="scenes-layer absolute inset-0 flex items-center opacity-0">
-        <div className="scene-track flex w-[200vw]">
+        <div className="scene-track flex w-[400vw]">
           {SCENES.map((s, i) => (
             <div key={s.no} className="w-screen shrink-0 flex items-center">
               <SceneVisual scene={s} idx={i} />

@@ -180,20 +180,48 @@ export default function WhyChoose() {
   const features: Feature[] = [
     {
       num: "01",
-      title: "Lightning Fast",
-      desc: "Deploy instantly and run operations with sub-second computation latency and real-time state updates.",
+      title: "Anywhere, Everywhere",
+      desc: "Run your entire operation from any device — desktop, tablet or mobile. Fully responsive and always in sync, wherever your team works.",
       bgGlow: "rgba(43, 127, 255, 0.06)",
       visual: (
         <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
           <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
-            <span className="text-slate-400">LATENCY METER</span>
-            <span className="text-emerald-400 font-bold">OPTIMAL</span>
+            <span className="text-slate-400">DEVICE SYNC</span>
+            <span className="text-emerald-400 font-bold">LIVE</span>
           </div>
-          <div className="text-2xl font-bold text-[#2b7fff] tracking-tight font-display">0.02s</div>
-          <div className="text-slate-500 mt-1">Calculations executed</div>
-          <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-4">
-            <div className="w-full h-full bg-[#2b7fff] origin-left animate-[gradientShift_2s_infinite]" />
+          <div className="flex items-stretch gap-2 py-1">
+            {[
+              {
+                label: "Desktop",
+                d: "M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 12V5.25",
+              },
+              {
+                label: "Tablet",
+                d: "M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-15a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 4.5v15a2.25 2.25 0 0 0 2.25 2.25Z",
+              },
+              {
+                label: "Mobile",
+                d: "M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3",
+              },
+            ].map((dvc) => (
+              <div
+                key={dvc.label}
+                className="flex flex-1 flex-col items-center gap-1.5 rounded-lg bg-white/5 py-2.5"
+              >
+                <svg
+                  className="w-5 h-5 text-[#2b7fff]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.6}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d={dvc.d} />
+                </svg>
+                <span className="text-[8px] text-slate-400">{dvc.label}</span>
+              </div>
+            ))}
           </div>
+          <div className="text-slate-500 mt-3">Synced across all your devices</div>
         </div>
       ),
     },
