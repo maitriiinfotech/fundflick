@@ -8,78 +8,120 @@ import ReusableFAQ from "../../components/ui/ReusableFAQ";
 import ReusableFeatures from "../../components/ui/ReusableFeatures";
 import ReusableShowcase from "../../components/ui/ReusableShowcase";
 import Button from "../../components/ui/Button";
-import {
-  FEATURE_ICON_SET,
-  FEATURE_COLOR_SET,
-} from "../../components/ui/featureIconSet";
 
 const LMS_FEATURES = [
   {
-    title: "Loan Book & Ledgers",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="18" rx="2" />
+        <line x1="8" y1="8" x2="16" y2="8" />
+        <line x1="8" y1="12" x2="16" y2="12" />
+        <line x1="8" y1="16" x2="12" y2="16" />
+      </svg>
+    ),
+    title: "Lager Balance Ledger",
     description:
-      "Maintain every active, closed and written-off loan with a real-time ledger that tracks principal, interest, charges and balances down to the rupee.",
+      "Every payment auto-updates the Lager Balance on the loan. EMI Logs track opening stock, amount received, and narration for every transaction. The balance cascades down the EMI schedule and marks instalments PAID in sequence — no manual reconciliation needed.",
+    color: "bg-blue-50",
   },
   {
-    title: "Custom EMI Schedules",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10" />
+        <line x1="12" y1="20" x2="12" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
+      </svg>
+    ),
+    title: "Reducing Balance EMI Schedule",
     description:
-      "Generate flat, reducing, bullet or fully custom repayment schedules with configurable tenures, moratoriums, step-ups and irregular due dates.",
+      "On loan approval, a full amortization schedule is auto-generated using the monthly reducing-balance method. Every EMI row shows principal component, interest component, cumulative amounts paid, and outstanding principal — all stored to the paisa.",
+    color: "bg-emerald-50",
   },
   {
-    title: "Flexible Interest Engine",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
+      </svg>
+    ),
+    title: "Auto Penalty on Overdue EMIs",
     description:
-      "Compute simple, reducing-balance or custom interest models with day-count conventions and accrual logic that match your product policy exactly.",
+      "When an EMI crosses its due date unpaid, the system auto-marks it OVERDUE and calculates penalty at 2% per month. Late days are tracked per EMI and the penalty amount is shown separately in the schedule so borrowers see the exact amount owed.",
+    color: "bg-red-50",
   },
   {
-    title: "Instant NOC & SOA",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="17 1 21 5 17 9" />
+        <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+        <polyline points="7 23 3 19 7 15" />
+        <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+      </svg>
+    ),
+    title: "Rescheduling with Fresh Amortization",
     description:
-      "Issue No Objection Certificates and Statements of Account on demand, generated straight from the ledger so figures always reconcile.",
+      "The Rescheduling page accepts part payment, rebate, other charges, EMI due, accrued interest, new tenure and interest rate. Net principal is auto-calculated and a fresh amortization schedule is generated on screen before confirming — so teams see the new EMI before committing.",
+    color: "bg-amber-50",
   },
   {
-    title: "Pre-Closure & Foreclosure",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="1" x2="12" y2="23" />
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+    title: "Principal Prepayment — Reduce Tenure or EMI",
     description:
-      "Auto-calculate outstanding principal, accrued interest, foreclosure charges and rebates so borrowers get an accurate settlement figure instantly.",
+      "Record a principal prepayment and choose the outcome: Reduce Tenure (keep EMI the same, close loan earlier) or Reduce EMI (same tenure, lower monthly payment). The schedule is recalculated and saved instantly. Prepayment count is tracked on the loan's repayment analytics.",
+    color: "bg-violet-50",
   },
   {
-    title: "Restructure & Accounting",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+        <path d="M3 3v5h5" />
+        <line x1="12" y1="7" x2="12" y2="13" />
+        <line x1="15" y1="10" x2="9" y2="10" />
+      </svg>
+    ),
+    title: "Payment Reversal & Balance Restore",
     description:
-      "Handle part-payments, charge waivers, reschedules and restructuring while postings flow automatically into your accounting and reporting.",
+      "Any recorded payment can be reversed: the original entry is marked REVERSED, a reversal payment is created with a negative amount, the outstanding balance is fully restored, and the EMI is reverted to pending. Full audit trail — the reversal reason is stored alongside both transactions.",
+    color: "bg-sky-50",
   },
-].map((f, i) => ({
-  ...f,
-  icon: FEATURE_ICON_SET[i],
-  color: FEATURE_COLOR_SET[i],
-}));
+];
 
 const LMS_FAQ = [
   {
-    question: "Which interest models does the LMS support?",
+    question: "How is the EMI schedule generated?",
     answer:
-      "It supports simple, reducing-balance and fully custom interest models, with configurable day-count conventions and accrual rules to match each loan product.",
+      "On loan approval, a full amortization schedule is auto-generated using the monthly reducing-balance method. Each row shows the principal and interest components, cumulative amounts paid, and outstanding principal, stored to the paisa.",
   },
   {
-    question: "Can I create non-standard EMI schedules?",
+    question: "What happens when an EMI becomes overdue?",
     answer:
-      "Yes. You can build step-up, step-down, bullet, moratorium and irregular schedules, then adjust individual installments without breaking the underlying ledger.",
+      "When an EMI crosses its due date unpaid, the system auto-marks it overdue and calculates a penalty at 2% per month. Late days and the penalty amount are tracked per EMI and shown separately in the schedule.",
   },
   {
-    question: "How are NOC and SOA statements generated?",
+    question: "How does rescheduling a loan work?",
     answer:
-      "Both are produced directly from the loan ledger in real time, so balances, charges and dues always reconcile and can be issued the moment they are requested.",
+      "Rescheduling accepts part payment, rebate, other charges, EMI due, accrued interest, and a new tenure and interest rate. Net principal is auto-calculated and a fresh amortization schedule is generated on screen for review before you confirm.",
   },
   {
-    question: "How does foreclosure calculation work?",
+    question: "Can a borrower make a principal prepayment?",
     answer:
-      "The system computes outstanding principal, accrued interest, applicable foreclosure charges and any rebates automatically, giving borrowers an accurate settlement quote on demand.",
+      "Yes. You record the prepayment and choose to either reduce the tenure while keeping the EMI the same, or reduce the EMI while keeping the tenure. The schedule is recalculated and saved instantly.",
   },
   {
-    question: "Can I restructure or part-pay an active loan?",
+    question: "Can a recorded payment be reversed?",
     answer:
-      "You can apply part-payments, reschedule tenures, waive or add charges and run full restructuring, with every change posted to the ledger and accounting trail.",
+      "Any payment can be reversed: the original entry is marked reversed, a negative reversal payment is created, the outstanding balance is restored, and the EMI reverts to pending. The reversal reason is stored alongside both transactions for a full audit trail.",
   },
   {
-    question: "Does the LMS integrate with our accounting and reporting?",
+    question: "How is the outstanding balance kept accurate?",
     answer:
-      "Yes. Charges, accruals and repayments post automatically into accounting, so your books, GL and reporting stay aligned without manual reconciliation.",
+      "Every payment auto-updates the running balance on the loan, and EMI logs record the opening balance, amount received, and narration for each transaction. The balance cascades down the schedule and marks instalments paid in sequence without manual reconciliation.",
   },
 ];
 
@@ -131,9 +173,10 @@ export default function LoanManagementPage() {
         heroIndex={2}
         heading={
           <>
-            Run the full loan lifecycle from one ledger — EMI schedules,
-            interest accrual, restructuring, NOC and SOA — without spreadsheets
-            or manual reconciliation.
+            Service every loan from one ledger — auto-generated reducing-balance
+            EMI schedules, automatic overdue penalties, rescheduling,
+            prepayments, and fully reversible payments, all tracked to the
+            paisa.
           </>
         }
         socialLabel="Get started"

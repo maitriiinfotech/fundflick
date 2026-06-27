@@ -52,34 +52,34 @@ const BOOKS_FEATURES = [
 
 const BOOKS_FAQ = [
   {
+    question: "What gets captured in transaction logging?",
+    answer:
+      "Every disbursal, repayment, and fee is recorded in full, so your books show exactly what moved and when.",
+  },
+  {
+    question: "Do I have to enter ledger postings manually?",
+    answer:
+      "No. Postings flow into the correct accounts automatically the moment a transaction clears, removing manual data entry and the errors that come with it.",
+  },
+  {
     question: "Does Fundflick enforce double-entry accounting?",
     answer:
-      "Yes. Every transaction posts balanced debit and credit entries, so your ledger stays internally consistent and ready for review at all times.",
+      "Yes. Built-in double-entry tracking keeps debits and credits balanced on every entry, so your accounts stay internally consistent.",
   },
   {
     question: "How are GST and TDS handled?",
     answer:
-      "Dedicated GST and TDS worksheets calculate liabilities from your transaction data and reconcile back to the ledger, so filing inputs match your books.",
+      "Pre-built GST and TDS worksheets compute your tax positions and tie back to the ledger, keeping filing inputs aligned with the underlying books.",
   },
   {
-    question: "Can I export a trial balance for my auditor?",
+    question: "Can I export a trial balance?",
     answer:
-      "You can generate a balanced trial balance in one click and export it directly, along with supporting journals and audit trails.",
+      "You can export a clean, balanced trial balance in a single click whenever auditors, finance, or the board need the numbers.",
   },
   {
     question: "How does bank reconciliation work?",
     answer:
-      "Import or sync bank statements and Fundflick matches them against your journal entries, flagging unmatched items so nothing is missed.",
-  },
-  {
-    question: "Is the system suitable for NBFCs under RBI norms?",
-    answer:
-      "Yes. Logging, double-entry controls, and complete audit trails are designed to support the record-keeping and reporting NBFCs need for RBI compliance.",
-  },
-  {
-    question: "What financial statements can I produce?",
-    answer:
-      "From the same ledger you can generate journals, trial balance, and core financial statements, each traceable back to the original transactions.",
+      "Bank statements are matched against your journals to surface breaks early and keep every account reconciled through the period.",
   },
 ];
 
@@ -131,9 +131,9 @@ export default function BookkeepingPage() {
         heroIndex={2}
         heading={
           <>
-            Log every transaction, post ledgers automatically, and stay
-            audit-ready — double-entry books built for NBFC and RBI compliance
-            from day one.
+            Log every transaction, auto-post double-entry ledgers, and tie out
+            GST &amp; TDS, trial balance, and bank reconciliation in one set of
+            books.
           </>
         }
         socialLabel="Get started"

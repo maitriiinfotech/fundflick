@@ -49,39 +49,34 @@ const TASK_SHOWCASE_TABS: ShowcaseTab[] = [
 
 const TASK_FAQ = [
   {
-    question: "How do I create tasks for today?",
+    question: "What does the task dashboard show?",
     answer:
-      "Simply click the 'Create Task' button, set the due date to today, assign a team member, and add a priority level. You can also use the Quick Task feature to instantly create tasks from the dashboard.",
+      "The dashboard gives a real-time view of task health for both individuals and teams, breaking down pending, in-progress, overdue, and completed tasks. It includes priority-wise breakdowns and completion analytics in one place.",
   },
   {
-    question: "Can I create tasks in bulk from a spreadsheet?",
+    question: "How do I track and filter tasks in the task manager?",
     answer:
-      "Yes! Upload a CSV or Excel file with task names, descriptions, assignees, and due dates. The system will auto-generate all tasks in one go. You can also use our bulk creator form for manual bulk creation.",
+      "The task manager lets you create, assign, and track tasks across your team with filters by status and assignment type. You can pin important tasks and follow real-time status updates so nothing due slips past you.",
+  },
+  {
+    question: "Can I schedule recurring tasks?",
+    answer:
+      "Yes. The Manage Tasks view gives managers oversight of upcoming and scheduled tasks, including editing, deleting, or triggering recurring tasks. Granular permission controls let you match access to your org structure.",
   },
   {
     question: "How does bulk task assignment work?",
     answer:
-      "Select multiple tasks using checkboxes, click 'Bulk Assign', and choose individuals or teams from the dropdown. Tasks are instantly reassigned with full notification support.",
+      "Bulk task creation lets you assign department-wide or service-level tasks to multiple employees at once instead of one at a time. You can set repeat schedules and priority levels as part of the same bulk action.",
   },
   {
-    question: "What reports are available?",
+    question: "How does the client ledger connect tasks to billing?",
     answer:
-      "Monthly and yearly reports include task completion rates, team productivity scores, overdue task analysis, workload distribution charts, and average task completion times. All reports can be exported as PDF.",
+      "Every completed client-linked task automatically generates a ledger entry. From there you can track invoice status, record payments, and filter entries by date range.",
   },
   {
-    question: "How do real-time notifications work?",
+    question: "Does the dashboard support both individuals and teams?",
     answer:
-      "Every task action — creation, assignment, status change, comment, or deadline breach — triggers instant in-app push notifications. You can customize which actions trigger notifications for each user.",
-  },
-  {
-    question: "Can I configure different emails for different task actions?",
-    answer:
-      "Yes! Each task action (created, assigned, completed, overdue, commented) can have its own email template, recipient list, and trigger conditions. Configure per workflow or globally.",
-  },
-  {
-    question: "Is there a free trial available?",
-    answer:
-      "Absolutely! We offer a 14-day free trial with full access to all Task Management features. No credit card required — just sign up and start managing tasks.",
+      "Yes. You can monitor task health at the individual level and the team level from the same dashboard. Each view includes priority breakdowns and completion analytics for clear visibility.",
   },
 ];
 
@@ -96,9 +91,10 @@ export default function TaskManagementPage() {
         heroIndex={3}
         heading={
           <>
-            Task &amp; workflow management that runs your operations — daily
-            tasks, bulk assignments, reports and real-time alerts, all in one
-            place.
+            Run your operations on tasks — real-time individual and team
+            dashboards, a full task manager with filters, scheduled and
+            recurring tasks, bulk team assignment, and a client ledger that
+            turns completed work into billing.
           </>
         }
         socialLabel="Get started"

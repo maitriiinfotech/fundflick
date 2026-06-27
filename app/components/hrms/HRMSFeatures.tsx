@@ -67,5 +67,17 @@ const HRMS_FEATURES = [
 ];
 
 export default function HRMSFeatures() {
-  return <ReusableFeatures items={HRMS_FEATURES} className="mb-24" />;
+  return (
+    <ReusableFeatures
+      items={HRMS_FEATURES}
+      eyebrow="HR Suite"
+      heading={
+        <>
+          Everything you need to{" "}
+          <span className="text-secondaryColor">run people ops</span>
+        </>
+      }
+      className="mb-24"
+    />
+  );
 }

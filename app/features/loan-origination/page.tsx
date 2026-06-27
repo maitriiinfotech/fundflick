@@ -8,78 +8,119 @@ import ReusableFAQ from "../../components/ui/ReusableFAQ";
 import ReusableFeatures from "../../components/ui/ReusableFeatures";
 import ReusableShowcase from "../../components/ui/ReusableShowcase";
 import Button from "../../components/ui/Button";
-import {
-  FEATURE_ICON_SET,
-  FEATURE_COLOR_SET,
-} from "../../components/ui/featureIconSet";
 
 const LOS_FEATURES = [
   {
-    title: "Digital Application Capture",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <polyline points="10 9 9 9 8 9" />
+      </svg>
+    ),
+    title: "8-Step Application Form",
     description:
-      "Collect borrower details, documents, and consent through configurable digital forms built for SME and retail journeys across web and mobile.",
+      "Capture borrower details through a structured 8-step journey — Customer KYC, Address, Associates, Income, Liability, Collateral, Bank Details, and Photos. Every step saves independently so no data is lost mid-way.",
+    color: "bg-blue-50",
   },
   {
-    title: "Instant eKYC & Bureau",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <polyline points="9 12 11 14 15 10" />
+      </svg>
+    ),
+    title: "Aadhaar & PAN Capture with OCR",
     description:
-      "Run eKYC verification and fetch CIBIL, Experian, and other bureau reports in real time before an application moves forward.",
+      "Collect Aadhaar (front & back) and PAN card for every applicant and co-applicant. OCR auto-extracts Aadhaar number and date of birth from uploaded ID images so field agents save time on manual entry.",
+    color: "bg-emerald-50",
   },
   {
-    title: "Credit Scoring Engine",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+        <polyline points="7 8 10 11 14 7 17 10" />
+      </svg>
+    ),
+    title: "CIBIL Score & Report Verification",
     description:
-      "Evaluate applicants against your own scorecards and bureau data to produce consistent, auditable credit decisions on every file.",
+      "Upload the CIBIL report PDF and enter the score for the primary applicant and every co-applicant. Progress is tracked per member so Back Office teams know exactly who is pending verification.",
+    color: "bg-violet-50",
   },
   {
-    title: "Underwriting Rules",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+        <path d="M4.93 4.93a10 10 0 0 0 0 14.14" />
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        <path d="M8.46 8.46a5 5 0 0 0 0 7.07" />
+      </svg>
+    ),
+    title: "Tele-Verification",
     description:
-      "Configure policy checks, eligibility criteria, and exposure limits as rules so underwriting stays uniform across every loan product.",
+      "Back Office agents conduct tele-verification calls and log a structured review with description before any file is moved to approval. Progress is tracked and the step must be 100% complete before the file advances.",
+    color: "bg-amber-50",
   },
   {
-    title: "Approval Routing",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    ),
+    title: "Salesman to Manager Approval Flow",
     description:
-      "Route applications to the right approver by amount, risk, or product, with clear queues and a full decision audit trail.",
+      "The Salesman submits a report with recommended principal, interest rate, tenure and EMI. The manager reviews, can modify amounts, and either approves or rejects with remarks. Real-time notifications go to the file creator on every status change.",
+    color: "bg-red-50",
   },
   {
-    title: "Instant Disbursals",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+        <line x1="1" y1="10" x2="23" y2="10" />
+      </svg>
+    ),
+    title: "Login Fee Collection on Approval",
     description:
-      "Trigger instant bank transfers to approved borrowers and reconcile every disbursal automatically once final approval clears.",
+      "Once a file is approved, agents collect Login Charges, File Charges and Other Charges directly through the platform. Fee collection is gated — a file cannot proceed to LMS loan creation until payment is recorded.",
+    color: "bg-sky-50",
   },
-].map((f, i) => ({
-  ...f,
-  icon: FEATURE_ICON_SET[i],
-  color: FEATURE_COLOR_SET[i],
-}));
+];
 
 const LOS_FAQ = [
   {
-    question: "Which borrower segments does the LOS support?",
+    question: "What does the 8-step application form capture?",
     answer:
-      "The platform is built for SME and retail lending, with application journeys, scoring, and underwriting that you can configure per product and segment.",
+      "The application walks through eight steps — Customer KYC, Address, Associates, Income, Liability, Collateral, Bank Details, and Photos. Each step saves independently, so no data is lost mid-way.",
   },
   {
-    question: "How does eKYC and bureau fetch work?",
+    question: "How are Aadhaar and PAN handled during KYC?",
     answer:
-      "eKYC verification and bureau pulls from CIBIL and other agencies run in real time during the application, so decisions use current borrower data.",
+      "You collect Aadhaar (front and back) and PAN for every applicant and co-applicant, and OCR auto-extracts the Aadhaar number and date of birth from the uploaded images to cut down manual entry.",
   },
   {
-    question: "Can we configure our own credit and underwriting policies?",
+    question: "How is CIBIL verification done?",
     answer:
-      "Yes. You define scorecards, eligibility rules, exposure limits, and approval logic, and the engine applies them consistently to every application.",
+      "For the primary applicant and each co-applicant, you upload the CIBIL report PDF and enter the score. Progress is tracked per member so Back Office teams can see exactly who is still pending.",
   },
   {
-    question: "How are disbursals handled?",
+    question: "What happens during tele-verification?",
     answer:
-      "Approved loans trigger instant bank transfers to the borrower account, and each disbursal is tracked and reconciled within the platform.",
+      "Back Office agents place tele-verification calls and log a structured review with a description before a file moves to approval. The step must be fully complete before the file can advance.",
   },
   {
-    question: "Does the LOS integrate with our existing systems?",
+    question: "How does the salesman-to-manager approval flow work?",
     answer:
-      "REST APIs and webhooks let you connect your core banking, CRM, and collection systems and receive real-time events at each stage of origination.",
+      "The salesman submits a report with recommended principal, interest rate, tenure, and EMI. The manager reviews, can modify the amounts, and approves or rejects with remarks, while the file creator gets real-time notifications on every status change.",
   },
   {
-    question: "Is the platform suitable for RBI-regulated NBFCs and banks?",
+    question: "When are login fees collected?",
     answer:
-      "Yes. Workflows, consent capture, and decision audit trails are designed to support the compliance and reporting needs of RBI-regulated lenders.",
+      "After a file is approved, agents record Login Charges, File Charges, and Other Charges through the platform. Fee collection is gated, so a file cannot proceed to LMS loan creation until payment is recorded.",
   },
 ];
 
@@ -131,9 +172,10 @@ export default function LoanOriginationPage() {
         heroIndex={2}
         heading={
           <>
-            Capture, score, underwrite, and disburse loans on one platform —
-            from digital application to instant bank transfer, with eKYC and
-            bureau pulls built in.
+            Capture, verify, and approve loans on one platform — an 8-step
+            digital application with OCR-driven Aadhaar &amp; PAN KYC, CIBIL
+            checks, tele-verification, and a clean salesman-to-manager approval
+            flow with login-fee collection.
           </>
         }
         socialLabel="Get started"
@@ -169,14 +211,14 @@ export default function LoanOriginationPage() {
             title: "Your Entire Loan Portfolio Tracked in One View",
             description:
               "The LOS Dashboard gives managers and admins a live pulse on every dimension of the lending operation — from active files and employee performance to branch-wise disbursements and due case alerts.",
-            img: "/loan_origination.png",
+            img: "/los/dashbord.png",
           },
           {
             label: "Application Journey",
             title: "8-Step Application Form That Captures Everything",
             description:
               "Walk loan applicants through a structured 8-step journey — from basic KYC to bank details and photo documentation. Each step saves independently so nothing is lost mid-way.",
-            img: "/lending_system_isometric.png",
+            img: "/los/8stuep-applocation%20journy.png",
           },
           {
             label: "Back Office",

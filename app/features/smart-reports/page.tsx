@@ -8,78 +8,122 @@ import ReusableFAQ from "../../components/ui/ReusableFAQ";
 import ReusableFeatures from "../../components/ui/ReusableFeatures";
 import ReusableShowcase from "../../components/ui/ReusableShowcase";
 import Button from "../../components/ui/Button";
-import {
-  FEATURE_ICON_SET,
-  FEATURE_COLOR_SET,
-} from "../../components/ui/featureIconSet";
 
 const REPORTS_FEATURES = [
   {
-    title: "Live Dashboards",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+    ),
+    title: "Role-Based Multi-Module Dashboards",
     description:
-      "Track disbursements, collections, NPA, and yield on dashboards that update in real time, so you act on today's numbers, not last week's.",
+      "Three dedicated dashboards — LOS (customers, employees, branches, promises, today's collections, due cases), Collection (KPI strip: total cases, pending, collected, today's total, efficiency), and Task (individual & team views). Every KPI card is permission-controlled so each role sees only their data.",
+    color: "bg-blue-50",
   },
   {
-    title: "NPA & Yield Charts",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+        <path d="M22 12A10 10 0 0 0 12 2v10z" />
+      </svg>
+    ),
+    title: "Collection Stage & Branch Analytics",
     description:
-      "Watch portfolio health move with real-time NPA and yield charts that flag slippage early across products, branches, and buckets.",
+      "Stage-wise case breakdown across Pending PTP, Partially Paid, Expired (broken PTP), and Completed — with percentage and count for each. Branch-wise collection bar chart, loan-type distribution pie chart, PTP count vs Broken PTP count and amount. All powered by MongoDB aggregation pipelines.",
+    color: "bg-emerald-50",
   },
   {
-    title: "Collection Trends",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10" />
+        <line x1="12" y1="20" x2="12" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
+        <line x1="2" y1="20" x2="22" y2="20" />
+      </svg>
+    ),
+    title: "Un-Followup Chart (Branch-Wise)",
     description:
-      "Break down collection efficiency by bucket, geography, and officer to see exactly where recovery is strong and where it is slipping.",
+      "Visual bar chart showing exactly which branches have cases with no follow-up logged this month — broken down by case count per branch. Managers can spot neglected branches at a glance. Export button downloads the full un-followup case list with customer name, overdue amount, address, and due EMI to Excel.",
+    color: "bg-amber-50",
   },
   {
-    title: "Custom Dashboards",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <polyline points="23 21 23 19 19 19 19 21" />
+        <line x1="19" y1="15" x2="23" y2="15" />
+      </svg>
+    ),
+    title: "Agent-Level Performance Analytics",
     description:
-      "Build dashboards for credit, collections, and management teams with drill-downs that move from portfolio view to a single loan account.",
+      "Per-agent report: total cases assigned, cases worked, total follow-ups logged, total payments collected, attitude breakdown (Polite / Rude / Medium / No Reply), visit type split (Telecall vs Field Visit), and a daily activity bar chart for the last 15 days. Case efficiency score (manual and branch performance) calculated per agent.",
+    color: "bg-violet-50",
   },
   {
-    title: "Flexible Exports",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+    ),
+    title: "CSV & Excel Export Across Modules",
     description:
-      "Export any report to Excel, PDF, CSV, or JSON for board decks, audits, and downstream systems without manual reformatting.",
+      "Every key report has a download button: Stock Report (CSV, branch-filtered), Collection payment receipts (CSV), Daily follow-ups (Excel with area, case, customer, overdue, EMI), Client Ledger (XLSX with two sheets — Ledger and Timeline), and Un-followup report (Excel). Bulk case upload via CSV/XLSX is also supported.",
+    color: "bg-red-50",
   },
   {
-    title: "Scheduled Delivery",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <polyline points="10 9 9 9 8 9" />
+      </svg>
+    ),
+    title: "Cross-Module Reports Hub",
     description:
-      "Send daily automated email reports and scheduled deliveries to the right roles, with access controlled per team and per report.",
+      "A central Reports page lists all generated reports by module — Monthly Loan Disbursement (LOS), Collection Recovery Summary, Branch Performance Overview (Organisation), Employee Activity Log (Admin), and Task Completion Rate (Task). Each report shows its category, period, and a Ready or Generating status badge.",
+    color: "bg-sky-50",
   },
-].map((f, i) => ({
-  ...f,
-  icon: FEATURE_ICON_SET[i],
-  color: FEATURE_COLOR_SET[i],
-}));
+];
 
 const REPORTS_FAQ = [
   {
-    question: "How current is the data on the dashboards?",
+    question: "What dashboards are included?",
     answer:
-      "Dashboards and NPA, yield, and collection charts update in real time against your live lending data, so you are always looking at the current state of the book.",
+      "There are three role-based dashboards: LOS (customers, employees, branches, promises, today's collections, due cases), Collection (total cases, pending, collected, today's total, efficiency), and Task (individual and team views). Each KPI card is permission-controlled so every role sees only their data.",
+  },
+  {
+    question: "What collection analytics can I see?",
+    answer:
+      "Collection reporting covers stage-wise case breakdown across Pending PTP, Partially Paid, Expired (broken PTP), and Completed, plus a branch-wise collection bar chart, loan-type distribution pie chart, and PTP versus broken-PTP counts and amounts.",
+  },
+  {
+    question: "How does the un-followup chart work?",
+    answer:
+      "A branch-wise bar chart shows which branches have cases with no follow-up logged this month, broken down by case count per branch. You can export the full un-followup list with customer name, overdue amount, address, and due EMI to Excel.",
+  },
+  {
+    question: "What does the agent performance report show?",
+    answer:
+      "Each agent gets a scorecard with cases assigned and worked, follow-ups logged, payments collected, attitude and visit-type splits, a 15-day daily activity chart, and a case efficiency score.",
   },
   {
     question: "Which formats can I export reports to?",
     answer:
-      "Every report exports to Excel, PDF, CSV, and JSON, so you can use the same numbers for board decks, regulatory filings, and downstream systems.",
+      "Exports are CSV and Excel only. Stock reports and collection receipts export to CSV, daily follow-ups and the un-followup list export to Excel, and the Client Ledger exports to XLSX with separate Ledger and Timeline sheets.",
   },
   {
-    question: "Can I control who sees which reports?",
+    question: "Where do I find all reports in one place?",
     answer:
-      "Yes. Role-based access lets you decide which teams and individuals can view each report and dashboard, keeping sensitive portfolio data with the right people.",
-  },
-  {
-    question: "How do automated and scheduled reports work?",
-    answer:
-      "You set the report, recipients, and frequency, and Fundflick delivers daily automated email reports and scheduled exports without anyone running them manually.",
-  },
-  {
-    question: "Can I build dashboards for specific teams?",
-    answer:
-      "You can create custom dashboards for credit, collections, finance, and management, each with drill-downs from portfolio level down to an individual loan account.",
-  },
-  {
-    question: "Does it help with RBI and NBFC reporting?",
-    answer:
-      "The platform surfaces NPA classification, yield, and collection metrics in exportable formats that support your internal MIS and regulatory reporting workflows.",
+      "The Cross-Module Reports Hub lists every generated report by module, including Loan Disbursement, Collection Recovery, Branch Performance, Employee Activity, and Task Completion, each with its category, period, and a Ready or Generating status badge.",
   },
 ];
 
@@ -131,8 +175,9 @@ export default function SmartReportsPage() {
         heroIndex={2}
         heading={
           <>
-            See your book the moment it moves — live NPA, yield, and collection
-            trends in dashboards your whole team can act on.
+            See the whole operation in one place — role-based LOS, Collection
+            &amp; Task dashboards, stage and branch analytics, agent scorecards,
+            and one-click CSV/Excel exports across every module.
           </>
         }
         socialLabel="Get started"

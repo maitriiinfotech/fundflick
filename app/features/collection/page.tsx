@@ -12,96 +12,109 @@ import Button from "../../components/ui/Button";
 const COLLECTION_FEATURES = [
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
-    title: "Automated EMI Reminders",
-    description: "Send automated payment reminders via SMS, Email, and WhatsApp before and after due dates. Configurable frequency and escalation templates.",
-    color: "bg-blue-50 text-blue-600",
+    title: "Case Assignment & Field Visit Logging",
+    description:
+      "Assign or unassign collection cases to any active agent instantly. Agents log every telecall and field visit with PTP commit date, customer attitude (Polite / Rude / Medium), no-reply flag, GPS coordinates, and selfie proof — all stored against the case for full auditability.",
+    color: "bg-blue-50",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
       </svg>
     ),
-    title: "Payment Link Generation",
-    description: "Generate secure, one-click payment links for borrowers. Support UPI, net banking, cards, and wallet payments with instant confirmation.",
-    color: "bg-emerald-50 text-emerald-600",
+    title: "SMS Notifications on Payment Events",
+    description:
+      "When a payment is collected, an SMS notification is sent to the assigned agent confirming receipt. SMS is delivered via a configurable provider (Twilio, MSG91, or TextLocal) set through environment variables — no hardcoded dependency on any single vendor.",
+    color: "bg-emerald-50",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+        <polyline points="22,6 12,13 2,6" />
       </svg>
     ),
-    title: "Collection Agent Tracking",
-    description: "Assign collection agents to overdue accounts. Track field visits with GPS, record call logs, and monitor real-time agent performance.",
-    color: "bg-purple-50 text-purple-600",
+    title: "Event-Based Email Templates via AWS SES",
+    description:
+      "Create HTML email templates with dynamic variables, sync them to AWS SES, and trigger them automatically on system events — task created, accepted, completed, and more. Templates are grouped by module and sub-module, can be enabled or disabled per event, and maintain a full edit history.",
+    color: "bg-violet-50",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10" />
+        <line x1="12" y1="20" x2="12" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
       </svg>
     ),
-    title: "Overdue & NPA Dashboards",
-    description: "Visual dashboards for DPD buckets, NPA classification, and portfolio-at-risk metrics. Drill-down views by branch, product, and agent.",
-    color: "bg-amber-50 text-amber-600",
+    title: "Collection Dashboard with PTP & Stage Analytics",
+    description:
+      "Live KPIs: Total Cases, Pending, Completed, Total Due Amount, Collected Amount, and Today's Total. Stage-wise breakdown across Pending (active PTP), Partially Paid, Expired (broken PTP), and Completed — with branch-wise and loan-type charts and a one-click export.",
+    color: "bg-amber-50",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
       </svg>
     ),
-    title: "Payment Reconciliation",
-    description: "Automatic matching of incoming payments with loan accounts. Handle partial payments, bounce entries, and settlement discrepancies effortlessly.",
-    color: "bg-sky-50 text-sky-600",
+    title: "Action Request Workflow with PDF Notice Generation",
+    description:
+      "Agents raise action requests — Company Notice, Legal Notice, One Time Settlement, or Legal Procedure — with remarks. Managers approve or cancel from the Actions dashboard. Legal Notice and Company Notice PDFs are auto-generated on approval and every action is logged to the case timeline.",
+    color: "bg-red-50",
   },
   {
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+        <line x1="7" y1="7" x2="7.01" y2="7" />
       </svg>
     ),
-    title: "Recovery Workflow Management",
-    description: "Define multi-stage recovery workflows — soft reminders, field visits, legal notices, and settlement offers. Automate escalation triggers based on DPD.",
-    color: "bg-rose-50 text-rose-600",
+    title: "Case Flags, Custom Tags & Full Timeline",
+    description:
+      "Flag any case with a custom remark to mark it for escalation or special attention. Add custom tags per case for filtering and grouping. Every event — payment received, follow-up logged, flag added, notice raised, status changed — is recorded in the case timeline with the agent name, timestamp, and action type.",
+    color: "bg-sky-50",
   },
 ];
 
 const COLLECTION_FAQ = [
   {
-    question: "How do automated EMI reminders work?",
+    question: "How are collection cases assigned to agents?",
     answer:
-      "Reminders are sent automatically via SMS, Email, and WhatsApp before and after due dates. You can configure the frequency, templates, and escalation rules per product or DPD bucket.",
+      "You can assign or unassign any case to an active agent instantly, and the Daily View shows what each agent did today so supervisors can hand unworked cases to the right field agent in seconds.",
   },
   {
-    question: "Can borrowers pay through a link?",
+    question: "What gets captured during a telecall or field visit?",
     answer:
-      "Yes — generate secure one-click payment links supporting UPI, net banking, cards, and wallets. Payments are confirmed instantly and reconciled against the loan account automatically.",
+      "Agents log each telecall and field visit against the case with a PTP commit date, customer attitude (Polite, Rude, or Medium), a no-reply flag, GPS coordinates, and selfie proof, all stored for full auditability.",
   },
   {
-    question: "How is field collection tracked?",
+    question: "How are payments recorded and confirmed?",
     answer:
-      "Assign collection agents to overdue accounts and track field visits with GPS, call logs, and real-time performance dashboards — full visibility into every recovery action.",
+      "Field agents record payments on the spot via Cash, UPI, Net Banking, or QR Code with extra charges, remarks, and selfie proof, and an SMS notification is sent to the assigned agent confirming receipt.",
   },
   {
-    question: "What NPA and overdue reporting is available?",
+    question: "Which notification channels does the system use?",
     answer:
-      "Visual dashboards cover DPD buckets, NPA classification, and portfolio-at-risk metrics, with drill-down by branch, product, and agent for precise monitoring.",
+      "SMS is delivered through a configurable provider (Twilio, MSG91, or TextLocal) set via environment variables, and HTML email templates are synced to AWS SES and triggered automatically on system events such as task created, accepted, or completed.",
   },
   {
-    question: "How does payment reconciliation work?",
+    question: "How do action requests and legal notices work?",
     answer:
-      "Incoming payments are auto-matched to loan accounts, including partial payments, bounce entries, and settlement discrepancies — no manual matching required.",
+      "Agents raise action requests (Company Notice, Legal Notice, One Time Settlement, or Legal Procedure) with remarks, managers approve or cancel them, and Legal Notice and Company Notice PDFs are auto-generated on approval.",
   },
   {
-    question: "Is a free trial available?",
+    question: "What visibility do I get into each case over time?",
     answer:
-      "Absolutely! We offer a 14-day free trial with full access to all Collection Management features. No credit card required.",
+      "Every case carries flags and custom tags for filtering, plus a full timeline recording each event (payment received, follow-up logged, notice raised, status changed) with the agent name, timestamp, and action type. The dashboard rolls these up into PTP and stage-wise analytics.",
   },
 ];
 
@@ -146,8 +159,10 @@ export default function CollectionPage() {
         heroIndex={1}
         heading={
           <>
-            EMI collection on autopilot — automated reminders, payment links,
-            field tracking and recovery workflows in one platform.
+            Run recovery end to end — case assignment, telecall &amp;
+            field-visit logging with PTP, attitude and selfie proof, SMS &amp;
+            AWS SES notifications, PDF legal notices, and a full per-case
+            timeline.
           </>
         }
         socialLabel="Get started"
