@@ -225,7 +225,7 @@ export default function AIOperationsSection() {
           id: "aiops",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=280%",
+          end: "+=340%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -257,28 +257,32 @@ export default function AIOperationsSection() {
             w: h.width,
           };
         };
-        tl.fromTo(
+        // hold the heading BIG + centered, then shrink + dock to top-left
+        tl.set(
           heading,
           {
-            // uniform scale — starts big, shrinks to 1×; capped to viewport width
-            scale: () => Math.min(2.4, (window.innerWidth * 0.85) / measure().w),
+            scale: () => Math.min(2.6, (window.innerWidth * 0.82) / measure().w),
             x: () => window.innerWidth / 2 - measure().cx,
             y: () => window.innerHeight / 2 - measure().cy,
           },
-          { scale: 1, x: 0, y: 0, ease: "none", duration: 1 },
           0,
+        );
+        tl.to(
+          heading,
+          { scale: 1, x: 0, y: 0, ease: "power2.inOut", duration: 1 },
+          0.6,
         );
       }
 
       // panel 0 content stays hidden behind the hero heading, reveals once it docks
-      reveal(".p0 .p-el", 1.05);
+      reveal(".p0 .p-el", 1.7);
 
       // slide track to panel 1 (last)
-      tl.to(".ops-track", { yPercent: -50, duration: 0.8, ease: "power2.inOut" }, 2.0);
-      reveal(".p1 .p-el", 2.5);
+      tl.to(".ops-track", { yPercent: -50, duration: 0.8, ease: "power2.inOut" }, 2.6);
+      reveal(".p1 .p-el", 3.1);
 
       // progress rail fills across the journey
-      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 3.2 }, 0);
+      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 3.9 }, 0);
     }, rootRef);
 
     const refresh = () => ScrollTrigger.refresh();
@@ -392,7 +396,7 @@ export default function AIOperationsSection() {
       {/* eyebrow + section heading — starts big + centered, docks here on scroll */}
       <div className="absolute top-24 left-1/2 -translate-x-1/2 z-30 w-full max-w-7xl px-6 pointer-events-none">
         <div
-          className="ops-heading max-w-xl"
+          className="ops-heading max-w-md"
           style={{ transformOrigin: "center center", willChange: "transform" }}
         >
           <p className="text-xs uppercase tracking-[0.2em] text-secondaryColor font-bold mb-2">
