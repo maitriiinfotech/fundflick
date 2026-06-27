@@ -225,7 +225,7 @@ export default function AIOperationsSection() {
           id: "aiops",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=220%",
+          end: "+=340%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -241,16 +241,48 @@ export default function AIOperationsSection() {
           at,
         );
 
-      // panel 0 in view at start
-      reveal(".p0 .p-el", 0.1);
+      // heading starts big + viewport-centered, then docks to top-left on scroll
+      const heading = rootRef.current?.querySelector<HTMLElement>(".ops-heading");
+      const section = rootRef.current;
+      if (heading && section) {
+        // Measure RELATIVE to the section — when pinned, section top == viewport top,
+        // so the centering offsets hold no matter where the page is scrolled at setup.
+        const measure = () => {
+          gsap.set(heading, { clearProps: "transform" });
+          const h = heading.getBoundingClientRect();
+          const s = section.getBoundingClientRect();
+          return {
+            cx: h.left - s.left + h.width / 2,
+            cy: h.top - s.top + h.height / 2,
+            w: h.width,
+          };
+        };
+        // hold the heading BIG + centered, then shrink + dock to top-left
+        tl.set(
+          heading,
+          {
+            scale: () => Math.min(2.6, (window.innerWidth * 0.82) / measure().w),
+            x: () => window.innerWidth / 2 - measure().cx,
+            y: () => window.innerHeight / 2 - measure().cy,
+          },
+          0,
+        );
+        tl.to(
+          heading,
+          { scale: 1, x: 0, y: 0, ease: "power2.inOut", duration: 1 },
+          0.6,
+        );
+      }
+
+      // panel 0 content stays hidden behind the hero heading, reveals once it docks
+      reveal(".p0 .p-el", 1.7);
 
       // slide track to panel 1 (last)
-      tl.to(".ops-track", { yPercent: -50, duration: 0.8, ease: "power2.inOut" }, 1.2);
-      reveal(".p1 .p-el", 1.7);
+      tl.to(".ops-track", { yPercent: -50, duration: 0.8, ease: "power2.inOut" }, 2.6);
+      reveal(".p1 .p-el", 3.1);
 
-      // hold + progress
-      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 2.6 }, 0);
-      tl.to(".ops-stage", { opacity: 1, duration: 0.8 }, 2.4);
+      // progress rail fills across the journey
+      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 3.9 }, 0);
     }, rootRef);
 
     const refresh = () => ScrollTrigger.refresh();
@@ -361,20 +393,25 @@ export default function AIOperationsSection() {
         }}
       />
 
-      {/* eyebrow + section heading (pinned overlay, top-left) */}
-      <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20 w-full max-w-7xl px-6 pointer-events-none">
-        <p className="text-xs uppercase tracking-[0.2em] text-secondaryColor font-bold mb-2">
-          Beyond Lending
-        </p>
-        <h2
-          className="text-lg sm:text-2xl font-extrabold text-white/90 leading-tight max-w-xl"
-          style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+      {/* eyebrow + section heading — starts big + centered, docks here on scroll */}
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 z-30 w-full max-w-7xl px-6 pointer-events-none">
+        <div
+          className="ops-heading max-w-md"
+          style={{ transformOrigin: "center center", willChange: "transform" }}
         >
-          We don&apos;t just provide lending —{" "}
-          <span className="text-secondaryColor">
-            we run the overall operation of your company.
-          </span>
-        </h2>
+          <p className="text-xs uppercase tracking-[0.2em] text-secondaryColor font-bold mb-2">
+            Beyond Lending
+          </p>
+          <h2
+            className="text-lg sm:text-2xl font-extrabold text-white/90 leading-tight"
+            style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+          >
+            We don&apos;t just provide lending —{" "}
+            <span className="text-secondaryColor">
+              we run the overall operation of your company.
+            </span>
+          </h2>
+        </div>
       </div>
 
       {/* vertical progress rail */}
