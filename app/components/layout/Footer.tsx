@@ -37,6 +37,13 @@ const LEGAL_LINKS = [
 export default function Footer() {
   return (
     <footer className="relative w-full bg-[#131c33] text-white overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+        style={{ backgroundImage: "url('/footerbg.png')" }}
+      />
+      {/* Readability overlay */}
+      <div className="absolute inset-0 bg-[#131c33]/70 pointer-events-none" />
       {/* Dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
       {/* Subtle glow */}

@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HoverZoomImage from "../ui/HoverZoomImage";
 
 const SHOWCASE_TABS = [
   {
@@ -130,14 +131,12 @@ export default function TaskShowcase() {
           </p>
 
           {/* Screenshot */}
-          <div
-            ref={imageRef}
-            className="rounded-[16px] overflow-hidden border border-slate-100"
-          >
-            <img
+          <div ref={imageRef} className="border border-slate-100 rounded-[16px]">
+            <HoverZoomImage
               src={SHOWCASE_TABS[activeTab].image}
               alt={SHOWCASE_TABS[activeTab].label}
-              className="w-full h-auto object-cover"
+              rounded="rounded-[16px]"
+              imgClassName="object-cover"
             />
           </div>
         </div>

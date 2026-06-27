@@ -24,6 +24,8 @@ interface RevealHeroProps {
   links?: RevealHeroLink[];
   /** Preloader / backdrop color. */
   overlayColor?: string;
+  /** Big word shown in the page preloader (e.g. "HRMS"). Defaults to "FundFlick". */
+  loaderLabel?: string;
 }
 
 const ROTATIONS = [-15, 5, -7.5, 10, -2.5];
@@ -44,6 +46,7 @@ export default function RevealHero({
   socialLabel = "Get started",
   links = [],
   overlayColor = "#0f0f0f",
+  loaderLabel = "FundFlick",
 }: RevealHeroProps) {
   const scopeRef = useRef<HTMLElement>(null);
 
@@ -217,13 +220,17 @@ export default function RevealHero({
       {/* "FundFlick" loader (covers everything incl. navbar during load) */}
       <div className="reveal-loader fixed inset-0 z-[99999] flex items-center justify-center bg-white">
         <div
-          className="tl-text flex overflow-hidden px-4 leading-none text-[2.6rem] sm:text-7xl md:text-9xl font-extrabold tracking-tight"
+          className="tl-text flex flex-col items-center gap-1 sm:gap-2 px-4 text-center leading-[1.02] text-[2.2rem] sm:text-6xl md:text-8xl font-extrabold tracking-tight"
           style={{ fontFamily: "var(--font-outfit), sans-serif" }}
         >
-          {"FundFlick".split("").map((ch, i) => (
-            <span key={i} className="rl-letter" data-text={ch}>
-              {ch}
-            </span>
+          {loaderLabel.split(" ").map((word, wi) => (
+            <div key={wi} className="flex overflow-hidden">
+              {word.split("").map((ch, i) => (
+                <span key={`${wi}-${i}`} className="rl-letter" data-text={ch}>
+                  {ch}
+                </span>
+              ))}
+            </div>
           ))}
         </div>
       </div>

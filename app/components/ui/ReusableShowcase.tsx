@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "./Button";
+import HoverZoomImage from "./HoverZoomImage";
 
 export interface ShowcaseTab {
   label: string;
@@ -195,16 +196,17 @@ export default function ReusableShowcase({
           {/* Right: Image Mockup */}
           <div ref={imageRef} className="flex justify-center lg:justify-end">
             <div
-              className={`w-full max-w-[520px] bg-white border ${t.cardBorder} rounded-[28px] p-3 ${t.cardShadow} relative overflow-hidden group transition-transform duration-500 hover:scale-[1.01]`}
+              className={`w-full max-w-[520px] bg-white border ${t.cardBorder} rounded-[28px] p-3 ${t.cardShadow} relative overflow-hidden`}
             >
               {/* Glow behind image */}
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${t.cardGlow} pointer-events-none rounded-[28px]`}
               />
-              <img
+              <HoverZoomImage
                 src={currentTab.img}
                 alt={currentTab.title}
-                className="w-full h-auto object-contain rounded-2xl relative z-10 select-none pointer-events-none"
+                className="relative z-10"
+                imgClassName="object-contain"
               />
             </div>
           </div>

@@ -46,27 +46,27 @@ export const ABOUT_VALUES = [
 
 export const ABOUT_SOLUTIONS = [
   {
-    title: "Compliance Management",
-    desc: "Ensure regulatory compliance with built-in tools and automated checks.",
+    title: "Loan Origination & Management",
+    desc: "From an 8-step digital application with OCR-driven Aadhaar & PAN KYC, CIBIL checks and tele-verification, to reducing-balance EMI schedules, penalties, rescheduling and prepayments — the full loan lifecycle on one platform.",
   },
   {
-    title: "Process Automation",
-    desc: "Automate repetitive tasks and streamline your workflow for faster processing.",
+    title: "Collection Management",
+    desc: "Assign cases, log telecalls and field visits with PTP and selfie proof, send SMS and email alerts, and generate legal and company notices — every action tracked on a full case timeline.",
   },
   {
-    title: "Cost Reduction",
-    desc: "Reduce operational costs by optimizing processes and minimizing errors.",
+    title: "Smart Reports & Analytics",
+    desc: "Role-based dashboards across lending, collection and tasks, with stage and branch analytics, agent scorecards, and one-click CSV/Excel exports.",
   },
   {
-    title: "Enhanced Collaboration",
-    desc: "Improve team collaboration with centralized data and communication tools.",
+    title: "HRMS",
+    desc: "Attendance with geo-fencing, automated payroll and compliance, leave workflows, and multi-branch management — HR operations on autopilot.",
   },
   {
-    title: "Data-Driven Insights",
-    desc: "Gain valuable insights with real-time analytics and reporting dashboards.",
+    title: "Task Management",
+    desc: "Individual and team dashboards, recurring and bulk task assignment, and a client ledger that turns completed work into trackable billing.",
   },
   {
-    title: "Secure and Reliable",
-    desc: "Ensure data security and system reliability with robust infrastructure and protocols.",
+    title: "Bookkeeping & Accounts",
+    desc: "Auto-posted double-entry ledgers, GST and TDS worksheets, one-click trial balance, and bank reconciliation — books that stay audit-ready.",
   },
 ];
