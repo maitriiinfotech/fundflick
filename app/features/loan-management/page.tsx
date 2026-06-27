@@ -179,6 +179,7 @@ export default function LoanManagementPage() {
             paisa.
           </>
         }
+        loaderLabel="LMS"
         socialLabel="Get started"
         links={[
           { label: "Request a demo", href: "/contactus" },

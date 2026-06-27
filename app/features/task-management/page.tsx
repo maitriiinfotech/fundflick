@@ -15,35 +15,35 @@ const TASK_SHOWCASE_TABS: ShowcaseTab[] = [
     title: "Real-Time Visibility Into Every Task, Instantly",
     description:
       "Get a 360° view of your team's task health from a single dashboard. Monitor pending, in-progress, overdue, and completed tasks with priority-wise breakdowns and completion analytics — for both individuals and teams.",
-    img: "/task-dashboard.png",
+    img: "/task/task-dashborad.png",
   },
   {
     label: "Task Manager",
     title: "Manage & Track All Your Tasks in One Place",
     description:
       "Create, assign, and track tasks across your team with powerful filters and real-time status updates. Pin important tasks, filter by assignment type, and never lose sight of what's due.",
-    img: "/task_management.png",
+    img: "/task/taskmanger.png",
   },
   {
     label: "Manage Tasks",
     title: "Admin-Level Control Over Scheduled & Recurring Tasks",
     description:
       "Give managers full oversight of upcoming and scheduled tasks. Edit, delete, or trigger repeating tasks — all with granular permission controls to match your org structure.",
-    img: "/task-notifications.png",
+    img: "/task/taskmangerr.png",
   },
   {
     label: "Bulk Tasks",
     title: "Assign Tasks to Entire Teams in Seconds",
     description:
       "Stop creating tasks one by one. With bulk task creation, assign department-wide or service-level tasks to multiple employees at once — with repeat schedules and priority settings built in.",
-    img: "/task-bulk-assign.png",
+    img: "/task/bulktask.png",
   },
   {
     label: "Client Ledger",
     title: "Turn Completed Tasks Into Trackable Client Billing",
     description:
       "Every completed client-linked task auto-generates a ledger entry. Track invoice status, record payments, and filter by date range — so billing never falls through the cracks.",
-    img: "/task-reports.png",
+    img: "/task/client.png",
   },
 ];
 
@@ -97,6 +97,7 @@ export default function TaskManagementPage() {
             turns completed work into billing.
           </>
         }
+        loaderLabel="Tasks"
         socialLabel="Get started"
         links={[
           { label: "Start free trial", href: "/contactus" },

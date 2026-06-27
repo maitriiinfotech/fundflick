@@ -24,6 +24,8 @@ interface RevealHeroProps {
   links?: RevealHeroLink[];
   /** Preloader / backdrop color. */
   overlayColor?: string;
+  /** Big word shown in the page preloader (e.g. "HRMS"). Defaults to "FundFlick". */
+  loaderLabel?: string;
 }
 
 const ROTATIONS = [-15, 5, -7.5, 10, -2.5];
@@ -44,6 +46,7 @@ export default function RevealHero({
   socialLabel = "Get started",
   links = [],
   overlayColor = "#0f0f0f",
+  loaderLabel = "FundFlick",
 }: RevealHeroProps) {
   const scopeRef = useRef<HTMLElement>(null);
 
@@ -220,7 +223,7 @@ export default function RevealHero({
           className="tl-text flex overflow-hidden px-4 leading-none text-[2.6rem] sm:text-7xl md:text-9xl font-extrabold tracking-tight"
           style={{ fontFamily: "var(--font-outfit), sans-serif" }}
         >
-          {"FundFlick".split("").map((ch, i) => (
+          {loaderLabel.split("").map((ch, i) => (
             <span key={i} className="rl-letter" data-text={ch}>
               {ch}
             </span>

@@ -68,6 +68,7 @@ export default function HRMSPage() {
             paperwork.
           </>
         }
+        loaderLabel="HRMS"
         socialLabel="Get started"
         links={[
           { label: "Start free trial", href: "/contactus" },

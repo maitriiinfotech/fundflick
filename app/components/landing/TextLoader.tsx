@@ -15,11 +15,15 @@ export default function TextLoader() {
       const reduce = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
+      const alreadyShown =
+        sessionStorage.getItem("ff_intro_shown") === "1";
 
-      if (reduce) {
+      // Intro plays once per browser session — skip on every later visit / nav.
+      if (reduce || alreadyShown) {
         setDone(true);
         return;
       }
+      sessionStorage.setItem("ff_intro_shown", "1");
 
       const letters = gsap.utils.toArray<HTMLElement>(".tl-text span");
       document.body.style.overflow = "hidden";

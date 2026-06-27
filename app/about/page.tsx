@@ -9,6 +9,8 @@ import AboutStory from "../components/about/AboutStory";
 import AboutValues from "../components/about/AboutValues";
 import AboutJourney from "../components/about/AboutJourney";
 import AboutCompany from "../components/about/AboutCompany";
+import AboutTestimonials from "../components/about/AboutTestimonials";
+import BrandMarquee from "../components/ui/BrandMarquee";
 import useAboutAnimations from "../components/about/useAboutAnimations";
 
 export default function AboutPage() {
@@ -24,8 +26,10 @@ export default function AboutPage() {
       <AboutHero />
       <AboutStory />
       <AboutStats />
+      <BrandMarquee />
       <AboutValues />
       <AboutSolutions />
+      <AboutTestimonials />
       <AboutJourney />
       <AboutCompany />
       <AboutCTA />

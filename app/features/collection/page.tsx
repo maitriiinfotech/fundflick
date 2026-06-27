@@ -165,6 +165,7 @@ export default function CollectionPage() {
             timeline.
           </>
         }
+        loaderLabel="Collection"
         socialLabel="Get started"
         links={[
           { label: "Request a demo", href: "/contactus" },
@@ -198,35 +199,35 @@ export default function CollectionPage() {
             title: "Your Entire Recovery Portfolio at a Glance",
             description:
               "Monitor every dimension of your collection operation from one command centre. Track case health, recovery efficiency, today's collections, and follow-up status — with role-based KPI visibility built in.",
-            img: "/collection.png",
+            img: "/collection/dashbord.png",
           },
           {
             label: "Cases & Follow-ups",
             title: "Log Every Customer Interaction with Full Context",
             description:
               "Record telecalls and field visits against each case — with PTP commitment dates, attitude logging, selfie proof, and GPS coordinates. Full follow-up history is always one tap away.",
-            img: "/task_management.png",
+            img: "/collection/case-and-follow.png",
           },
           {
             label: "Payment Collection",
             title: "Collect & Record Payments on the Spot",
             description:
               "Field agents can record payments instantly — with support for Cash, UPI, Net Banking, and QR Code. Extra charges, selfie proof, and remarks make every receipt audit-ready from day one.",
-            img: "/bank_loan_handshake.png",
+            img: "/collection/payment.png",
           },
           {
             label: "Reports & Analytics",
             title: "Branch-Wise Insights That Drive Recovery Decisions",
             description:
               "Drill into your portfolio with powerful reports — PTP tracking, broken commitment analysis, stage-wise case breakdown, and loan-type distribution. Export everything with one click.",
-            img: "/reports.png",
+            img: "/collection/report.png",
           },
           {
             label: "Daily View & Assign",
             title: "See What Every Agent Did Today — and Assign What's Next",
             description:
               "The Daily View gives supervisors a live feed of today's follow-ups and receipts per agent. Assign unworked cases to the right field agent in seconds, and track daily completion rates by branch.",
-            img: "/pipeline_overview.png",
+            img: "/collection/assgincase.png",
           },
         ]}
       />

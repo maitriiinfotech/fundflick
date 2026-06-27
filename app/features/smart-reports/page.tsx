@@ -180,6 +180,7 @@ export default function SmartReportsPage() {
             and one-click CSV/Excel exports across every module.
           </>
         }
+        loaderLabel="Reports"
         socialLabel="Get started"
         links={[
           { label: "Request a demo", href: "/contactus" },

@@ -136,6 +136,7 @@ export default function BookkeepingPage() {
             books.
           </>
         }
+        loaderLabel="Books"
         socialLabel="Get started"
         links={[
           { label: "Request a demo", href: "/contactus" },
