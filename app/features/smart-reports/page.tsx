@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RevealHero from "../../components/ui/RevealHero";
 import ReusableFAQ from "../../components/ui/ReusableFAQ";
 import ReusableFeatures from "../../components/ui/ReusableFeatures";
+import ReusableShowcase from "../../components/ui/ReusableShowcase";
 import Button from "../../components/ui/Button";
 import {
   FEATURE_ICON_SET,
@@ -152,6 +153,52 @@ export default function SmartReportsPage() {
           </>
         }
         className="mt-20 mb-24"
+      />
+
+      {/* Product Showcase — tabbed, hover to enlarge */}
+      <ReusableShowcase
+        heading="Numbers don't lie."
+        headingHighlight="We make them speak."
+        subtitle="Cross-module reporting — collection, LMS, LOS, tasks and agents, all in one place"
+        theme="cool"
+        ctaText="Book a Demo"
+        tabs={[
+          {
+            label: "Reports Hub",
+            title: "Every Report, Across Every Module, in One Place",
+            description:
+              "The Central Reports Hub gives managers and admins a single destination for all generated reports — spanning LOS, Collection, Task Management, Admin, and Organisation — with live status and one-click download.",
+            img: "/reports.png",
+          },
+          {
+            label: "Collection Reports",
+            title: "Branch-Wise Collection Analytics with Full Stage Breakdown",
+            description:
+              "Deep-dive into your collection portfolio with PTP tracking, broken commitment analysis, stage-wise case breakdown, loan-type distribution, and un-followup charts — all exportable with one click.",
+            img: "/collection.png",
+          },
+          {
+            label: "Agent Performance",
+            title: "Individual Agent Scorecards with 15-Day Activity Charts",
+            description:
+              "Every field agent gets a detailed performance report — total cases assigned, cases worked, follow-up and payment counts, efficiency score, and a rolling 15-day activity chart showing daily follow-ups and collections.",
+            img: "/pipeline_overview.png",
+          },
+          {
+            label: "LMS Payment Reports",
+            title: "Daily & Monthly Collection Reports with Method Breakdown",
+            description:
+              "Track every rupee collected through the LMS — with daily collection summaries, monthly trend charts, and full payment-type breakdowns. Borrower health scoring categorises your entire portfolio at a glance.",
+            img: "/lending_overview_minimal.png",
+          },
+          {
+            label: "Stock & Legal",
+            title: "Outstanding Stock Reports and Instant Legal Notice Generation",
+            description:
+              "Generate a complete stock report of outstanding principal, accrued and unaccrued interest per branch — filterable and exportable as CSV. For difficult cases, generate Legal Notices and Company Notices as PDF with one click.",
+            img: "/accounting.png",
+          },
+        ]}
       />
 
       {/* FAQ Section */}

@@ -12,31 +12,38 @@ import ReusableFAQ from "../../components/ui/ReusableFAQ";
 const TASK_SHOWCASE_TABS: ShowcaseTab[] = [
   {
     label: "Task Dashboard",
-    title: "Kanban Boards That Keep You Moving",
+    title: "Real-Time Visibility Into Every Task, Instantly",
     description:
-      "Visualize all tasks across stages — To Do, In Progress, Review, and Done. Drag-and-drop cards, filter by assignee or priority, and never lose track.",
+      "Get a 360° view of your team's task health from a single dashboard. Monitor pending, in-progress, overdue, and completed tasks with priority-wise breakdowns and completion analytics — for both individuals and teams.",
     img: "/task-dashboard.png",
   },
   {
-    label: "Bulk Operations",
-    title: "Create & Assign Hundreds of Tasks in Seconds",
+    label: "Task Manager",
+    title: "Manage & Track All Your Tasks in One Place",
     description:
-      "Upload CSV or use the bulk creator to generate and assign tasks in one action. Perfect for sprint planning, project kickoffs, and mass operations.",
+      "Create, assign, and track tasks across your team with powerful filters and real-time status updates. Pin important tasks, filter by assignment type, and never lose sight of what's due.",
+    img: "/task_management.png",
+  },
+  {
+    label: "Manage Tasks",
+    title: "Admin-Level Control Over Scheduled & Recurring Tasks",
+    description:
+      "Give managers full oversight of upcoming and scheduled tasks. Edit, delete, or trigger repeating tasks — all with granular permission controls to match your org structure.",
+    img: "/task-notifications.png",
+  },
+  {
+    label: "Bulk Tasks",
+    title: "Assign Tasks to Entire Teams in Seconds",
+    description:
+      "Stop creating tasks one by one. With bulk task creation, assign department-wide or service-level tasks to multiple employees at once — with repeat schedules and priority settings built in.",
     img: "/task-bulk-assign.png",
   },
   {
-    label: "Reports & Analytics",
-    title: "Monthly & Yearly Task Intelligence",
+    label: "Client Ledger",
+    title: "Turn Completed Tasks Into Trackable Client Billing",
     description:
-      "Rich analytics with task completion rates, team productivity scores, bottleneck analysis, and workload distribution. Export as PDF for management review.",
+      "Every completed client-linked task auto-generates a ledger entry. Track invoice status, record payments, and filter by date range — so billing never falls through the cracks.",
     img: "/task-reports.png",
-  },
-  {
-    label: "Notifications",
-    title: "Real-time Alerts on Every Action",
-    description:
-      "Instant push notifications and configurable email alerts on every task event — assignments, status changes, comments, deadline breaches, and completions.",
-    img: "/task-notifications.png",
   },
 ];
 
@@ -104,13 +111,13 @@ export default function TaskManagementPage() {
       {/* Features Grid */}
       <TaskFeatures />
 
-      {/* Tabbed Showcase — reusable, cool theme */}
+      {/* Tabbed Showcase — reusable, warm theme */}
       <ReusableShowcase
-        heading="Your tasks, your way."
-        headingHighlight="Fundflick handles it all"
-        subtitle="Powerful task management built for modern teams"
+        heading="Assign to complete?"
+        headingHighlight="We track it all."
+        subtitle="End-to-end task management — from creation to client billing"
         tabs={TASK_SHOWCASE_TABS}
-        theme="cool"
+        theme="warm"
         ctaText="Book a Demo"
       />
 

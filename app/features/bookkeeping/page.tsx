@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RevealHero from "../../components/ui/RevealHero";
 import ReusableFAQ from "../../components/ui/ReusableFAQ";
 import ReusableFeatures from "../../components/ui/ReusableFeatures";
+import ReusableShowcase from "../../components/ui/ReusableShowcase";
 import Button from "../../components/ui/Button";
 import {
   FEATURE_ICON_SET,
@@ -153,6 +154,45 @@ export default function BookkeepingPage() {
           </>
         }
         className="mt-20 mb-24"
+      />
+
+      {/* Product Showcase — tabbed, hover to enlarge */}
+      <ReusableShowcase
+        heading="Close the books"
+        headingHighlight="faster"
+        subtitle="Double-entry accounting built for NBFC and RBI compliance."
+        theme="warm"
+        ctaText="Request a Demo"
+        tabs={[
+          {
+            label: "Ledgers",
+            title: "Auto-Posted Double-Entry Ledgers",
+            description:
+              "Every transaction posts to the right ledger automatically, keeping your books balanced and audit-ready by default.",
+            img: "/accounting.png",
+          },
+          {
+            label: "Reconciliation",
+            title: "Reconcile Without the Spreadsheets",
+            description:
+              "Match bank statements to entries in bulk and resolve breaks fast, so month-end stops eating your week.",
+            img: "/lending_overview_minimal.png",
+          },
+          {
+            label: "Reports",
+            title: "Financials Ready When You Are",
+            description:
+              "Generate P&L, balance sheet, and trial balance on demand, exportable for boards, auditors, and regulators.",
+            img: "/reports.png",
+          },
+          {
+            label: "Compliance",
+            title: "Stay RBI and NBFC Compliant",
+            description:
+              "Built-in compliance structures keep classification, provisioning, and reporting aligned from day one.",
+            img: "/pipeline_overview.png",
+          },
+        ]}
       />
 
       {/* FAQ Section */}

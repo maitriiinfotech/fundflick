@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RevealHero from "../../components/ui/RevealHero";
 import ReusableFAQ from "../../components/ui/ReusableFAQ";
 import ReusableFeatures from "../../components/ui/ReusableFeatures";
+import ReusableShowcase from "../../components/ui/ReusableShowcase";
 import Button from "../../components/ui/Button";
 import {
   FEATURE_ICON_SET,
@@ -153,6 +154,52 @@ export default function LoanManagementPage() {
           </>
         }
         className="mt-20 mb-24"
+      />
+
+      {/* Product Showcase — tabbed, hover to enlarge */}
+      <ReusableShowcase
+        heading="Loan disbursed?"
+        headingHighlight="Every rupee tracked after."
+        subtitle="Complete loan servicing — EMI schedules, payments, PDC and NACH all in one place"
+        theme="neutral"
+        ctaText="Book a Demo"
+        tabs={[
+          {
+            label: "LMS Dashboard",
+            title: "Your Entire Loan Portfolio, Live and in Full Detail",
+            description:
+              "The LMS Dashboard gives you an instant read on your entire loan book — total disbursed, outstanding balance, active loans, and monthly collections — with filters by loan type and status across your whole portfolio.",
+            img: "/lending_overview_minimal.png",
+          },
+          {
+            label: "Loan Lifecycle",
+            title: "From Approved File to Active Loan in Minutes",
+            description:
+              "Once a customer file is approved in the LOS, create the loan with repayment mode, processing fee, and start date. Approve with a disbursement date and the EMI schedule is auto-generated instantly.",
+            img: "/lending_system_isometric.png",
+          },
+          {
+            label: "EMI Schedule",
+            title: "A Complete Amortization Schedule with Live Status Tracking",
+            description:
+              "Every loan gets a fully generated EMI schedule from day one — with per-instalment status, penalty tracking for overdue EMIs, and instant recalculation when a prepayment is made.",
+            img: "/pipeline_overview.png",
+          },
+          {
+            label: "Payment Recording",
+            title: "Record Every Repayment — Any Type, Any Method",
+            description:
+              "Record EMI payments, bulk advance payments, penalty settlements, and principal prepayments across all payment channels. Full payment history per loan with daily and monthly collection reports.",
+            img: "/reports.png",
+          },
+          {
+            label: "PDC & NACH",
+            title: "Automate Repayments with PDC Cheques and NACH Mandates",
+            description:
+              "Set up post-dated cheques or NACH mandates linked directly to EMI instalments. Track every cheque from pending to cleared or bounced, and process bulk NACH payments via CSV upload.",
+            img: "/lms_hrms.png",
+          },
+        ]}
       />
 
       {/* FAQ Section */}

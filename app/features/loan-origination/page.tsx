@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RevealHero from "../../components/ui/RevealHero";
 import ReusableFAQ from "../../components/ui/ReusableFAQ";
 import ReusableFeatures from "../../components/ui/ReusableFeatures";
+import ReusableShowcase from "../../components/ui/ReusableShowcase";
 import Button from "../../components/ui/Button";
 import {
   FEATURE_ICON_SET,
@@ -153,6 +154,52 @@ export default function LoanOriginationPage() {
           </>
         }
         className="mt-20 mb-24"
+      />
+
+      {/* Product Showcase — tabbed, hover to enlarge */}
+      <ReusableShowcase
+        heading="Application to sanction?"
+        headingHighlight="Handled end-to-end."
+        subtitle="A complete Loan Origination System — from first form to final approval"
+        theme="cool"
+        ctaText="Book a Demo"
+        tabs={[
+          {
+            label: "LOS Dashboard",
+            title: "Your Entire Loan Portfolio Tracked in One View",
+            description:
+              "The LOS Dashboard gives managers and admins a live pulse on every dimension of the lending operation — from active files and employee performance to branch-wise disbursements and due case alerts.",
+            img: "/loan_origination.png",
+          },
+          {
+            label: "Application Journey",
+            title: "8-Step Application Form That Captures Everything",
+            description:
+              "Walk loan applicants through a structured 8-step journey — from basic KYC to bank details and photo documentation. Each step saves independently so nothing is lost mid-way.",
+            img: "/lending_system_isometric.png",
+          },
+          {
+            label: "Back Office",
+            title: "Multi-Stage Verification Before Any File Moves Forward",
+            description:
+              "Back Office is the internal review pipeline — a structured checklist of 5 verification stages each with its own progress tracker. Every file must clear all stages before approval.",
+            img: "/pipeline_overview.png",
+          },
+          {
+            label: "File Status & Approval",
+            title: "Structured Approval Flow from Sales to Sanction",
+            description:
+              "Every file follows a clearly defined status journey — Pending, Review, Approved or Rejected, with an optional Task Pending state. Salesman reports, final approval amounts, and remarks are captured at every stage.",
+            img: "/lending_overview_minimal.png",
+          },
+          {
+            label: "Credit & Liability",
+            title: "Deep-Dive Credit Profiling Before Every Decision",
+            description:
+              "The Credit module captures a borrower's full financial picture — income sources, existing liabilities, family expenses, and collateral details — giving underwriters everything needed to make informed credit decisions.",
+            img: "/bank_loan_handshake.png",
+          },
+        ]}
       />
 
       {/* FAQ Section */}

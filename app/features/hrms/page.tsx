@@ -52,12 +52,11 @@ export default function HRMSPage() {
       className="min-h-screen bg-white text-slate-900 pb-20 relative overflow-hidden"
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
-      {/* Hero Section — cinematic image-reveal */}
       <RevealHero
         images={[
           "/reveal/1.jpg",
           "/reveal/2.jpg",
-          "/reveal/hrms-hero.png",
+          "/reveal/3.jpg",
           "/reveal/4.jpg",
           "/reveal/5.jpg",
         ]}
