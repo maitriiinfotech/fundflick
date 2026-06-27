@@ -115,6 +115,10 @@ export default function Navbar() {
 
       {/* ===== Desktop links ===== */}
       <div className="hidden md:flex gap-8 lg:gap-12 text-slate-800 font-semibold tracking-tight items-center">
+        <Link href="/" className="text-sm hover:text-secondaryColor transition-colors cursor-pointer">
+          Home
+        </Link>
+
         {/* Features Dropdown */}
         <div className="relative group">
           <button
