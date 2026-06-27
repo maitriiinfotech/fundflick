@@ -1,38 +1,17 @@
-"use client";
+import type { Metadata } from "next";
+import AboutContent from "./AboutContent";
 
-import { useRef } from "react";
-import AboutCTA from "../components/about/AboutCTA";
-import AboutHero from "../components/about/AboutHero";
-import AboutSolutions from "../components/about/AboutSolutions";
-import AboutStats from "../components/about/AboutStats";
-import AboutStory from "../components/about/AboutStory";
-import AboutValues from "../components/about/AboutValues";
-import AboutJourney from "../components/about/AboutJourney";
-import AboutCompany from "../components/about/AboutCompany";
-import AboutTestimonials from "../components/about/AboutTestimonials";
-// import BrandMarquee from "../components/ui/BrandMarquee";
-import useAboutAnimations from "../components/about/useAboutAnimations";
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Fundflick is the AI-powered operating system for modern NBFCs — built by Maitrii Infotech to run lending, collections, HR, tasks and reporting on one platform.",
+  openGraph: {
+    title: "About Us | Fundflick",
+    description:
+      "Fundflick is the AI-powered operating system for modern NBFCs — built by Maitrii Infotech to run lending, collections, HR, tasks and reporting on one platform.",
+  },
+};
 
-export default function AboutPage() {
-  const rootRef = useRef<HTMLElement>(null);
-  useAboutAnimations(rootRef);
-
-  return (
-    <main
-      ref={rootRef}
-      className="min-h-screen bg-white text-slate-900"
-      style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
-    >
-      <AboutHero />
-      <AboutStory />
-      <AboutStats />
-      {/* <BrandMarquee /> */}
-      <AboutValues />
-      <AboutSolutions />
-      <AboutTestimonials />
-      <AboutJourney />
-      <AboutCompany />
-      <AboutCTA />
-    </main>
-  );
+export default function Page() {
+  return <AboutContent />;
 }
