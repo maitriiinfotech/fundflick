@@ -13,7 +13,7 @@ const heroFeatures = [
   },
   {
     url: "/hero/hrmsandlms.gif",
-    label: "LMS & HRMS",
+    label: "Loan Mangment System",
     desc: "Employee training & profiles",
   },
   {
@@ -28,7 +28,7 @@ const heroFeatures = [
   },
   {
     url: "/hero/task.gif",
-    label: "Task Workflows",
+    label: "Loan Oriented System",
     desc: "Kanban boards & task checklists",
   },
 ];

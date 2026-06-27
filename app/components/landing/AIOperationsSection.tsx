@@ -23,59 +23,41 @@ interface Feature {
 const FEATURES: Feature[] = [
   {
     no: "01",
-    label: "AI Tele-Calling",
-    badge: "AI Voice Agents",
-    title: "Tele-calling, run end to end by AI",
-    accent: "by AI",
-    desc: "AI agents dial, converse, qualify and log every call — your tele-calling scales without scaling headcount.",
+    label: "HRMS",
+    badge: "HR Suite",
+    title: "Attendance, payroll and leave on autopilot",
+    accent: "on autopilot",
+    desc: "Run attendance, payroll, leave and people ops on autopilot — so your team focuses on people, not paperwork.",
     bullets: [
-      "Human-like AI voice conversations",
-      "Real-time lead qualification & scoring",
-      "Auto call summaries and next steps",
+      "Biometric & geo-fenced attendance",
+      "Automated payroll with PF, ESI & TDS",
+      "Leave workflows & multi-branch management",
     ],
     rows: [
-      { name: "Call — Lead #4821", meta: "AI handled" },
-      { name: "Sentiment: interested", meta: "0.86" },
-      { name: "Follow-up booked", meta: "Tomorrow" },
-    ],
-    comingSoon: true,
-  },
-  {
-    no: "02",
-    label: "AI HRMS",
-    badge: "AI for People Ops",
-    title: "HR that runs itself, powered by AI",
-    accent: "powered by AI",
-    desc: "From smart hiring to attrition prediction and auto-payroll — AI handles people operations end to end.",
-    bullets: [
-      "AI resume screening & shortlisting",
-      "Attrition-risk prediction",
-      "Automated payroll, attendance & leave",
-    ],
-    rows: [
-      { name: "Payroll — June", meta: "Auto-run" },
-      { name: "Attrition risk: 3 flagged", meta: "AI alert" },
-      { name: "5 resumes shortlisted", meta: "AI" },
+      { name: "Payroll — June", meta: "Processed" },
+      { name: "Attendance synced", meta: "Live" },
+      { name: "3 leave requests", meta: "Approved" },
     ],
     href: "/features/hrms",
   },
   {
-    no: "03",
-    label: "AI Task Management",
-    badge: "AI Planner",
-    title: "AI plans the day for your team",
-    accent: "AI plans",
-    desc: "Auto-prioritizes, assigns and flags blockers before they happen — your team always knows what's next.",
+    no: "02",
+    label: "Task Management",
+    badge: "Task Suite",
+    title: "Keep every task on track, end to end",
+    accent: "end to end",
+    desc: "Real-time dashboards, bulk and recurring assignment, and a client ledger that turns completed work into billing — your team always knows what's next.",
     bullets: [
-      "AI auto-prioritization & assignment",
-      "Predictive workload balancing",
-      "Blocker & deadline-risk alerts",
+      "Individual & team task dashboards",
+      "Bulk & recurring task assignment",
+      "Client ledger billing on completion",
     ],
     rows: [
-      { name: "Today: 12 tasks prioritized", meta: "AI" },
-      { name: "Reassigned 3 (overload)", meta: "Auto" },
-      { name: "2 deadline risks flagged", meta: "Alert" },
+      { name: "Today: 12 tasks", meta: "On track" },
+      { name: "Bulk assigned: 8", meta: "Done" },
+      { name: "Ledger entry created", meta: "Billed" },
     ],
+    href: "/features/task-management",
   },
 ];
 
@@ -167,7 +149,7 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-secondaryColor/20 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-[#8ec0ff]">
                 <span className="h-1.5 w-1.5 rounded-full bg-secondaryColor animate-pulse" />
-                {f.comingSoon ? "Coming Soon" : "AI Live"}
+                {f.comingSoon ? "Coming Soon" : "Live"}
               </span>
             </div>
             <div className="space-y-2.5">
@@ -243,7 +225,7 @@ export default function AIOperationsSection() {
           id: "aiops",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=320%",
+          end: "+=220%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -262,17 +244,13 @@ export default function AIOperationsSection() {
       // panel 0 in view at start
       reveal(".p0 .p-el", 0.1);
 
-      // slide track to panel 1
-      tl.to(".ops-track", { yPercent: -33.333, duration: 0.8, ease: "power2.inOut" }, 1.2);
+      // slide track to panel 1 (last)
+      tl.to(".ops-track", { yPercent: -50, duration: 0.8, ease: "power2.inOut" }, 1.2);
       reveal(".p1 .p-el", 1.7);
 
-      // slide track to panel 2
-      tl.to(".ops-track", { yPercent: -66.667, duration: 0.8, ease: "power2.inOut" }, 2.7);
-      reveal(".p2 .p-el", 3.2);
-
       // hold + progress
-      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 4 }, 0);
-      tl.to(".ops-stage", { opacity: 1, duration: 0.8 }, 3.8);
+      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 2.6 }, 0);
+      tl.to(".ops-stage", { opacity: 1, duration: 0.8 }, 2.4);
     }, rootRef);
 
     const refresh = () => ScrollTrigger.refresh();
@@ -405,7 +383,7 @@ export default function AIOperationsSection() {
         <div className="relative h-40 w-px bg-white/10 overflow-hidden">
           <div className="ops-progress absolute inset-0 origin-top scale-y-0 bg-secondaryColor" />
         </div>
-        <span className="text-[0.65rem] font-mono text-slate-500">03</span>
+        <span className="text-[0.65rem] font-mono text-slate-500">02</span>
       </div>
 
       {/* vertical panel track */}
