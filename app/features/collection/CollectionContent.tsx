@@ -159,10 +159,8 @@ export default function CollectionPage() {
         heroIndex={1}
         heading={
           <>
-            Run recovery end to end — case assignment, telecall &amp;
-            field-visit logging with PTP, attitude and selfie proof, SMS &amp;
-            AWS SES notifications, PDF legal notices, and a full per-case
-            timeline.
+            Run recovery end to end — case assignment, telecall &amp; field-visit
+            logging, notifications, legal notices, and a full per-case timeline.
           </>
         }
         loaderLabel="Collection"

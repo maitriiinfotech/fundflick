@@ -172,10 +172,8 @@ export default function LoanOriginationPage() {
         heroIndex={2}
         heading={
           <>
-            Capture, verify, and approve loans on one platform — an 8-step
-            digital application with OCR-driven Aadhaar &amp; PAN KYC, CIBIL
-            checks, tele-verification, and a clean salesman-to-manager approval
-            flow with login-fee collection.
+            Capture, verify, and approve loans on one platform — digital Aadhaar
+            &amp; PAN KYC, CIBIL checks, and a clean salesman-to-manager approval flow.
           </>
         }
         loaderLabel="Loan Origination System"

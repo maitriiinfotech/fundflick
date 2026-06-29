@@ -9,6 +9,8 @@ interface CardData {
   title: string;
   subtitle: string;
   img: string;
+  /** Optional looping video shown instead of the image */
+  video?: string;
   bgColor: string;
   textColor: string;
   comingSoon?: boolean;
@@ -22,6 +24,7 @@ const STACK_CARDS: CardData[] = [
     subtitle:
       "Automate loan application processing, credit check evaluation, and disbursals.",
     img: "/loan_origination.png",
+    video: "/video/Loan_Origination_System_Animation.webm",
     bgColor: "#d4f73f", // Vibrant Lime Green
     textColor: "#131c33",
     details: [
@@ -36,6 +39,7 @@ const STACK_CARDS: CardData[] = [
     subtitle:
       "Comprehensive loan books, custom EMI schedules, ledgers, and servicing tools.",
     img: "/lms_hrms.png",
+    video: "/video/LMS_video_2.webm",
     bgColor: "#fb7185", // Rose Pink
     textColor: "#131c33",
     comingSoon: true,
@@ -51,6 +55,7 @@ const STACK_CARDS: CardData[] = [
     subtitle:
       "Automated payment tracking, auto-debits, and instant EMI reminders.",
     img: "/collection.png",
+    video: "/video/emicolleciotn.webm",
     bgColor: "#131c33", // Deep Navy
     textColor: "#ffffff",
     details: [
@@ -65,6 +70,7 @@ const STACK_CARDS: CardData[] = [
     subtitle:
       "Streamline daily operations, assign tasks to agents, and monitor lead pipelines.",
     img: "/task_management.png",
+    video: "/video/task_mangment.webm",
     bgColor: "#ffffff", // Pure White
     textColor: "#131c33",
     details: [
@@ -79,6 +85,7 @@ const STACK_CARDS: CardData[] = [
     subtitle:
       "In-depth business performance metrics, collection trends, and live analytics dashboards.",
     img: "/reports.png",
+    video: "/video/reporting.webm",
     bgColor: "#38bdf8", // Sky Blue
     textColor: "#131c33",
     details: [
@@ -93,6 +100,7 @@ const STACK_CARDS: CardData[] = [
     subtitle:
       "Accurate transaction logging, automated ledger entries, and audit compliance.",
     img: "/accounting.png",
+    video: "/video/bookkeeping-and-accounting.webm",
     bgColor: "#c084fc", // Purple/Violet
     textColor: "#131c33",
     comingSoon: true,
@@ -278,24 +286,39 @@ export default function HoverGallery2() {
                 </div>
 
                 {/* RIGHT — visual mockup */}
-                <div className="lg:w-[42%] px-7 pb-7 sm:px-9 sm:pb-9 lg:p-9 lg:pl-0 flex items-center justify-center">
-                  <div
-                    className="w-full h-[190px] lg:h-full lg:min-h-[320px] rounded-2xl border border-current/10 flex items-center justify-center overflow-hidden shadow-inner p-4"
-                    style={{ backgroundColor: imgBg }}
-                  >
-                    <img
-                      src={card.img}
-                      alt={card.title}
-                      className={
-                        card.img === "/logo.png"
-                          ? `max-h-[60%] max-w-[60%] object-contain ${
-                              dark ? "brightness-0 invert" : ""
-                            }`
-                          : "w-full h-full object-cover rounded-lg"
-                      }
-                    />
+                {card.video ? (
+                  <div className="lg:w-[42%] px-7 pb-7 sm:px-9 sm:pb-9 lg:p-9 lg:pl-0 flex items-center justify-center">
+                    <div className="w-full h-[190px] lg:h-full lg:min-h-[320px] rounded-2xl overflow-hidden shadow-inner">
+                      <video
+                        src={card.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover rounded-2xl"
+                      />
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="lg:w-[42%] px-7 pb-7 sm:px-9 sm:pb-9 lg:p-9 lg:pl-0 flex items-center justify-center">
+                    <div
+                      className="w-full h-[190px] lg:h-full lg:min-h-[320px] rounded-2xl border border-current/10 flex items-center justify-center overflow-hidden shadow-inner p-4"
+                      style={{ backgroundColor: imgBg }}
+                    >
+                      <img
+                        src={card.img}
+                        alt={card.title}
+                        className={
+                          card.img === "/logo.png"
+                            ? `max-h-[60%] max-w-[60%] object-contain ${
+                                dark ? "brightness-0 invert" : ""
+                              }`
+                            : "w-full h-full object-cover rounded-lg"
+                        }
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           );

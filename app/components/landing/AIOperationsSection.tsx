@@ -16,6 +16,7 @@ interface Feature {
   desc: string;
   bullets: string[];
   rows: { name: string; meta: string }[];
+  image: string; // right-side product screenshot
   href?: string; // optional "Know more" deep-link
   comingSoon?: boolean;
 }
@@ -38,6 +39,7 @@ const FEATURES: Feature[] = [
       { name: "Attendance synced", meta: "Live" },
       { name: "3 leave requests", meta: "Approved" },
     ],
+    image: "/ai-operation/hrms.png",
     href: "/features/hrms",
   },
   {
@@ -57,6 +59,7 @@ const FEATURES: Feature[] = [
       { name: "Bulk assigned: 8", meta: "Done" },
       { name: "Ledger entry created", meta: "Billed" },
     ],
+    image: "/ai-operation/task.png",
     href: "/features/task-management",
   },
 ];
@@ -142,32 +145,16 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
 
         {/* visual */}
         <div className="p-el p-visual relative">
-          <div className="relative rounded-2xl border border-white/10 bg-[#131c33] p-5 shadow-2xl shadow-black/40">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-[0.7rem] uppercase tracking-widest text-slate-400">
-                {f.label}
-              </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-secondaryColor/20 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-[#8ec0ff]">
-                <span className="h-1.5 w-1.5 rounded-full bg-secondaryColor animate-pulse" />
-                {f.comingSoon ? "Coming Soon" : "Live"}
-              </span>
-            </div>
-            <div className="space-y-2.5">
-              {f.rows.map((r) => (
-                <div
-                  key={r.name}
-                  className="flex items-center justify-between rounded-xl border border-white/5 bg-[#0f1729] px-4 py-3.5"
-                >
-                  <span className="flex items-center gap-3 text-sm text-slate-200">
-                    <span className="h-2 w-2 rounded-full bg-secondaryColor" />
-                    {r.name}
-                  </span>
-                  <span className="text-[0.7rem] font-medium text-slate-400">
-                    {r.meta}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="relative rounded-2xl border border-white/10 bg-[#131c33] p-2.5 shadow-2xl shadow-black/40">
+            <span className="absolute top-4 right-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-secondaryColor/20 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-[#8ec0ff] backdrop-blur-md">
+              <span className="h-1.5 w-1.5 rounded-full bg-secondaryColor animate-pulse" />
+              {f.comingSoon ? "Coming Soon" : "Live"}
+            </span>
+            <img
+              src={f.image}
+              alt={f.label}
+              className="w-full rounded-xl border border-white/5"
+            />
           </div>
 
           {f.href && (

@@ -173,10 +173,8 @@ export default function LoanManagementPage() {
         heroIndex={2}
         heading={
           <>
-            Service every loan from one ledger — auto-generated reducing-balance
-            EMI schedules, automatic overdue penalties, rescheduling,
-            prepayments, and fully reversible payments, all tracked to the
-            paisa.
+            Service every loan from one ledger — EMI schedules, overdue
+            penalties, prepayments, and reversible payments, tracked to the paisa.
           </>
         }
         loaderLabel="Loan Management System"
