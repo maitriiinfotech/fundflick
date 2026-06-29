@@ -131,9 +131,8 @@ export default function BookkeepingPage() {
         heroIndex={2}
         heading={
           <>
-            Log every transaction, auto-post double-entry ledgers, and tie out
-            GST &amp; TDS, trial balance, and bank reconciliation in one set of
-            books.
+            Auto-post double-entry ledgers and tie out GST, TDS, trial balance
+            and bank reconciliation in one set of books.
           </>
         }
         loaderLabel="Books"

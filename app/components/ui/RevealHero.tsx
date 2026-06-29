@@ -64,6 +64,25 @@ export default function RevealHero({
 
     let split: SplitText | null = null;
 
+    // scroll lock (html + body) held for the whole reveal, restored on
+    // unlock or unmount so a mid-animation route change can't leave it stuck.
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const prevHtmlOverflow = htmlEl.style.overflow;
+    const prevBodyOverflow = bodyEl.style.overflow;
+    let locked = false;
+    const lockScroll = () => {
+      locked = true;
+      htmlEl.style.overflow = "hidden";
+      bodyEl.style.overflow = "hidden";
+    };
+    const unlockScroll = () => {
+      if (!locked) return;
+      locked = false;
+      htmlEl.style.overflow = prevHtmlOverflow;
+      bodyEl.style.overflow = prevBodyOverflow;
+    };
+
     const ctx = gsap.context(() => {
       const introImages = gsap.utils.toArray<HTMLElement>(".intro-img");
 
@@ -121,11 +140,11 @@ export default function RevealHero({
         return;
       }
 
-      // body scroll lock while the loader is up (restored when it lifts)
-      document.body.style.overflow = "hidden";
+      // scroll lock for the entire reveal — released on timeline complete
+      lockScroll();
 
       // ---------- cinematic reveal timeline ----------
-      const tl = gsap.timeline({ delay: 0.4 });
+      const tl = gsap.timeline({ delay: 0.4, onComplete: unlockScroll });
 
       // 1 — "FundFlick" letters rise into view
       tl.to(".rl-letter", {
@@ -159,9 +178,6 @@ export default function RevealHero({
           yPercent: -100,
           duration: 0.9,
           ease: "power4.inOut",
-          onComplete: () => {
-            document.body.style.overflow = "";
-          },
         },
         "<0.3",
       );
@@ -206,6 +222,7 @@ export default function RevealHero({
     }, scopeRef);
 
     return () => {
+      unlockScroll();
       split?.revert();
       ctx.revert();
     };

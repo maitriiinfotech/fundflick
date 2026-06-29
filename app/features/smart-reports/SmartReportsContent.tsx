@@ -175,9 +175,8 @@ export default function SmartReportsPage() {
         heroIndex={2}
         heading={
           <>
-            See the whole operation in one place — role-based LOS, Collection
-            &amp; Task dashboards, stage and branch analytics, agent scorecards,
-            and one-click CSV/Excel exports across every module.
+            See the whole operation in one place — live role-based dashboards,
+            branch analytics, and one-click exports across every module.
           </>
         }
         loaderLabel="Reports"

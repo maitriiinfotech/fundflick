@@ -91,10 +91,8 @@ export default function TaskManagementPage() {
         heroIndex={3}
         heading={
           <>
-            Run your operations on tasks — real-time individual and team
-            dashboards, a full task manager with filters, scheduled and
-            recurring tasks, bulk team assignment, and a client ledger that
-            turns completed work into billing.
+            Run your whole task operation — real-time team dashboards,
+            recurring tasks, and a client ledger that bills completed work.
           </>
         }
         loaderLabel="Tasks"

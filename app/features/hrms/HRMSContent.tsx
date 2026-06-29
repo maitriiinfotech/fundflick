@@ -63,9 +63,8 @@ export default function HRMSPage() {
         heroIndex={2}
         heading={
           <>
-            AI-first HR software that runs attendance, payroll, leave and
-            people ops on autopilot — so your team focuses on people, not
-            paperwork.
+            HR software that runs attendance, payroll and leave on autopilot —
+            so your team focuses on people, not paperwork.
           </>
         }
         loaderLabel="HRMS"
