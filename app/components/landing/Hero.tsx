@@ -14,7 +14,7 @@ const heroFeatures = [
   {
     url: "/hero/hrmsandlms.gif",
     label: "Loan Mangment System",
-    desc: "Employee training & profiles",
+    desc: "Ledgers, EMI & servicing",
   },
   {
     url: "/hero/emi.gif",
@@ -29,7 +29,7 @@ const heroFeatures = [
   {
     url: "/hero/task.gif",
     label: "Loan Oriented System",
-    desc: "Kanban boards & task checklists",
+    desc: "Apply, score & disburse",
   },
 ];
 
@@ -106,8 +106,7 @@ export default function VantaHero() {
               Platform Features
             </p>
             <p className="hero-text mt-3 text-sm md:text-base leading-relaxed text-slate-600 font-normal">
-              Simplify operations, manage tasks, track payments, and streamline
-              accounting in one platform.
+   From loan origination to collections, reporting, and accounting, manage your whole lending operation in one place.
             </p>
           </div>
         </div>

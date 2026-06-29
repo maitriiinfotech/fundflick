@@ -5,6 +5,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { SplitText } from "gsap/SplitText";
+import { useLenis } from "../../providers/SmoothScrollProvider";
 
 gsap.registerPlugin(CustomEase, SplitText);
 
@@ -48,7 +49,22 @@ export default function RevealHero({
   overlayColor = "#0f0f0f",
   loaderLabel = "FundFlick",
 }: RevealHeroProps) {
-  const scopeRef = useRef<HTMLElement>(null);
+  const scopeRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
+  // Lenis is created by the provider AFTER child effects run, so keep a live
+  // ref and a lock flag to drive it whenever it actually becomes available.
+  const lenisRef = useRef<ReturnType<typeof useLenis>>(null);
+  const lockedRef = useRef(false);
+
+  // Keep the ref fresh and, if Lenis mounts while the loader is still up,
+  // stop it immediately so it can't scroll behind the overlay.
+  useEffect(() => {
+    lenisRef.current = lenis;
+    if (lenis && lockedRef.current) {
+      lenis.stop();
+      lenis.scrollTo(0, { immediate: true, force: true });
+    }
+  }, [lenis]);
 
   useEffect(() => {
     const scope = scopeRef.current;
@@ -70,18 +86,42 @@ export default function RevealHero({
     const bodyEl = document.body;
     const prevHtmlOverflow = htmlEl.style.overflow;
     const prevBodyOverflow = bodyEl.style.overflow;
+    const prevScrollRestoration = window.history.scrollRestoration;
     let locked = false;
     const lockScroll = () => {
       locked = true;
+      lockedRef.current = true;
       htmlEl.style.overflow = "hidden";
       bodyEl.style.overflow = "hidden";
+      // Native overflow can't stop Lenis (virtual scroll) — pause it directly.
+      const l = lenisRef.current;
+      if (l) {
+        l.stop();
+        l.scrollTo(0, { immediate: true, force: true });
+      }
     };
     const unlockScroll = () => {
       if (!locked) return;
       locked = false;
+      lockedRef.current = false;
       htmlEl.style.overflow = prevHtmlOverflow;
       bodyEl.style.overflow = prevBodyOverflow;
+      try {
+        window.history.scrollRestoration = prevScrollRestoration;
+      } catch {}
+      lenisRef.current?.start();
     };
+
+    // Pin to the very top and lock BEFORE the timeline runs, so a browser
+    // scroll-restore on reload (or any scroll during the load) can't leave the
+    // user mid-page when the loader finally lifts — they always land on the hero.
+    if (!reduce) {
+      try {
+        window.history.scrollRestoration = "manual";
+      } catch {}
+      window.scrollTo(0, 0);
+      lockScroll();
+    }
 
     const ctx = gsap.context(() => {
       const introImages = gsap.utils.toArray<HTMLElement>(".intro-img");
@@ -140,11 +180,15 @@ export default function RevealHero({
         return;
       }
 
-      // scroll lock for the entire reveal — released on timeline complete
-      lockScroll();
-
       // ---------- cinematic reveal timeline ----------
-      const tl = gsap.timeline({ delay: 0.4, onComplete: unlockScroll });
+      const tl = gsap.timeline({
+        delay: 0.4,
+        onComplete: () => {
+          lenisRef.current?.scrollTo(0, { immediate: true, force: true });
+          window.scrollTo(0, 0);
+          unlockScroll();
+        },
+      });
 
       // 1 — "FundFlick" letters rise into view
       tl.to(".rl-letter", {
@@ -229,12 +273,9 @@ export default function RevealHero({
   }, []);
 
   return (
-    <section
-      ref={scopeRef}
-      className="relative w-full h-[100svh] overflow-hidden"
-      style={{ backgroundColor: overlayColor }}
-    >
-      {/* "FundFlick" loader (covers everything incl. navbar during load) */}
+    <div ref={scopeRef} className="relative w-full">
+      {/* Loader — full-viewport overlay lifted OUT of the hero section so it's
+          never clipped by the section's overflow / containing block. */}
       <div className="reveal-loader fixed inset-0 z-[99999] flex items-center justify-center bg-white">
         <div
           className="tl-text flex flex-col items-center gap-1 sm:gap-2 px-4 text-center leading-[1.02] text-[2.2rem] sm:text-6xl md:text-8xl font-extrabold tracking-tight"
@@ -252,6 +293,10 @@ export default function RevealHero({
         </div>
       </div>
 
+      <section
+        className="relative w-full h-[100svh] overflow-hidden"
+        style={{ backgroundColor: overlayColor }}
+      >
       {/* Intro images — index 2 is the hero */}
       {images.slice(0, 5).map((src, i) => (
         <div
@@ -309,6 +354,7 @@ export default function RevealHero({
           </div>
         )}
       </div>
-    </section>
+      </section>
+    </div>
   );
 }
