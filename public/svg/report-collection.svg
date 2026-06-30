@@ -1,0 +1,66 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Collection analytics report">
+  <defs>
+    <linearGradient id="cRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E5172A"/><stop offset="1" stop-color="#B30E1E"/>
+    </linearGradient>
+    <style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }</style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">Collection Analytics</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Branch-wise recovery · stage breakdown · PTP tracking</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <!-- left: branch bar chart -->
+  <rect x="40" y="116" width="486" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="66" y="152" font-size="15" font-weight="700" fill="#0B1B33">Recovery by branch</text>
+  <text x="66" y="174" font-size="12" font-weight="500" fill="#5B6B82">₹ in lakhs · this month</text>
+  <line x1="66" y1="452" x2="500" y2="452" stroke="#E2E6ED" stroke-width="1.4"/>
+  <g>
+    <rect x="86"  y="320" width="46" height="132" rx="6" fill="#C2CCDA"/>
+    <rect x="156" y="270" width="46" height="182" rx="6" fill="#B9C2D0"/>
+    <rect x="226" y="338" width="46" height="114" rx="6" fill="#C2CCDA"/>
+    <rect x="296" y="244" width="46" height="208" rx="6" fill="#8A98AD"/>
+    <rect x="366" y="300" width="46" height="152" rx="6" fill="#B9C2D0"/>
+    <rect x="436" y="208" width="46" height="244" rx="6" fill="url(#cRed)"/>
+  </g>
+  <g font-size="11" font-weight="600" fill="#5B6B82" text-anchor="middle">
+    <text x="109" y="472">Jaipur</text>
+    <text x="179" y="472">Kota</text>
+    <text x="249" y="472">Ajmer</text>
+    <text x="319" y="472">Udaipur</text>
+    <text x="389" y="472">Sikar</text>
+    <text x="459" y="472" fill="#E5172A" font-weight="800">Alwar</text>
+  </g>
+
+  <!-- right: case stage breakdown -->
+  <rect x="546" y="116" width="294" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="572" y="152" font-size="15" font-weight="700" fill="#0B1B33">Case stages</text>
+  <text x="572" y="174" font-size="12" font-weight="500" fill="#5B6B82">PTP &amp; broken-PTP</text>
+
+  <g font-size="13">
+    <!-- stage rows -->
+    <text x="572" y="218" font-weight="600" fill="#0B1B33">Pending PTP</text>
+    <text x="814" y="218" text-anchor="end" font-weight="800" fill="#0B1B33">32%</text>
+    <rect x="572" y="228" width="242" height="9" rx="4.5" fill="#E2E6ED"/>
+    <rect x="572" y="228" width="78" height="9" rx="4.5" fill="#8A98AD"/>
+
+    <text x="572" y="276" font-weight="600" fill="#0B1B33">Partially Paid</text>
+    <text x="814" y="276" text-anchor="end" font-weight="800" fill="#0B1B33">18%</text>
+    <rect x="572" y="286" width="242" height="9" rx="4.5" fill="#E2E6ED"/>
+    <rect x="572" y="286" width="44" height="9" rx="4.5" fill="#8A98AD"/>
+
+    <text x="572" y="334" font-weight="600" fill="#0B1B33">Expired (broken)</text>
+    <text x="814" y="334" text-anchor="end" font-weight="800" fill="#E5172A">12%</text>
+    <rect x="572" y="344" width="242" height="9" rx="4.5" fill="#E2E6ED"/>
+    <rect x="572" y="344" width="29" height="9" rx="4.5" fill="#E5172A"/>
+
+    <text x="572" y="392" font-weight="600" fill="#0B1B33">Completed</text>
+    <text x="814" y="392" text-anchor="end" font-weight="800" fill="#0E9F6E">38%</text>
+    <rect x="572" y="402" width="242" height="9" rx="4.5" fill="#E2E6ED"/>
+    <rect x="572" y="402" width="92" height="9" rx="4.5" fill="#10B981"/>
+  </g>
+
+  <rect x="572" y="446" width="242" height="50" rx="12" fill="#0B1B33"/>
+  <text x="592" y="468" font-size="11" font-weight="600" letter-spacing="1" fill="#8EA0BC">RECOVERY RATE</text>
+  <text x="592" y="488" font-size="18" font-weight="800" fill="#FFFFFF">98% success</text>
+</svg>

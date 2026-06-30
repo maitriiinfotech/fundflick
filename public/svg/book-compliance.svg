@@ -1,0 +1,85 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RBI and NBFC compliance">
+  <defs>
+    <style>
+      text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+      .pulse { animation: blink 1.7s ease-in-out infinite; transform-box: fill-box; }
+      @keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+      @media (prefers-reduced-motion: reduce) { .pulse { animation: none } }
+    </style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">RBI &amp; NBFC Compliance</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Classification · provisioning · reporting — aligned from day one</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <!-- left: compliance checklist -->
+  <rect x="40" y="116" width="486" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="66" y="156" font-size="15" font-weight="700" fill="#0B1B33">Compliance checklist</text>
+
+  <g font-size="14.5" font-weight="600" fill="#0B1B33">
+    <!-- item template -->
+    <g>
+      <circle cx="82" cy="200" r="12" fill="#10B981" opacity="0.14"/>
+      <path d="M75 200 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="106" y="205">Asset classification</text>
+      <text x="500" y="205" text-anchor="end" font-size="11.5" font-weight="700" fill="#0E9F6E">Aligned</text>
+    </g>
+    <g>
+      <circle cx="82" cy="250" r="12" fill="#10B981" opacity="0.14"/>
+      <path d="M75 250 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="106" y="255">Provisioning norms</text>
+      <text x="500" y="255" text-anchor="end" font-size="11.5" font-weight="700" fill="#0E9F6E">Aligned</text>
+    </g>
+    <g>
+      <circle cx="82" cy="300" r="12" fill="#10B981" opacity="0.14"/>
+      <path d="M75 300 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="106" y="305">Income recognition</text>
+      <text x="500" y="305" text-anchor="end" font-size="11.5" font-weight="700" fill="#0E9F6E">Aligned</text>
+    </g>
+    <g>
+      <circle cx="82" cy="350" r="12" fill="#10B981" opacity="0.14"/>
+      <path d="M75 350 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="106" y="355">NPA reporting</text>
+      <text x="500" y="355" text-anchor="end" font-size="11.5" font-weight="700" fill="#0E9F6E">Aligned</text>
+    </g>
+    <g>
+      <circle cx="82" cy="400" r="12" fill="#10B981" opacity="0.14"/>
+      <path d="M75 400 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="106" y="405">Statutory returns (RBI)</text>
+      <text x="500" y="405" text-anchor="end" font-size="11.5" font-weight="700" fill="#0E9F6E">Aligned</text>
+    </g>
+  </g>
+
+  <rect x="66" y="446" width="434" height="50" rx="12" fill="#0B1B33"/>
+  <circle class="pulse" cx="92" cy="471" r="4" fill="#48E59A"/>
+  <text x="108" y="476" font-size="14" font-weight="700" fill="#FFFFFF">Audit-ready · RBI aligned</text>
+
+  <!-- right: provisioning -->
+  <rect x="546" y="116" width="294" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="572" y="156" font-size="15" font-weight="700" fill="#0B1B33">Provision coverage</text>
+
+  <circle cx="693" cy="252" r="52" fill="none" stroke="#E2E6ED" stroke-width="14"/>
+  <circle cx="693" cy="252" r="52" fill="none" stroke="#E5172A" stroke-width="14" stroke-linecap="round"
+          stroke-dasharray="307 327" transform="rotate(-90 693 252)"/>
+  <text x="693" y="250" text-anchor="middle" font-size="30" font-weight="800" fill="#0B1B33">94%</text>
+  <text x="693" y="272" text-anchor="middle" font-size="10.5" font-weight="600" fill="#5B6B82">coverage</text>
+
+  <g font-size="13">
+    <text x="572" y="348" font-weight="600" fill="#0B1B33">Standard</text>
+    <text x="814" y="348" text-anchor="end" font-weight="800" fill="#0B1B33">92%</text>
+    <rect x="572" y="358" width="242" height="8" rx="4" fill="#E2E6ED"/>
+    <rect x="572" y="358" width="223" height="8" rx="4" fill="#8A98AD"/>
+
+    <text x="572" y="392" font-weight="600" fill="#0B1B33">Sub-standard</text>
+    <text x="814" y="392" text-anchor="end" font-weight="800" fill="#0B1B33">5%</text>
+    <rect x="572" y="402" width="242" height="8" rx="4" fill="#E2E6ED"/>
+    <rect x="572" y="402" width="12" height="8" rx="4" fill="#8A98AD"/>
+
+    <text x="572" y="436" font-weight="600" fill="#0B1B33">Doubtful</text>
+    <text x="814" y="436" text-anchor="end" font-weight="800" fill="#E5172A">3%</text>
+    <rect x="572" y="446" width="242" height="8" rx="4" fill="#E2E6ED"/>
+    <rect x="572" y="446" width="8" height="8" rx="4" fill="#E5172A"/>
+  </g>
+
+  <text x="572" y="492" font-size="11.5" font-weight="500" fill="#5B6B82">Auto-classified &amp; provisioned</text>
+</svg>

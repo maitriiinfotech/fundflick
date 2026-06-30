@@ -1,0 +1,70 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Central reports hub">
+  <defs>
+    <style>
+      text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      .pulse { animation: blink 1.7s ease-in-out infinite; transform-box: fill-box; }
+      @keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
+      @media (prefers-reduced-motion: reduce) { .pulse { animation: none } }
+    </style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">Central Reports Hub</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Every module · live status · one-click export</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+  <circle class="pulse" cx="726" cy="47" r="4" fill="#E5172A"/>
+
+  <!-- report rows -->
+  <g font-size="16">
+    <!-- row template repeated -->
+    <g>
+      <rect x="40" y="120" width="800" height="66" rx="14" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+      <rect x="58" y="142" width="92" height="24" rx="12" fill="#E5172A" opacity="0.12"/>
+      <text x="104" y="159" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="1" fill="#E5172A">LOS</text>
+      <text x="172" y="148" font-size="16" font-weight="700" fill="#0B1B33">Monthly Loan Disbursement</text>
+      <text x="172" y="170" font-size="12" font-weight="500" fill="#5B6B82">June 2026 · PDF, Excel</text>
+      <rect x="648" y="142" width="86" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+      <text x="691" y="159" text-anchor="middle" font-size="11" font-weight="700" fill="#0E9F6E">Ready</text>
+      <path d="M772 146 v14 M766 154 l6 6 l6 -6 M764 166 h16" fill="none" stroke="#0B1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect x="40" y="198" width="800" height="66" rx="14" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+      <rect x="58" y="220" width="118" height="24" rx="12" fill="#0B1B33" opacity="0.08"/>
+      <text x="117" y="237" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="1" fill="#0B1B33">COLLECTION</text>
+      <text x="196" y="226" font-size="16" font-weight="700" fill="#0B1B33">Recovery Summary</text>
+      <text x="196" y="248" font-size="12" font-weight="500" fill="#5B6B82">Q2 2026 · CSV</text>
+      <rect x="648" y="220" width="86" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+      <text x="691" y="237" text-anchor="middle" font-size="11" font-weight="700" fill="#0E9F6E">Ready</text>
+      <path d="M772 224 v14 M766 232 l6 6 l6 -6 M764 244 h16" fill="none" stroke="#0B1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect x="40" y="276" width="800" height="66" rx="14" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+      <rect x="58" y="298" width="78" height="24" rx="12" fill="#0B1B33" opacity="0.08"/>
+      <text x="97" y="315" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="1" fill="#0B1B33">TASK</text>
+      <text x="158" y="304" font-size="16" font-weight="700" fill="#0B1B33">Task Completion Rate</text>
+      <text x="158" y="326" font-size="12" font-weight="500" fill="#5B6B82">June 2026</text>
+      <rect x="636" y="298" width="98" height="24" rx="12" fill="#F59E0B" opacity="0.16"/>
+      <circle class="pulse" cx="657" cy="310" r="3.5" fill="#D97706"/>
+      <text x="690" y="315" text-anchor="middle" font-size="11" font-weight="700" fill="#B45309">Generating</text>
+    </g>
+    <g>
+      <rect x="40" y="354" width="800" height="66" rx="14" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+      <rect x="58" y="376" width="86" height="24" rx="12" fill="#0B1B33" opacity="0.08"/>
+      <text x="101" y="393" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="1" fill="#0B1B33">ADMIN</text>
+      <text x="166" y="382" font-size="16" font-weight="700" fill="#0B1B33">Employee Activity Log</text>
+      <text x="166" y="404" font-size="12" font-weight="500" fill="#5B6B82">June 2026 · Excel</text>
+      <rect x="648" y="376" width="86" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+      <text x="691" y="393" text-anchor="middle" font-size="11" font-weight="700" fill="#0E9F6E">Ready</text>
+      <path d="M772 380 v14 M766 388 l6 6 l6 -6 M764 400 h16" fill="none" stroke="#0B1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g>
+      <rect x="40" y="432" width="800" height="66" rx="14" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+      <rect x="58" y="454" width="120" height="24" rx="12" fill="#E5172A" opacity="0.12"/>
+      <text x="118" y="471" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="1" fill="#E5172A">ORGANISATION</text>
+      <text x="198" y="460" font-size="16" font-weight="700" fill="#0B1B33">Branch Performance</text>
+      <text x="198" y="482" font-size="12" font-weight="500" fill="#5B6B82">Q2 2026 · PDF</text>
+      <rect x="648" y="454" width="86" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+      <text x="691" y="471" text-anchor="middle" font-size="11" font-weight="700" fill="#0E9F6E">Ready</text>
+      <path d="M772 458 v14 M766 466 l6 6 l6 -6 M764 478 h16" fill="none" stroke="#0B1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

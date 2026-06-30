@@ -99,6 +99,10 @@ export default function PricingSection() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
         {/* Left Column: Comprehensive Loan System Overview */}
         <div ref={leftColumnRef} className="lg:col-span-7 flex flex-col">
+          <span className="inline-flex w-fit items-center gap-2 mb-4 rounded-full border border-[#2b7fff]/30 bg-[#2b7fff]/5 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#2b7fff]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2b7fff] animate-pulse" />
+            Pricing · Coming Soon
+          </span>
           <h2 className="overview-title text-3xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight mb-8">
             Comprehensive Loan System Overview
           </h2>
@@ -142,7 +146,7 @@ export default function PricingSection() {
         >
           <div className="w-full max-w-[440px] bg-white border border-slate-200/80 rounded-[32px] p-4 shadow-xl flex flex-col items-center justify-center relative group transition-transform duration-500 hover:scale-[1.02] overflow-hidden">
             <img
-              src="/lending_overview_minimal.png"
+              src="/svg/lending-overview.svg"
               alt="Lending System Overview Illustration"
               className="w-full h-auto object-contain rounded-2xl select-none pointer-events-none"
             />

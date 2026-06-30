@@ -1,0 +1,75 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stock and legal notice report">
+  <defs>
+    <style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }</style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">Stock &amp; Legal</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Outstanding stock report · instant legal notices</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <!-- left: stock table -->
+  <rect x="40" y="116" width="486" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="66" y="152" font-size="15" font-weight="700" fill="#0B1B33">Outstanding stock</text>
+  <text x="66" y="174" font-size="12" font-weight="500" fill="#5B6B82">principal &amp; accrued interest · per branch</text>
+
+  <g font-size="11" font-weight="700" letter-spacing="0.5" fill="#5B6B82">
+    <text x="66" y="212">BRANCH</text>
+    <text x="380" y="212" text-anchor="end">PRINCIPAL</text>
+    <text x="500" y="212" text-anchor="end">INTEREST</text>
+  </g>
+  <line x1="66" y1="224" x2="500" y2="224" stroke="#E2E6ED" stroke-width="1.4"/>
+
+  <g font-size="14">
+    <text x="66" y="256" font-weight="600" fill="#0B1B33">Jaipur</text>
+    <text x="380" y="256" text-anchor="end" font-weight="700" fill="#0B1B33">₹4.2 Cr</text>
+    <text x="500" y="256" text-anchor="end" font-weight="600" fill="#5B6B82">₹38 L</text>
+
+    <text x="66" y="296" font-weight="600" fill="#0B1B33">Kota</text>
+    <text x="380" y="296" text-anchor="end" font-weight="700" fill="#0B1B33">₹2.8 Cr</text>
+    <text x="500" y="296" text-anchor="end" font-weight="600" fill="#5B6B82">₹24 L</text>
+
+    <text x="66" y="336" font-weight="600" fill="#0B1B33">Ajmer</text>
+    <text x="380" y="336" text-anchor="end" font-weight="700" fill="#0B1B33">₹1.9 Cr</text>
+    <text x="500" y="336" text-anchor="end" font-weight="600" fill="#5B6B82">₹17 L</text>
+
+    <text x="66" y="376" font-weight="600" fill="#0B1B33">Udaipur</text>
+    <text x="380" y="376" text-anchor="end" font-weight="700" fill="#0B1B33">₹3.4 Cr</text>
+    <text x="500" y="376" text-anchor="end" font-weight="600" fill="#5B6B82">₹29 L</text>
+  </g>
+
+  <rect x="66" y="402" width="434" height="48" rx="12" fill="#0B1B33"/>
+  <text x="84" y="431" font-size="14" font-weight="700" fill="#FFFFFF">Total outstanding</text>
+  <text x="482" y="431" text-anchor="end" font-size="16" font-weight="800" fill="#FFFFFF">₹12.3 Cr</text>
+
+  <rect x="66" y="466" width="150" height="38" rx="10" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1.4"/>
+  <path d="M86 481 v12 M80 487 l6 6 l6 -6 M78 499 h16" fill="none" stroke="#0B1B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="108" y="490" font-size="13" font-weight="700" fill="#0B1B33">Export CSV</text>
+
+  <!-- right: legal notice document -->
+  <rect x="546" y="116" width="294" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="572" y="152" font-size="15" font-weight="700" fill="#0B1B33">Legal notice</text>
+  <text x="572" y="174" font-size="12" font-weight="500" fill="#5B6B82">one-click PDF generation</text>
+
+  <!-- paper -->
+  <rect x="596" y="192" width="194" height="262" rx="10" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1.4"/>
+  <rect x="596" y="192" width="194" height="40" rx="10" fill="#E5172A"/>
+  <rect x="596" y="216" width="194" height="16" fill="#E5172A"/>
+  <text x="693" y="218" text-anchor="middle" font-size="13" font-weight="800" letter-spacing="1.5" fill="#FFFFFF">LEGAL NOTICE</text>
+
+  <g stroke="#D5DBE3" stroke-width="6" stroke-linecap="round">
+    <line x1="616" y1="256" x2="770" y2="256"/>
+    <line x1="616" y1="276" x2="770" y2="276"/>
+    <line x1="616" y1="296" x2="744" y2="296"/>
+    <line x1="616" y1="328" x2="770" y2="328"/>
+    <line x1="616" y1="348" x2="720" y2="348"/>
+  </g>
+  <!-- red stamp -->
+  <circle cx="744" cy="402" r="30" fill="none" stroke="#E5172A" stroke-width="2.4" opacity="0.85"/>
+  <circle cx="744" cy="402" r="24" fill="none" stroke="#E5172A" stroke-width="1.4" opacity="0.6"/>
+  <text x="744" y="406" text-anchor="middle" font-size="11" font-weight="800" letter-spacing="0.5" fill="#E5172A" opacity="0.9">ISSUED</text>
+  <text x="616" y="406" font-size="11" font-weight="600" fill="#5B6B82">Ref: LN-2026</text>
+  <text x="616" y="424" font-size="11" font-weight="600" fill="#5B6B82">PDF ready</text>
+
+  <rect x="596" y="468" width="194" height="40" rx="20" fill="#E5172A"/>
+  <text x="693" y="493" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Generate Notice</text>
+</svg>

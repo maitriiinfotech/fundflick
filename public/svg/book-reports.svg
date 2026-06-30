@@ -1,0 +1,61 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Financial statements">
+  <defs>
+    <style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }</style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">Financial Statements</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">P&amp;L · balance sheet · trial balance — on demand</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <!-- left: P&L summary -->
+  <rect x="40" y="116" width="486" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="66" y="152" font-size="15" font-weight="700" fill="#0B1B33">Profit &amp; Loss</text>
+  <text x="66" y="174" font-size="12" font-weight="500" fill="#5B6B82">FY 2025-26 · YTD</text>
+
+  <g font-size="14">
+    <text x="66" y="216" font-weight="600" fill="#0B1B33">Income</text>
+    <text x="500" y="216" text-anchor="end" font-weight="800" fill="#0B1B33">₹2.40 Cr</text>
+    <rect x="66" y="226" width="434" height="12" rx="6" fill="#E2E6ED"/>
+    <rect x="66" y="226" width="434" height="12" rx="6" fill="#10B981"/>
+
+    <text x="66" y="272" font-weight="600" fill="#0B1B33">Expenses</text>
+    <text x="500" y="272" text-anchor="end" font-weight="800" fill="#0B1B33">₹1.70 Cr</text>
+    <rect x="66" y="282" width="434" height="12" rx="6" fill="#E2E6ED"/>
+    <rect x="66" y="282" width="307" height="12" rx="6" fill="#8A98AD"/>
+  </g>
+
+  <rect x="66" y="328" width="434" height="92" rx="14" fill="#0B1B33"/>
+  <text x="86" y="362" font-size="12" font-weight="600" letter-spacing="1" fill="#8EA0BC">NET PROFIT</text>
+  <text x="86" y="400" font-size="34" font-weight="800" fill="#FFFFFF">₹0.70 Cr</text>
+  <text x="480" y="400" text-anchor="end" font-size="13" font-weight="700" fill="#48E59A">▲ 29% margin</text>
+
+  <text x="66" y="466" font-size="12.5" font-weight="500" fill="#5B6B82">Auto-built from posted ledgers · GST &amp; TDS aware</text>
+
+  <!-- right: statements list -->
+  <rect x="546" y="116" width="294" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="572" y="152" font-size="15" font-weight="700" fill="#0B1B33">Export statements</text>
+
+  <g>
+    <rect x="566" y="178" width="254" height="62" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="586" y="206" font-size="14" font-weight="700" fill="#0B1B33">Profit &amp; Loss</text>
+    <text x="586" y="226" font-size="11" font-weight="500" fill="#5B6B82">PDF · Excel</text>
+    <path d="M792 198 v14 M786 206 l6 6 l6 -6 M784 218 h16" fill="none" stroke="#E5172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="566" y="252" width="254" height="62" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="586" y="280" font-size="14" font-weight="700" fill="#0B1B33">Balance Sheet</text>
+    <text x="586" y="300" font-size="11" font-weight="500" fill="#5B6B82">PDF · Excel</text>
+    <path d="M792 272 v14 M786 280 l6 6 l6 -6 M784 292 h16" fill="none" stroke="#E5172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <rect x="566" y="326" width="254" height="62" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="586" y="354" font-size="14" font-weight="700" fill="#0B1B33">Trial Balance</text>
+    <text x="586" y="374" font-size="11" font-weight="500" fill="#5B6B82">PDF · Excel</text>
+    <path d="M792 346 v14 M786 354 l6 6 l6 -6 M784 366 h16" fill="none" stroke="#E5172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <rect x="566" y="408" width="254" height="48" rx="12" fill="#E5172A"/>
+  <text x="693" y="437" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Download all</text>
+
+  <text x="572" y="486" font-size="11.5" font-weight="500" fill="#5B6B82">For boards, auditors &amp; regulators</text>
+</svg>

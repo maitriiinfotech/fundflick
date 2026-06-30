@@ -213,35 +213,35 @@ export default function SmartReportsPage() {
             title: "Every Report, Across Every Module, in One Place",
             description:
               "The Central Reports Hub gives managers and admins a single destination for all generated reports — spanning LOS, Collection, Task Management, Admin, and Organisation — with live status and one-click download.",
-            img: "/reports.png",
+            img: "/svg/report-reports-hub.svg",
           },
           {
             label: "Collection Reports",
             title: "Branch-Wise Collection Analytics with Full Stage Breakdown",
             description:
               "Deep-dive into your collection portfolio with PTP tracking, broken commitment analysis, stage-wise case breakdown, loan-type distribution, and un-followup charts — all exportable with one click.",
-            img: "/collection.png",
+            img: "/svg/report-collection.svg",
           },
           {
             label: "Agent Performance",
             title: "Individual Agent Scorecards with 15-Day Activity Charts",
             description:
               "Every field agent gets a detailed performance report — total cases assigned, cases worked, follow-up and payment counts, efficiency score, and a rolling 15-day activity chart showing daily follow-ups and collections.",
-            img: "/pipeline_overview.png",
+            img: "/svg/report-agent.svg",
           },
           {
             label: "LMS Payment Reports",
             title: "Daily & Monthly Collection Reports with Method Breakdown",
             description:
               "Track every rupee collected through the LMS — with daily collection summaries, monthly trend charts, and full payment-type breakdowns. Borrower health scoring categorises your entire portfolio at a glance.",
-            img: "/lending_overview_minimal.png",
+            img: "/svg/report-lms-payments.svg",
           },
           {
             label: "Stock & Legal",
             title: "Outstanding Stock Reports and Instant Legal Notice Generation",
             description:
               "Generate a complete stock report of outstanding principal, accrued and unaccrued interest per branch — filterable and exportable as CSV. For difficult cases, generate Legal Notices and Company Notices as PDF with one click.",
-            img: "/accounting.png",
+            img: "/svg/report-stock-legal.svg",
           },
         ]}
       />
