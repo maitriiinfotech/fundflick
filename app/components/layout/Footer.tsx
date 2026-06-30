@@ -42,6 +42,21 @@ export default function Footer() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{ backgroundImage: "url('/footerbg.png')" }}
       />
+      {/* Animated background video — desktop only, off under reduced motion.
+          The footerbg.png layer above is the instant poster / fallback. */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover pointer-events-none hidden md:block motion-reduce:md:hidden"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        poster="/footerbg.png"
+        aria-hidden="true"
+      >
+        <source src="/footervideobg.webm" type="video/webm" />
+        <source src="/footervideobg.min.mp4" type="video/mp4" />
+      </video>
       {/* Readability overlay */}
       <div className="absolute inset-0 bg-[#131c33]/62 pointer-events-none" />
       {/* Dot grid */}
