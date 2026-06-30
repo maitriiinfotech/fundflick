@@ -51,22 +51,22 @@ export const ABOUT_SOLUTIONS = [
   },
   {
     title: "Collection Management",
-    desc: "Assign cases, log telecalls and field visits with PTP and selfie proof, send SMS and email alerts, and generate legal and company notices — every action tracked on a full case timeline.",
+    desc: "Case assignment, field-visit logging with proof, SMS/email alerts and legal notices — tracked on one timeline.",
   },
   {
     title: "Smart Reports & Analytics",
-    desc: "Role-based dashboards across lending, collection and tasks, with stage and branch analytics, agent scorecards, and one-click CSV/Excel exports.",
+    desc: "Role-based dashboards, branch and stage analytics, agent scorecards, and one-click CSV/Excel exports.",
   },
   {
     title: "HRMS",
-    desc: "Attendance with geo-fencing, automated payroll and compliance, leave workflows, and multi-branch management — HR operations on autopilot.",
+    desc: "Geo-fenced attendance, automated payroll, leave workflows and multi-branch management — HR on autopilot.",
   },
   {
     title: "Task Management",
-    desc: "Individual and team dashboards, recurring and bulk task assignment, and a client ledger that turns completed work into trackable billing.",
+    desc: "Team dashboards, recurring and bulk assignment, and a client ledger that bills completed work.",
   },
   {
     title: "Bookkeeping & Accounts",
-    desc: "Auto-posted double-entry ledgers, GST and TDS worksheets, one-click trial balance, and bank reconciliation — books that stay audit-ready.",
+    desc: "Double-entry ledgers, GST/TDS worksheets, trial balance and bank reconciliation — books that stay audit-ready.",
   },
 ];

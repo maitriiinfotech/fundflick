@@ -71,7 +71,7 @@ export default function AboutSolutions() {
         </p>
       </div>
 
-      <div className="solutions-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[210px] gap-5 perspective-distant">
+      <div className="solutions-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[224px] gap-5 perspective-distant">
         {ABOUT_SOLUTIONS.map((solution, i) => {
           const featured = i === 0;
           return (
