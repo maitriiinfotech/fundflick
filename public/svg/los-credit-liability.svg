@@ -1,0 +1,59 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Credit and liability profile">
+  <defs>
+    <style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }</style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">Credit Profile</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Income · liabilities · expenses · collateral — full picture</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <!-- left: financial picture -->
+  <rect x="40" y="116" width="486" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="66" y="152" font-size="15" font-weight="700" fill="#0B1B33">Financial profile</text>
+
+  <g font-size="14">
+    <text x="66" y="200" font-weight="600" fill="#0B1B33">Monthly income</text>
+    <text x="500" y="200" text-anchor="end" font-weight="800" fill="#0B1B33">₹85,000</text>
+    <rect x="66" y="210" width="434" height="11" rx="5.5" fill="#E2E6ED"/>
+    <rect x="66" y="210" width="434" height="11" rx="5.5" fill="#10B981"/>
+
+    <text x="66" y="254" font-weight="600" fill="#0B1B33">Existing EMIs</text>
+    <text x="500" y="254" text-anchor="end" font-weight="800" fill="#0B1B33">₹22,000</text>
+    <rect x="66" y="264" width="434" height="11" rx="5.5" fill="#E2E6ED"/>
+    <rect x="66" y="264" width="112" height="11" rx="5.5" fill="#E5172A"/>
+
+    <text x="66" y="308" font-weight="600" fill="#0B1B33">Family expenses</text>
+    <text x="500" y="308" text-anchor="end" font-weight="800" fill="#0B1B33">₹28,000</text>
+    <rect x="66" y="318" width="434" height="11" rx="5.5" fill="#E2E6ED"/>
+    <rect x="66" y="318" width="143" height="11" rx="5.5" fill="#8A98AD"/>
+  </g>
+
+  <rect x="66" y="360" width="434" height="92" rx="14" fill="#0B1B33"/>
+  <text x="86" y="394" font-size="12" font-weight="600" letter-spacing="1" fill="#8EA0BC">NET MONTHLY SURPLUS</text>
+  <text x="86" y="432" font-size="32" font-weight="800" fill="#FFFFFF">₹35,000</text>
+  <text x="480" y="432" text-anchor="end" font-size="13" font-weight="700" fill="#F1A7AD">FOIR 59%</text>
+
+  <text x="66" y="492" font-size="12.5" font-weight="500" fill="#5B6B82">Captured per applicant &amp; co-applicant</text>
+
+  <!-- right: collateral + decision -->
+  <rect x="546" y="116" width="294" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="572" y="152" font-size="15" font-weight="700" fill="#0B1B33">Collateral</text>
+
+  <text x="572" y="194" font-size="12.5" font-weight="500" fill="#5B6B82">Property · Residential</text>
+  <text x="572" y="226" font-size="26" font-weight="800" fill="#0B1B33">₹35,00,000</text>
+
+  <text x="572" y="272" font-size="13" font-weight="600" fill="#0B1B33">Loan-to-value</text>
+  <text x="814" y="272" text-anchor="end" font-size="13" font-weight="800" fill="#0B1B33">13%</text>
+  <rect x="572" y="282" width="242" height="10" rx="5" fill="#E2E6ED"/>
+  <rect x="572" y="282" width="31" height="10" rx="5" fill="#10B981"/>
+
+  <line x1="572" y1="322" x2="814" y2="322" stroke="#E2E6ED" stroke-width="1"/>
+
+  <circle cx="588" cy="368" r="16" fill="#10B981" opacity="0.14"/>
+  <path d="M580 368 l6 6 l11 -12" fill="none" stroke="#0E9F6E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="616" y="362" font-size="20" font-weight="800" fill="#0E9F6E">Eligible</text>
+  <text x="616" y="384" font-size="12" font-weight="500" fill="#5B6B82">Risk: Low</text>
+
+  <rect x="572" y="408" width="242" height="50" rx="12" fill="#E5172A"/>
+  <text x="693" y="438" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">Send to Approval</text>
+</svg>

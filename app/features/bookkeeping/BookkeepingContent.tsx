@@ -169,28 +169,28 @@ export default function BookkeepingPage() {
             title: "Auto-Posted Double-Entry Ledgers",
             description:
               "Every transaction posts to the right ledger automatically, keeping your books balanced and audit-ready by default.",
-            img: "/accounting.png",
+            img: "/svg/book-ledgers.svg",
           },
           {
             label: "Reconciliation",
             title: "Reconcile Without the Spreadsheets",
             description:
               "Match bank statements to entries in bulk and resolve breaks fast, so month-end stops eating your week.",
-            img: "/lending_overview_minimal.png",
+            img: "/svg/book-reconciliation.svg",
           },
           {
             label: "Reports",
             title: "Financials Ready When You Are",
             description:
               "Generate P&L, balance sheet, and trial balance on demand, exportable for boards, auditors, and regulators.",
-            img: "/reports.png",
+            img: "/svg/book-reports.svg",
           },
           {
             label: "Compliance",
             title: "Stay RBI and NBFC Compliant",
             description:
               "Built-in compliance structures keep classification, provisioning, and reporting aligned from day one.",
-            img: "/pipeline_overview.png",
+            img: "/svg/book-compliance.svg",
           },
         ]}
       />
