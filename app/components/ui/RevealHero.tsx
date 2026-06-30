@@ -325,7 +325,7 @@ export default function RevealHero({
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 via-black/15 to-black/20 pointer-events-none" />
 
       {/* Hero content */}
-      <div className="hero-content absolute inset-0 z-[2] h-[100svh] flex flex-col justify-between px-8 pt-[10svh] pb-[16svh] sm:pt-[12svh] lg:pt-[15svh]">
+      <div className="hero-content absolute inset-0 z-[2] h-[100svh] flex flex-col justify-between px-8 pt-[18svh] pb-[16svh] sm:pt-[14svh] lg:pt-[15svh]">
         <div className="hero-header w-full lg:w-3/5">
           <h1
             className="text-[2rem] sm:text-4xl md:text-5xl font-normal leading-[1.1] tracking-tight text-white"
