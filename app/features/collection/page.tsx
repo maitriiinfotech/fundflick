@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CollectionContent from "./CollectionContent";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/features/collection" },
   title: "Collection Management Software",
   description:
     "Fundflick Collection Management — assign cases, log field visits with PTP and proof, trigger SMS and email alerts, generate legal notices, and track every recovery on one timeline.",

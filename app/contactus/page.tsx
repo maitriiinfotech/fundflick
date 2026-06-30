@@ -74,8 +74,8 @@ export default function ContactUs() {
     >
       {/* Awwwards-level premium background — clean white with refined dot grid + subtle navy/blue glows */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:26px_26px] opacity-60 pointer-events-none" />
-      <div className="absolute top-1/4 -left-20 w-[620px] h-[620px] bg-[#131c33]/5 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-[-80px] w-[520px] h-[520px] bg-[#2b7fff]/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-[620px] h-[620px] bg-[#131c33]/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-[-80px] w-[520px] h-[520px] bg-[#2b7fff]/5 rounded-full blur-[80px] pointer-events-none" />
 
       {/* Main Content — generous Awwwards spacing */}
       <div className="max-w-6xl w-full mx-auto px-6 relative z-10">

@@ -25,8 +25,8 @@ const STACK_CARDS: CardData[] = [
     title: "Loan Origination System",
     subtitle:
       "Automate loan application processing, credit check evaluation, and disbursals.",
-    img: "/loan_origination.png",
-    video: "/video/Loan_Origination_System_Animation.webm",
+    img: "/los/los-workflow.svg",
+    // video: "/video/Loan_Origination_System_Animation.webm",
     bgColor: "#d4f73f", // Vibrant Lime Green
     textColor: "#131c33",
     href: "/features/loan-origination",
@@ -41,8 +41,8 @@ const STACK_CARDS: CardData[] = [
     title: "Loan Management System",
     subtitle:
       "Comprehensive loan books, custom EMI schedules, ledgers, and servicing tools.",
-    img: "/lms_hrms.png",
-    video: "/video/LMS_video_2.webm",
+    img: "/svg/loan-management.svg",
+    // video: "/video/LMS_video_2.webm",
     bgColor: "#fb7185", // Rose Pink
     textColor: "#131c33",
     comingSoon: true,
@@ -58,13 +58,13 @@ const STACK_CARDS: CardData[] = [
     title: "Collection System",
     subtitle:
       "Automated payment tracking, auto-debits, and instant EMI reminders.",
-    img: "/collection.png",
-    video: "/video/emicolleciotn.webm",
-    bgColor: "#131c33", // Deep Navy
+    img: "/svg/collection.svg",
+    // video: "/video/emicolleciotn.webm",
+    bgColor: "#174EE6", // Deep Navy
     textColor: "#ffffff",
     href: "/features/collection",
     details: [
-      { label: "Gateway", value: "UPI, Netbanking & NACH" },
+      { label: "Payment Method", value: "UPI, Netbanking & NACH" },
       { label: "Dunning", value: "WhatsApp & SMS auto-reminders" },
       { label: "Auto-Split", value: "Dynamic penalty calculations" },
       { label: "Recovery Rate", value: "Avg. 98% success rate" },
@@ -74,8 +74,8 @@ const STACK_CARDS: CardData[] = [
     title: "Task Management",
     subtitle:
       "Streamline daily operations, assign tasks to agents, and monitor lead pipelines.",
-    img: "/task_management.png",
-    video: "/video/task_mangment.webm",
+    img: "/svg/task-management.svg",
+    // video: "/video/task_mangment.webm",
     bgColor: "#ffffff", // Pure White
     textColor: "#131c33",
     href: "/features/task-management",
@@ -90,8 +90,8 @@ const STACK_CARDS: CardData[] = [
     title: "Smart Reports",
     subtitle:
       "In-depth business performance metrics, collection trends, and live analytics dashboards.",
-    img: "/reports.png",
-    video: "/video/reporting.webm",
+    img: "/svg/smart-reports.svg",
+    // video: "/video/reporting.webm",
     bgColor: "#38bdf8", // Sky Blue
     textColor: "#131c33",
     href: "/features/smart-reports",
@@ -106,8 +106,8 @@ const STACK_CARDS: CardData[] = [
     title: "Bookkeeping & Accounts",
     subtitle:
       "Accurate transaction logging, automated ledger entries, and audit compliance.",
-    img: "/accounting.png",
-    video: "/video/bookkeeping-and-accounting.webm",
+    img: "/svg/bookkeeping.svg",
+    // video: "/video/bookkeeping-and-accounting.webm",
     bgColor: "#c084fc", // Purple/Violet
     textColor: "#131c33",
     comingSoon: true,
@@ -280,16 +280,18 @@ export default function HoverGallery2() {
                     <span className="text-[9px] uppercase tracking-wider font-semibold opacity-50">
                       Fundflick Suite
                     </span>
-                    <Link
-                      href={card.href || "/contactus"}
-                      className="group/btn inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:underline"
-                      style={{ color: card.textColor }}
-                    >
-                      {card.comingSoon
-                        ? "Request Early Access"
-                        : "Explore Module"}
-                      <ArrowIcon />
-                    </Link>
+                  <a
+  href={card.href || "/contactus"}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group/btn inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:underline"
+  style={{ color: card.textColor }}
+>
+  {card.comingSoon
+    ? "Request Early Access"
+    : "Explore Module"}
+  <ArrowIcon />
+</a>
                   </div>
                 </div>
 
@@ -304,6 +306,16 @@ export default function HoverGallery2() {
                         muted
                         playsInline
                         className="w-full h-full object-cover rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                ) : card.img.endsWith(".svg") ? (
+                  <div className="lg:w-[42%] px-7 pb-7 sm:px-9 sm:pb-9 lg:p-9 lg:pl-0 flex items-center justify-center">
+                    <div className="w-full h-[190px] lg:h-full lg:min-h-[320px] rounded-2xl overflow-hidden shadow-inner bg-white flex items-center justify-center">
+                      <img
+                        src={card.img}
+                        alt={card.title}
+                        className="w-full h-full object-contain"
                       />
                     </div>
                   </div>
