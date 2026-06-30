@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LoanManagementContent from "./LoanManagementContent";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/features/loan-management" },
   title: "Loan Management System (LMS)",
   description:
     "Fundflick Loan Management System — auto-generated reducing-balance EMI schedules, penalties, rescheduling, prepayments and fully reversible payments, all tracked to the paisa.",

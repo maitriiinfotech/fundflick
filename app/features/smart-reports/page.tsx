@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SmartReportsContent from "./SmartReportsContent";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/features/smart-reports" },
   title: "Smart Reports & Analytics",
   description:
     "Fundflick Smart Reports — role-based dashboards across lending, collection and tasks, stage and branch analytics, agent scorecards, and one-click CSV and Excel exports.",
