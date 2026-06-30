@@ -54,8 +54,8 @@ export default function CTASection() {
       style={{ fontFamily: "var(--font-plus-jakarta-sans), sans-serif" }}
     >
       {/* Background soft, light-themed ambient glows */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-r from-blue-100 to-indigo-50 rounded-full blur-[140px] pointer-events-none opacity-80" />
-      <div className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-100 to-blue-50 rounded-full blur-[130px] pointer-events-none opacity-60" />
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-r from-blue-100 to-indigo-50 rounded-full blur-[80px] pointer-events-none opacity-80" />
+      <div className="absolute top-1/3 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-100 to-blue-50 rounded-full blur-[80px] pointer-events-none opacity-60" />
 
       {/* Grid Pattern overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-50 pointer-events-none" />

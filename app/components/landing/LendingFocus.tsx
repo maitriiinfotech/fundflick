@@ -172,7 +172,7 @@ export default function LendingFocus() {
       className="relative w-full py-24 px-6 sm:px-12 lg:px-20 text-white overflow-hidden select-none font-sans bg-gradient-to-r from-[#131c33] to-[#1e3a75]"
     >
       {/* Visual background details to match rich aesthetics and screenshot feel */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#2b7fff]/15 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#2b7fff]/15 blur-[80px] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto flex flex-col items-center justify-center relative z-10 text-center">

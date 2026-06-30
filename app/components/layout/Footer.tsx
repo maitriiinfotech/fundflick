@@ -47,8 +47,8 @@ export default function Footer() {
       {/* Dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
       {/* Subtle glow */}
-      <div className="absolute bottom-0 left-1/4 w-[500px] h-[400px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-0 right-1/4 w-[400px] h-[300px] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[400px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[400px] h-[300px] bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Top section — CTA banner */}

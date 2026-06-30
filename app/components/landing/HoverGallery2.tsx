@@ -60,7 +60,7 @@ const STACK_CARDS: CardData[] = [
       "Automated payment tracking, auto-debits, and instant EMI reminders.",
     img: "/collection.png",
     video: "/video/emicolleciotn.webm",
-    bgColor: "#131c33", // Deep Navy
+    bgColor: "#174EE6", // Deep Navy
     textColor: "#ffffff",
     href: "/features/collection",
     details: [
@@ -280,16 +280,18 @@ export default function HoverGallery2() {
                     <span className="text-[9px] uppercase tracking-wider font-semibold opacity-50">
                       Fundflick Suite
                     </span>
-                    <Link
-                      href={card.href || "/contactus"}
-                      className="group/btn inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:underline"
-                      style={{ color: card.textColor }}
-                    >
-                      {card.comingSoon
-                        ? "Request Early Access"
-                        : "Explore Module"}
-                      <ArrowIcon />
-                    </Link>
+                  <a
+  href={card.href || "/contactus"}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group/btn inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:underline"
+  style={{ color: card.textColor }}
+>
+  {card.comingSoon
+    ? "Request Early Access"
+    : "Explore Module"}
+  <ArrowIcon />
+</a>
                   </div>
                 </div>
 

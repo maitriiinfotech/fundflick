@@ -206,7 +206,7 @@ export default function HoverGallery() {
       <div className="sticky top-[80px] w-full h-[calc(100vh-80px)] flex flex-col justify-between py-4">
         
         {/* Background visual graphics */}
-        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-secondaryColor/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-secondaryColor/5 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-40 pointer-events-none" />
 
         {/* Section Header */}

@@ -295,7 +295,7 @@ export default function WhyChoose() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full py-32 px-6 sm:px-12 lg:px-20 bg-white text-slate-900 font-sans overflow-hidden border-t border-slate-100"
+      className="relative w-full py-12 md:py-32 px-6 sm:px-12 lg:px-20 bg-white text-slate-900 font-sans overflow-hidden border-t border-slate-100"
     >
       {/* Light Theme Background matching VantaHero */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-60 pointer-events-none" />

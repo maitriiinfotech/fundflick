@@ -60,7 +60,7 @@ export default function AnimatedPipeline() {
     <section
       id="products"
       ref={containerRef}
-      className="relative w-full py-28 px-6 sm:px-12 lg:px-20 bg-white text-slate-900 overflow-hidden border-t border-slate-100 font-sans"
+      className="relative w-full py-12  md:py-28 px-6 sm:px-12 lg:px-20 bg-white text-slate-900 overflow-hidden border-t border-slate-100 font-sans"
     >
       {/* background texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-50 pointer-events-none -z-10" />

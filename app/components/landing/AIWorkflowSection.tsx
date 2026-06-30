@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../ui/Button";
@@ -204,6 +204,7 @@ function SceneVisual({
 
 export default function AIWorkflowSection() {
   const rootRef = useRef<HTMLElement>(null);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -367,10 +368,36 @@ export default function AIWorkflowSection() {
           </h2>
         </div>
         <div className="space-y-16">
-          {SCENES.map((s, i) => (
+          {(showAll ? SCENES : SCENES.slice(0, 1)).map((s, i) => (
             <SceneVisual key={s.no} scene={s} idx={i} revealed />
           ))}
         </div>
+
+        {!showAll && (
+          <div className="px-6 pt-12 flex justify-center">
+            <Button
+              onClick={() => setShowAll(true)}
+              variant="brand"
+              className="px-8 py-3.5 text-sm"
+            >
+              View More
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                strokeWidth={2.5}
+                stroke="currentColor"
+                className="ml-1 h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </Button>
+          </div>
+        )}
       </section>
 
       {/* DESKTOP — pinned cinematic stage */}

@@ -129,8 +129,8 @@ export default function GuidesPage() {
       {/* ===== Hero — full-width dark banner ===== */}
       <section className="relative w-full bg-[#131c33] text-white overflow-hidden pt-32 pb-28 md:pt-40 md:pb-32 px-6">
         <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:26px_26px] opacity-60 pointer-events-none" />
-        <div className="absolute -top-24 left-1/4 w-[420px] h-[420px] bg-[#2b7fff]/15 rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute -bottom-32 right-1/4 w-[380px] h-[380px] bg-[#2b7fff]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute -top-24 left-1/4 w-[420px] h-[420px] bg-[#2b7fff]/15 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute -bottom-32 right-1/4 w-[380px] h-[380px] bg-[#2b7fff]/10 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-secondaryColor font-bold mb-5">

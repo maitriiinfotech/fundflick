@@ -146,7 +146,7 @@ export default function AboutTestimonials() {
       {/* drifting glow */}
       <div
         ref={glowRef}
-        className="pointer-events-none absolute top-1/2 right-[8%] h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-secondaryColor/15 blur-[130px]"
+        className="pointer-events-none absolute top-1/2 right-[8%] h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-secondaryColor/15 blur-[80px]"
       />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
