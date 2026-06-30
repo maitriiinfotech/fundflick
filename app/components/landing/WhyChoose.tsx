@@ -181,47 +181,50 @@ export default function WhyChoose() {
     {
       num: "01",
       title: "Anywhere, Everywhere",
-      desc: "Run your entire operation from any device — desktop, tablet or mobile. Fully responsive and always in sync, wherever your team works.",
+      desc: "Run your entire operation from anywhere — native Android and iOS apps plus a full web app, always in sync wherever your team works.",
       bgGlow: "rgba(43, 127, 255, 0.06)",
       visual: (
         <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
           <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
-            <span className="text-slate-400">DEVICE SYNC</span>
+            <span className="text-slate-400">AVAILABLE ON</span>
             <span className="text-emerald-400 font-bold">LIVE</span>
           </div>
           <div className="flex items-stretch gap-2 py-1">
             {[
               {
-                label: "Desktop",
-                d: "M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 12V5.25",
+                label: "Play Store",
+                fill: true,
+                d: "M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z",
               },
               {
-                label: "Tablet",
-                d: "M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-15a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 4.5v15a2.25 2.25 0 0 0 2.25 2.25Z",
+                label: "App Store",
+                fill: true,
+                d: "M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z",
               },
               {
-                label: "Mobile",
-                d: "M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3",
+                label: "Web App",
+                fill: false,
+                d: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 0c3 3 3 17 0 20m0-20c-3 3-3 17 0 20M2 12h20",
               },
-            ].map((dvc) => (
+            ].map((p) => (
               <div
-                key={dvc.label}
+                key={p.label}
                 className="flex flex-1 flex-col items-center gap-1.5 rounded-lg bg-white/5 py-2.5"
               >
                 <svg
                   className="w-5 h-5 text-[#2b7fff]"
-                  fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  fill={p.fill ? "currentColor" : "none"}
+                  stroke={p.fill ? "none" : "currentColor"}
                   strokeWidth={1.6}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d={dvc.d} />
+                  <path strokeLinecap="round" strokeLinejoin="round" d={p.d} />
                 </svg>
-                <span className="text-[8px] text-slate-400">{dvc.label}</span>
+                <span className="text-[8px] text-slate-400">{p.label}</span>
               </div>
             ))}
           </div>
-          <div className="text-slate-500 mt-3">Synced across all your devices</div>
+          <div className="text-slate-500 mt-3">On Android, iOS &amp; the web</div>
         </div>
       ),
     },
