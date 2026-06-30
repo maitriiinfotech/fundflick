@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import TextLoader from "./components/landing/TextLoader";
 import VantaHero from "./components/landing/Hero";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 import HoverGallery2 from "./components/landing/HoverGallery2";
 import LendingFocus from "./components/landing/LendingFocus";
 import WhyChoose from "./components/landing/WhyChoose";

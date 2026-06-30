@@ -43,7 +43,7 @@ export default function Footer() {
         style={{ backgroundImage: "url('/footerbg.png')" }}
       />
       {/* Readability overlay */}
-      <div className="absolute inset-0 bg-[#131c33]/70 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#131c33]/62 pointer-events-none" />
       {/* Dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
       {/* Subtle glow */}
@@ -61,7 +61,7 @@ export default function Footer() {
               >
                 Ready to transform your business?
               </h3>
-              <p className="text-slate-400 text-sm font-light max-w-md">
+              <p className="text-slate-200 text-sm font-light max-w-md">
                 Start your free trial today. No credit card required.
               </p>
             </div>
@@ -88,7 +88,7 @@ export default function Footer() {
         <div className="py-12 sm:py-16 grid grid-cols-2 sm:grid-cols-4 gap-10 sm:gap-8">
           {/* Products */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 mb-5">
               Products
             </h4>
             <ul className="space-y-3">
@@ -96,7 +96,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-300 hover:text-white transition-colors duration-200 font-light"
+                    className="text-sm text-slate-100 hover:text-white transition-colors duration-200 font-light"
                   >
                     {link.label}
                   </Link>
@@ -107,7 +107,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 mb-5">
               Company
             </h4>
             <ul className="space-y-3">
@@ -115,7 +115,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-300 hover:text-white transition-colors duration-200 font-light"
+                    className="text-sm text-slate-100 hover:text-white transition-colors duration-200 font-light"
                   >
                     {link.label}
                   </Link>
@@ -126,7 +126,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 mb-5">
               Resources
             </h4>
             <ul className="space-y-3">
@@ -134,7 +134,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-300 hover:text-white transition-colors duration-200 font-light"
+                    className="text-sm text-slate-100 hover:text-white transition-colors duration-200 font-light"
                   >
                     {link.label}
                   </Link>
@@ -145,7 +145,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-5">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200 mb-5">
               Legal
             </h4>
             <ul className="space-y-3">
@@ -153,7 +153,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-300 hover:text-white transition-colors duration-200 font-light"
+                    className="text-sm text-slate-100 hover:text-white transition-colors duration-200 font-light"
                   >
                     {link.label}
                   </Link>
@@ -168,13 +168,19 @@ export default function Footer() {
           {/* Logo + copyright */}
           <div className="flex items-center gap-4">
             <Link href="/">
-              <img
+              {/* Old PNG logo — kept for reference */}
+              {/* <img
                 src="/logo.png"
+                alt="Fundflick Logo"
+                className="h-8 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+              /> */}
+              <img
+                src="/logo/fundflick-logo.svg"
                 alt="Fundflick Logo"
                 className="h-8 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
               />
             </Link>
-            <span className="text-[11px] text-slate-500 font-light">
+            <span className="text-[11px] text-slate-300 font-light">
               © {new Date().getFullYear()} Fundflick. All rights reserved.
             </span>
           </div>
@@ -191,7 +197,7 @@ export default function Footer() {
                 <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z" />
               </svg>
               <span className="flex flex-col leading-none">
-                <span className="text-[8px] text-slate-400 uppercase tracking-wide">
+                <span className="text-[8px] text-slate-300 uppercase tracking-wide">
                   Download on the
                 </span>
                 <span className="text-sm font-semibold text-white">App Store</span>
@@ -207,7 +213,7 @@ export default function Footer() {
                 <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626-2.491-2.491 2.492-2.491zM5.864 2.658L16.802 8.99l-2.302 2.302L5.864 2.658z" />
               </svg>
               <span className="flex flex-col leading-none">
-                <span className="text-[8px] text-slate-400 uppercase tracking-wide">
+                <span className="text-[8px] text-slate-300 uppercase tracking-wide">
                   Get it on
                 </span>
                 <span className="text-sm font-semibold text-white">Google Play</span>

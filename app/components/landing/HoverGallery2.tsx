@@ -15,6 +15,8 @@ interface CardData {
   textColor: string;
   comingSoon?: boolean;
   badge?: string;
+  /** Deep-link to this module's feature page */
+  href?: string;
   details: { label: string; value: string }[];
 }
 
@@ -27,6 +29,7 @@ const STACK_CARDS: CardData[] = [
     video: "/video/Loan_Origination_System_Animation.webm",
     bgColor: "#d4f73f", // Vibrant Lime Green
     textColor: "#131c33",
+    href: "/features/loan-origination",
     details: [
       { label: "Verification", value: "Instant eKYC & Bureau Fetch" },
       { label: "Target Segment", value: "SMEs & Retail Borrowers" },
@@ -43,6 +46,7 @@ const STACK_CARDS: CardData[] = [
     bgColor: "#fb7185", // Rose Pink
     textColor: "#131c33",
     comingSoon: true,
+    href: "/features/loan-management",
     details: [
       { label: "Interest Engine", value: "Simple, Reducing & Custom models" },
       { label: "Statements", value: "Instant NOC & SOA generation" },
@@ -58,6 +62,7 @@ const STACK_CARDS: CardData[] = [
     video: "/video/emicolleciotn.webm",
     bgColor: "#131c33", // Deep Navy
     textColor: "#ffffff",
+    href: "/features/collection",
     details: [
       { label: "Gateway", value: "UPI, Netbanking & NACH" },
       { label: "Dunning", value: "WhatsApp & SMS auto-reminders" },
@@ -73,6 +78,7 @@ const STACK_CARDS: CardData[] = [
     video: "/video/task_mangment.webm",
     bgColor: "#ffffff", // Pure White
     textColor: "#131c33",
+    href: "/features/task-management",
     details: [
       { label: "Visual Boards", value: "Kanban & Lead Stages" },
       { label: "Assignment", value: "Auto-allocation rules" },
@@ -88,6 +94,7 @@ const STACK_CARDS: CardData[] = [
     video: "/video/reporting.webm",
     bgColor: "#38bdf8", // Sky Blue
     textColor: "#131c33",
+    href: "/features/smart-reports",
     details: [
       { label: "Analytics", value: "Real-time NPA & Yield charts" },
       { label: "Export formats", value: "Excel, PDF, CSV & JSON" },
@@ -104,6 +111,7 @@ const STACK_CARDS: CardData[] = [
     bgColor: "#c084fc", // Purple/Violet
     textColor: "#131c33",
     comingSoon: true,
+    href: "/features/bookkeeping",
     details: [
       { label: "Ledger", value: "Double-entry compliance tracking" },
       { label: "Taxation", value: "GST & TDS worksheets" },
@@ -273,7 +281,7 @@ export default function HoverGallery2() {
                       Fundflick Suite
                     </span>
                     <Link
-                      href="/contactus"
+                      href={card.href || "/contactus"}
                       className="group/btn inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:underline"
                       style={{ color: card.textColor }}
                     >

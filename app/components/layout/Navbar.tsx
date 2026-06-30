@@ -105,8 +105,14 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-4 md:py-6 z-[9999] bg-white/80 backdrop-blur-md border-b border-slate-100/60">
       <div className="flex items-center gap-2">
         <Link href="/" onClick={closeMobileMenu}>
-          <img
+          {/* Old PNG logo — kept for reference */}
+          {/* <img
             src="/logo.png"
+            alt="Fundflick Logo"
+            className="h-8 md:h-10 w-auto object-contain cursor-pointer"
+          /> */}
+          <img
+            src="/logo/fundflick-logo.svg"
             alt="Fundflick Logo"
             className="h-8 md:h-10 w-auto object-contain cursor-pointer"
           />
