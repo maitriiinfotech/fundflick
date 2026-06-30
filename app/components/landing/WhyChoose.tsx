@@ -12,6 +12,53 @@ interface Feature {
   visual: React.ReactNode;
 }
 
+type AppTile = {
+  label: string;
+  d?: string;
+  fill?: boolean;
+  /** Solid brand colour for a single-path icon (else inherits blue). */
+  color?: string;
+  /** Multi-colour brand paths (e.g. original Google Play). Overrides d/fill. */
+  colors?: { d: string; fill: string }[];
+};
+
+const APP_TILES: AppTile[] = [
+  {
+    label: "Play Store",
+    // Original 4-colour Google Play mark
+    colors: [
+      {
+        d: "M1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924z",
+        fill: "#00A0FF",
+      },
+      {
+        d: "M13.544 10.989l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973z",
+        fill: "#00E676",
+      },
+      {
+        d: "M13.544 13.056l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z",
+        fill: "#FF3D00",
+      },
+      {
+        d: "M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594z",
+        fill: "#FFC400",
+      },
+    ],
+  },
+  {
+    label: "App Store",
+    fill: true,
+    color: "#0B0B0B",
+    d: "M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z",
+  },
+  {
+    label: "Web App",
+    fill: false,
+    color: "#0EA5E9",
+    d: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 0c3 3 3 17 0 20m0-20c-3 3-3 17 0 20M2 12h20",
+  },
+];
+
 export default function WhyChoose() {
   const containerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -184,47 +231,42 @@ export default function WhyChoose() {
       desc: "Run your entire operation from anywhere — native Android and iOS apps plus a full web app, always in sync wherever your team works.",
       bgGlow: "rgba(43, 127, 255, 0.06)",
       visual: (
-        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
-          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
-            <span className="text-slate-400">AVAILABLE ON</span>
-            <span className="text-emerald-400 font-bold">LIVE</span>
+        <div className="w-full bg-white border border-slate-200 rounded-xl p-4 font-mono text-[10px] text-slate-800 shadow-sm">
+          <div className="flex justify-between items-center border-b border-slate-100 pb-2 mb-3">
+            <span className="text-slate-500">AVAILABLE ON</span>
+            <span className="text-emerald-600 font-bold">LIVE</span>
           </div>
           <div className="flex items-stretch gap-2 py-1">
-            {[
-              {
-                label: "Play Store",
-                fill: true,
-                d: "M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z",
-              },
-              {
-                label: "App Store",
-                fill: true,
-                d: "M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z",
-              },
-              {
-                label: "Web App",
-                fill: false,
-                d: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 0c3 3 3 17 0 20m0-20c-3 3-3 17 0 20M2 12h20",
-              },
-            ].map((p) => (
+            {APP_TILES.map((p) => (
               <div
                 key={p.label}
-                className="flex flex-1 flex-col items-center gap-1.5 rounded-lg bg-white/5 py-2.5"
+                className="flex flex-1 flex-col items-center gap-1.5 rounded-lg bg-slate-50 border border-slate-100 py-2.5"
               >
                 <svg
                   className="w-5 h-5 text-[#2b7fff]"
                   viewBox="0 0 24 24"
-                  fill={p.fill ? "currentColor" : "none"}
-                  stroke={p.fill ? "none" : "currentColor"}
-                  strokeWidth={1.6}
+                  fill="none"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d={p.d} />
+                  {p.colors ? (
+                    p.colors.map((c, ci) => (
+                      <path key={ci} d={c.d} fill={c.fill} />
+                    ))
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d={p.d}
+                      fill={p.fill ? p.color || "currentColor" : "none"}
+                      stroke={p.fill ? "none" : p.color || "currentColor"}
+                      strokeWidth={1.6}
+                    />
+                  )}
                 </svg>
-                <span className="text-[8px] text-slate-400">{p.label}</span>
+                <span className="text-[8px] text-slate-500">{p.label}</span>
               </div>
             ))}
           </div>
-          <div className="text-slate-500 mt-3">On Android, iOS &amp; the web</div>
+          <div className="text-slate-400 mt-3">On Android, iOS &amp; the web</div>
         </div>
       ),
     },
@@ -234,9 +276,9 @@ export default function WhyChoose() {
       desc: "Bank-grade data isolation, encrypted channels, and built-in audit trails that satisfy enterprise compliance.",
       bgGlow: "rgba(16, 185, 129, 0.06)",
       visual: (
-        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
-          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
-            <span className="text-slate-400">CIPHER STATUS</span>
+        <div className="w-full bg-white border border-slate-200 rounded-xl p-4 font-mono text-[10px] text-slate-800 shadow-sm">
+          <div className="flex justify-between items-center border-b border-slate-100 pb-2 mb-3">
+            <span className="text-slate-500">CIPHER STATUS</span>
             <span className="text-[#2b7fff] font-bold">AES-256</span>
           </div>
           <div className="flex items-center gap-3 py-2">
@@ -246,7 +288,7 @@ export default function WhyChoose() {
               </svg>
             </div>
             <div>
-              <div className="font-bold text-white">TLS 1.3 Secure</div>
+              <div className="font-bold text-slate-800">TLS 1.3 Secure</div>
               <div className="text-[8px] text-slate-500">ISO-27001 Compliant</div>
             </div>
           </div>
@@ -259,10 +301,10 @@ export default function WhyChoose() {
       desc: "Make decisions with accurate business performance metrics, data trends, and clear interactive dashboards.",
       bgGlow: "rgba(139, 92, 246, 0.06)",
       visual: (
-        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
-          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
-            <span className="text-slate-400">LEDGER LOGS</span>
-            <span className="text-amber-400 font-bold">SYNCED</span>
+        <div className="w-full bg-white border border-slate-200 rounded-xl p-4 font-mono text-[10px] text-slate-800 shadow-sm">
+          <div className="flex justify-between items-center border-b border-slate-100 pb-2 mb-3">
+            <span className="text-slate-500">LEDGER LOGS</span>
+            <span className="text-amber-600 font-bold">SYNCED</span>
           </div>
           <div className="flex items-end justify-between gap-1 h-12 mt-2">
             <div className="w-1/5 bg-[#2b7fff]/30 h-6 rounded" />
@@ -280,15 +322,15 @@ export default function WhyChoose() {
       desc: "Work seamlessly across resources, assign tasks directly, and streamline standard team pipelines.",
       bgGlow: "rgba(245, 158, 11, 0.06)",
       visual: (
-        <div className="w-full bg-[#131c33] border border-white/10 rounded-xl p-4 font-mono text-[10px] text-white">
-          <div className="flex justify-between items-center border-b border-white/5 pb-2 mb-3">
-            <span className="text-slate-400">TEAM PIPELINES</span>
-            <span className="text-purple-400 font-bold">5 ACTIVE</span>
+        <div className="w-full bg-white border border-slate-200 rounded-xl p-4 font-mono text-[10px] text-slate-800 shadow-sm">
+          <div className="flex justify-between items-center border-b border-slate-100 pb-2 mb-3">
+            <span className="text-slate-500">TEAM PIPELINES</span>
+            <span className="text-purple-600 font-bold">5 ACTIVE</span>
           </div>
           <div className="flex -space-x-1.5 overflow-hidden my-3">
-            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-[#131c33] bg-[#2b7fff] flex items-center justify-center font-bold text-[8px]">AM</div>
-            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-[#131c33] bg-emerald-500 flex items-center justify-center font-bold text-[8px]">JD</div>
-            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-[#131c33] bg-purple-500 flex items-center justify-center font-bold text-[8px]">SK</div>
+            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-white bg-[#2b7fff] flex items-center justify-center font-bold text-[8px]">AM</div>
+            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-white bg-emerald-500 flex items-center justify-center font-bold text-[8px]">JD</div>
+            <div className="h-6.5 w-6.5 rounded-full ring-2 ring-white bg-purple-500 flex items-center justify-center font-bold text-[8px]">SK</div>
           </div>
         </div>
       ),

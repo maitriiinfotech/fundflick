@@ -16,7 +16,7 @@ interface Feature {
   desc: string;
   bullets: string[];
   rows: { name: string; meta: string }[];
-  image: string; // right-side product screenshot
+  image?: string; // right-side product screenshot (falls back to rows card)
   href?: string; // optional "Know more" deep-link
   comingSoon?: boolean;
 }
@@ -61,6 +61,24 @@ const FEATURES: Feature[] = [
     ],
     image: "/ai-operation/task.png",
     href: "/features/task-management",
+  },
+  {
+    no: "03",
+    label: "Note Tracker",
+    badge: "Meetings & MOM",
+    title: "Every meeting, captured and actioned",
+    accent: "captured and actioned",
+    desc: "Minutes write themselves, action items get extracted, owners get assigned — nothing slips after the call ends.",
+    bullets: [
+      "Auto-generated minutes of meeting",
+      "Action items extracted with owners",
+      "Follow-up reminders so nothing slips",
+    ],
+    rows: [
+      { name: "Approve revised credit policy", meta: "Owner: Riya" },
+      { name: "Share Q3 disbursal report", meta: "Owner: Aman" },
+      { name: "Follow up with NBFC partner", meta: "Due: Fri" },
+    ],
   },
 ];
 
@@ -150,11 +168,30 @@ function Panel({ f, idx }: { f: Feature; idx: number }) {
               <span className="h-1.5 w-1.5 rounded-full bg-secondaryColor animate-pulse" />
               {f.comingSoon ? "Coming Soon" : "Live"}
             </span>
-            <img
-              src={f.image}
-              alt={f.label}
-              className="w-full rounded-xl border border-white/5"
-            />
+            {f.image ? (
+              <img
+                src={f.image}
+                alt={f.label}
+                className="w-full rounded-xl border border-white/5"
+              />
+            ) : (
+              <div className="space-y-2.5 p-2">
+                {f.rows.map((r) => (
+                  <div
+                    key={r.name}
+                    className="flex items-center justify-between rounded-xl border border-white/5 bg-[#0f1729] px-4 py-3.5"
+                  >
+                    <span className="flex items-center gap-3 text-sm text-slate-200">
+                      <span className="h-2 w-2 rounded-full bg-secondaryColor" />
+                      {r.name}
+                    </span>
+                    <span className="text-[0.7rem] font-medium text-slate-400">
+                      {r.meta}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {f.href && (
@@ -212,7 +249,7 @@ export default function AIOperationsSection() {
           id: "aiops",
           trigger: rootRef.current,
           start: "top top",
-          end: "+=340%",
+          end: "+=520%",
           scrub: 0.6,
           pin: true,
           anticipatePin: 1,
@@ -264,12 +301,16 @@ export default function AIOperationsSection() {
       // panel 0 content stays hidden behind the hero heading, reveals once it docks
       reveal(".p0 .p-el", 1.7);
 
-      // slide track to panel 1 (last)
-      tl.to(".ops-track", { yPercent: -50, duration: 0.8, ease: "power2.inOut" }, 2.6);
+      // slide track to panel 1
+      tl.to(".ops-track", { yPercent: -33.333, duration: 0.8, ease: "power2.inOut" }, 2.6);
       reveal(".p1 .p-el", 3.1);
 
+      // slide track to panel 2 (last)
+      tl.to(".ops-track", { yPercent: -66.667, duration: 0.8, ease: "power2.inOut" }, 4.0);
+      reveal(".p2 .p-el", 4.5);
+
       // progress rail fills across the journey
-      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 3.9 }, 0);
+      tl.fromTo(".ops-progress", { scaleY: 0 }, { scaleY: 1, duration: 5.3 }, 0);
     }, rootRef);
 
     const refresh = () => ScrollTrigger.refresh();
@@ -407,7 +448,7 @@ export default function AIOperationsSection() {
         <div className="relative h-40 w-px bg-white/10 overflow-hidden">
           <div className="ops-progress absolute inset-0 origin-top scale-y-0 bg-secondaryColor" />
         </div>
-        <span className="text-[0.65rem] font-mono text-slate-500">02</span>
+        <span className="text-[0.65rem] font-mono text-slate-500">03</span>
       </div>
 
       {/* vertical panel track */}
