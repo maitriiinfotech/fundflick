@@ -119,8 +119,8 @@ export default function ContactUs() {
               <div className="group bg-white border border-slate-200/70 hover:border-[#131c33]/30 p-5 rounded-3xl transition-all duration-300 hover:shadow-lg">
                 <div className="flex items-start gap-5">
                   <div className="w-11 h-11 rounded-2xl bg-[#131c33] flex items-center justify-center text-white shrink-0 mt-0.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.25">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a.75.75 0 0 0 .75-.75v-4.5a.75.75 0 0 0-.75-.75h-1.5c-1.657 0-3-1.343-3-3V9.75c0-1.657 1.343-3 3-3h1.5a.75.75 0 0 0 .75-.75V3a.75.75 0 0 0-.75-.75h-1.5c-8.284 0-15 6.716-15 15Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.9">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
                   </div>
                   <div className="flex-1">
