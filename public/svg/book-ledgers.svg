@@ -1,0 +1,53 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Auto-posted double-entry ledgers">
+  <defs>
+    <style>
+      text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+      .pulse { animation: blink 1.7s ease-in-out infinite; transform-box: fill-box; }
+      @keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+      @media (prefers-reduced-motion: reduce) { .pulse { animation: none } }
+    </style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">General Ledger</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Auto-posted · double-entry · balanced by default</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <rect x="40" y="116" width="800" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+
+  <text x="66" y="160" font-size="15" font-weight="700" fill="#0B1B33">Journal entries</text>
+  <rect x="690" y="142" width="124" height="26" rx="13" fill="#10B981" opacity="0.14"/>
+  <circle class="pulse" cx="710" cy="155" r="4" fill="#10B981"/>
+  <text x="726" y="159" font-size="11" font-weight="800" letter-spacing="0.5" fill="#0E9F6E">BALANCED</text>
+
+  <g font-size="11" font-weight="700" letter-spacing="0.5" fill="#5B6B82">
+    <text x="66" y="200">ACCOUNT</text>
+    <text x="600" y="200" text-anchor="end">DEBIT</text>
+    <text x="800" y="200" text-anchor="end">CREDIT</text>
+  </g>
+  <line x1="66" y1="212" x2="800" y2="212" stroke="#E2E6ED" stroke-width="1.4"/>
+
+  <g font-size="14.5">
+    <text x="66" y="250" font-weight="600" fill="#0B1B33">Loan Disbursed A/c</text>
+    <text x="600" y="250" text-anchor="end" font-weight="700" fill="#0B1B33">₹4,50,000</text>
+    <text x="800" y="250" text-anchor="end" font-weight="600" fill="#C9CFD8">—</text>
+
+    <text x="66" y="290" font-weight="600" fill="#0B1B33">Bank A/c</text>
+    <text x="600" y="290" text-anchor="end" font-weight="600" fill="#C9CFD8">—</text>
+    <text x="800" y="290" text-anchor="end" font-weight="700" fill="#0B1B33">₹4,50,000</text>
+
+    <text x="66" y="330" font-weight="600" fill="#0B1B33">Bank A/c</text>
+    <text x="600" y="330" text-anchor="end" font-weight="700" fill="#0B1B33">₹21,400</text>
+    <text x="800" y="330" text-anchor="end" font-weight="600" fill="#C9CFD8">—</text>
+
+    <text x="66" y="370" font-weight="600" fill="#0B1B33">EMI Income A/c</text>
+    <text x="600" y="370" text-anchor="end" font-weight="600" fill="#C9CFD8">—</text>
+    <text x="800" y="370" text-anchor="end" font-weight="700" fill="#0B1B33">₹21,400</text>
+  </g>
+
+  <rect x="66" y="402" width="748" height="50" rx="12" fill="#0B1B33"/>
+  <text x="86" y="433" font-size="14" font-weight="700" fill="#FFFFFF">Total</text>
+  <text x="600" y="433" text-anchor="end" font-size="15" font-weight="800" fill="#FFFFFF">₹4,71,400</text>
+  <text x="800" y="433" text-anchor="end" font-size="15" font-weight="800" fill="#FFFFFF">₹4,71,400</text>
+
+  <text x="66" y="492" font-size="12.5" font-weight="500" fill="#5B6B82">Every transaction posts to the right ledger — Dr = Cr, audit-ready.</text>
+</svg>

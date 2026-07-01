@@ -1,0 +1,59 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="File status and approval flow">
+  <defs>
+    <style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }</style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">Approval Flow</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Sales to sanction · Pending → Review → Approved</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <!-- status pipeline -->
+  <line x1="140" y1="178" x2="800" y2="178" stroke="#E2E6ED" stroke-width="3"/>
+  <line x1="140" y1="178" x2="580" y2="178" stroke="#0B1B33" stroke-width="3" opacity="0.45"/>
+
+  <!-- node 1 Pending (done) -->
+  <circle cx="140" cy="178" r="18" fill="#0B1B33"/>
+  <path d="M132 178 l5 5 l11 -11" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="140" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#0B1B33">Pending</text>
+  <!-- node 2 Review (done) -->
+  <circle cx="360" cy="178" r="18" fill="#0B1B33"/>
+  <path d="M352 178 l5 5 l11 -11" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="360" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#0B1B33">Review</text>
+  <!-- node 3 Approved (current) -->
+  <circle cx="580" cy="178" r="22" fill="#E5172A"/>
+  <path d="M570 178 l6 6 l13 -14" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="580" y="226" text-anchor="middle" font-size="13" font-weight="800" fill="#E5172A">Approved</text>
+  <!-- node 4 Disbursed (next) -->
+  <circle cx="800" cy="178" r="18" fill="#FFFFFF" stroke="#C9CFD8" stroke-width="2.4"/>
+  <text x="800" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#94A3AF">Disbursed</text>
+
+  <!-- file card -->
+  <rect x="40" y="262" width="800" height="246" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+  <text x="66" y="300" font-size="15" font-weight="700" fill="#0B1B33">File #LN-4821 · Salesman Report</text>
+  <rect x="690" y="280" width="124" height="28" rx="14" fill="#10B981" opacity="0.14"/>
+  <text x="752" y="298" text-anchor="middle" font-size="12" font-weight="800" fill="#0E9F6E">SANCTIONED</text>
+
+  <g>
+    <rect x="66" y="320" width="176" height="78" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="84" y="348" font-size="10.5" font-weight="700" letter-spacing="1" fill="#5B6B82">PRINCIPAL</text>
+    <text x="84" y="378" font-size="22" font-weight="800" fill="#0B1B33">₹4,50,000</text>
+
+    <rect x="250" y="320" width="176" height="78" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="268" y="348" font-size="10.5" font-weight="700" letter-spacing="1" fill="#5B6B82">INTEREST</text>
+    <text x="268" y="378" font-size="22" font-weight="800" fill="#0B1B33">14% p.a.</text>
+
+    <rect x="434" y="320" width="176" height="78" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1"/>
+    <text x="452" y="348" font-size="10.5" font-weight="700" letter-spacing="1" fill="#5B6B82">TENURE</text>
+    <text x="452" y="378" font-size="22" font-weight="800" fill="#0B1B33">24 mo</text>
+
+    <rect x="618" y="320" width="196" height="78" rx="12" fill="#0B1B33"/>
+    <text x="636" y="348" font-size="10.5" font-weight="700" letter-spacing="1" fill="#F1A7AD">MONTHLY EMI</text>
+    <text x="636" y="378" font-size="22" font-weight="800" fill="#FFFFFF">₹21,400</text>
+  </g>
+
+  <rect x="66" y="416" width="748" height="64" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1"/>
+  <circle cx="92" cy="448" r="12" fill="#10B981" opacity="0.14"/>
+  <path d="M85 448 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="116" y="443" font-size="13.5" font-weight="700" fill="#0B1B33">Approved by R. Manager</text>
+  <text x="116" y="463" font-size="12" font-weight="500" fill="#5B6B82">Remarks: Profile verified, eligible · creator notified in real time</text>
+</svg>

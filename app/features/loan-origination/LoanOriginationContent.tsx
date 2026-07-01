@@ -224,21 +224,21 @@ export default function LoanOriginationPage() {
             title: "Multi-Stage Verification Before Any File Moves Forward",
             description:
               "Back Office is the internal review pipeline — a structured checklist of 5 verification stages each with its own progress tracker. Every file must clear all stages before approval.",
-            img: "/los/back-office.png",
+            img: "/svg/los-back-office.svg",
           },
           {
             label: "File Status & Approval",
             title: "Structured Approval Flow from Sales to Sanction",
             description:
               "Every file follows a clearly defined status journey — Pending, Review, Approved or Rejected, with an optional Task Pending state. Salesman reports, final approval amounts, and remarks are captured at every stage.",
-            img: "/los/file-status-approval.png",
+            img: "/svg/los-file-approval.svg",
           },
           {
             label: "Credit & Liability",
             title: "Deep-Dive Credit Profiling Before Every Decision",
             description:
               "The Credit module captures a borrower's full financial picture — income sources, existing liabilities, family expenses, and collateral details — giving underwriters everything needed to make informed credit decisions.",
-            img: "/los/credit-liability.png",
+            img: "/svg/los-credit-liability.svg",
           },
         ]}
       />

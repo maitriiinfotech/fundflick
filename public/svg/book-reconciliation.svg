@@ -1,0 +1,60 @@
+<svg width="880" height="560" viewBox="0 0 880 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bank reconciliation">
+  <defs>
+    <style>text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }</style>
+  </defs>
+
+  <text x="40" y="56" font-size="30" font-weight="800" fill="#0B1B33">Bank Reconciliation</text>
+  <text x="40" y="86" font-size="15" font-weight="500" fill="#5B6B82">Match statements to entries in bulk · resolve breaks fast</text>
+  <text x="840" y="52" text-anchor="end" font-size="14" font-weight="800" letter-spacing="2" fill="#0B1B33">FUNDFLICK</text>
+
+  <rect x="40" y="116" width="800" height="404" rx="16" fill="#F5F7FA" stroke="#E2E6ED" stroke-width="1"/>
+
+  <g font-size="11" font-weight="700" letter-spacing="0.5" fill="#5B6B82">
+    <text x="66" y="158">BANK STATEMENT</text>
+    <text x="372" y="158">BOOK ENTRY</text>
+    <text x="800" y="158" text-anchor="end">STATUS</text>
+  </g>
+  <line x1="66" y1="170" x2="800" y2="170" stroke="#E2E6ED" stroke-width="1.4"/>
+
+  <g font-size="14">
+    <!-- matched rows -->
+    <text x="66" y="208" font-weight="700" fill="#0B1B33">NEFT · ₹4,50,000</text>
+    <text x="372" y="208" font-weight="600" fill="#5B6B82">Loan Disbursed</text>
+    <rect x="700" y="190" width="100" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+    <path d="M716 202 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="742" y="207" font-size="11" font-weight="700" fill="#0E9F6E">Matched</text>
+
+    <text x="66" y="252" font-weight="700" fill="#0B1B33">UPI · ₹21,400</text>
+    <text x="372" y="252" font-weight="600" fill="#5B6B82">EMI #4821</text>
+    <rect x="700" y="234" width="100" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+    <path d="M716 246 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="742" y="251" font-size="11" font-weight="700" fill="#0E9F6E">Matched</text>
+
+    <text x="66" y="296" font-weight="700" fill="#0B1B33">NACH · ₹18,200</text>
+    <text x="372" y="296" font-weight="600" fill="#5B6B82">EMI #3902</text>
+    <rect x="700" y="278" width="100" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+    <path d="M716 290 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="742" y="295" font-size="11" font-weight="700" fill="#0E9F6E">Matched</text>
+
+    <!-- break row -->
+    <text x="66" y="340" font-weight="700" fill="#0B1B33">Cheque · ₹12,000</text>
+    <text x="372" y="340" font-weight="600" fill="#C9CFD8">unmatched</text>
+    <rect x="708" y="322" width="92" height="24" rx="12" fill="#E5172A" opacity="0.12"/>
+    <path d="M718 328 l10 10 M728 328 l-10 10" fill="none" stroke="#E5172A" stroke-width="2.2" stroke-linecap="round"/>
+    <text x="748" y="339" font-size="11" font-weight="700" fill="#E5172A">Break</text>
+
+    <text x="66" y="384" font-weight="700" fill="#0B1B33">IMPS · ₹9,500</text>
+    <text x="372" y="384" font-weight="600" fill="#5B6B82">EMI #5120</text>
+    <rect x="700" y="366" width="100" height="24" rx="12" fill="#10B981" opacity="0.14"/>
+    <path d="M716 378 l5 5 l9 -10" fill="none" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="742" y="383" font-size="11" font-weight="700" fill="#0E9F6E">Matched</text>
+  </g>
+
+  <rect x="66" y="408" width="360" height="50" rx="12" fill="#0B1B33"/>
+  <text x="86" y="432" font-size="11" font-weight="600" letter-spacing="1" fill="#8EA0BC">AUTO-MATCHED</text>
+  <text x="86" y="450" font-size="17" font-weight="800" fill="#FFFFFF">142 / 145 entries</text>
+
+  <rect x="454" y="408" width="360" height="50" rx="12" fill="#FFFFFF" stroke="#E2E6ED" stroke-width="1.4"/>
+  <text x="474" y="432" font-size="11" font-weight="600" letter-spacing="1" fill="#5B6B82">OPEN BREAKS</text>
+  <text x="474" y="450" font-size="17" font-weight="800" fill="#E5172A">3 to resolve</text>
+</svg>
