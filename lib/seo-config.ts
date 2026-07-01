@@ -118,9 +118,9 @@ export const PAGES: SeoPage[] = [
   },
   {
     path: "/guides",
-    title: "Resource Library",
+    title: "Video Tutorials",
     description:
-      "Guides, templates, reports and ebooks on digital lending, loan origination, collections and lending automation.",
+      "Step-by-step video tutorials for Fundflick — mark daily HRMS attendance and create and manage tasks across every task type.",
     changeFrequency: "weekly",
     priority: 0.6,
   },
@@ -131,6 +131,30 @@ export const PAGES: SeoPage[] = [
       "Talk to the Fundflick team about integrations, pricing or custom lending workflows. Request a demo and get a 15-minute callback.",
     changeFrequency: "yearly",
     priority: 0.6,
+  },
+  {
+    path: "/privacy",
+    title: "Privacy Policy",
+    description:
+      "How Fundflick collects, uses, and protects your data across our lending, HR, collections and reporting platform.",
+    changeFrequency: "yearly",
+    priority: 0.3,
+  },
+  {
+    path: "/terms",
+    title: "Terms of Service",
+    description:
+      "The terms that govern your use of the Fundflick platform — accounts, acceptable use, billing, and liability.",
+    changeFrequency: "yearly",
+    priority: 0.3,
+  },
+  {
+    path: "/security",
+    title: "Security",
+    description:
+      "How Fundflick protects your data — encryption, access controls, audit trails, and compliance practices.",
+    changeFrequency: "yearly",
+    priority: 0.3,
   },
 ];
 
