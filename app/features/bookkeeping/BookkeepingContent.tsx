@@ -135,7 +135,7 @@ export default function BookkeepingPage() {
             and bank reconciliation in one set of books.
           </>
         }
-        loaderLabel="Books"
+        loaderLabel="Bookkeeping and Accounting"
         socialLabel="Get started"
         links={[
           { label: "Request a demo", href: "/contactus" },

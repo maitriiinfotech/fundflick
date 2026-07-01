@@ -1,6 +1,7 @@
-"use client";
-
-import { useMemo, useState } from "react";
+interface VideoLink {
+  label: string;
+  href: string;
+}
 
 interface Resource {
   category: string;
@@ -8,9 +9,8 @@ interface Resource {
   desc: string;
   meta: string;
   accent: string; // gradient classes for the card header
+  videos?: VideoLink[]; // when present, card shows watch links instead of "Read more"
 }
-
-const TABS = ["Guides", "Templates", "Reports & Insights", "Ebooks"];
 
 const ACCENT: Record<string, string> = {
   Blogs: "from-emerald-500 to-teal-600",
@@ -23,66 +23,45 @@ const ACCENT: Record<string, string> = {
 const RESOURCES: Resource[] = [
   {
     category: "Guides",
-    title: "A Guide to Digital Lending",
-    desc: "Everything you need to know about running an end-to-end digital lending operation — from application to disbursal.",
-    meta: "12 min read",
+    title: "Mark Your Daily Attendance (On-site)",
+    desc: "A step-by-step video walkthrough showing on-site team members how to mark daily attendance on the HRMS portal. Marking attendance every day is mandatory for all on-site users.",
+    meta: "Video guide",
     accent: ACCENT.Guides,
+    videos: [
+      {
+        label: "Attendance walkthrough",
+        href: "https://drive.google.com/file/d/1TO-6w4W6H-pIiw5nsQOMOlfcMLiBLAQK/view?usp=drive_link",
+      },
+      {
+        label: "On-site attendance",
+        href: "https://drive.google.com/file/d/1P-zDyBc7FF1NS7BpAm9uAVsq_KQkqgdO/view?usp=sharing",
+      },
+    ],
   },
   {
     category: "Guides",
-    title: "Setting up your Loan Origination workflow",
-    desc: "Step-by-step on configuring eKYC, bureau pulls, scorecards, and approval routing inside Fundflick LOS.",
-    meta: "9 min read",
+    title: "Creating and Working on Tasks",
+    desc: "A step-by-step video series on how to create tasks and work through each of the four task categories in Fundflick — Other, Approval, Payment, and Pendency.",
+    meta: "4 videos",
     accent: ACCENT.Guides,
-  },
-  {
-    category: "Guides",
-    title: "HRMS onboarding playbook",
-    desc: "Get your team live on attendance, payroll, and leave in a week with this practical rollout checklist.",
-    meta: "8 min read",
-    accent: ACCENT.Guides,
-  },
-  {
-    category: "Templates",
-    title: "Loan application form template",
-    desc: "A ready-to-use digital application schema covering KYC, income, and consent fields for SME and retail loans.",
-    meta: "Template",
-    accent: ACCENT.Templates,
-  },
-  {
-    category: "Templates",
-    title: "EMI schedule worksheet",
-    desc: "Flat, reducing, and custom EMI schedule calculators you can adapt to any product policy.",
-    meta: "Spreadsheet",
-    accent: ACCENT.Templates,
-  },
-  {
-    category: "Reports & Insights",
-    title: "State of NBFC lending 2026",
-    desc: "Benchmark data on disbursal velocity, NPA buckets, and yield across India's digital lending landscape.",
-    meta: "Report",
-    accent: ACCENT["Reports & Insights"],
-  },
-  {
-    category: "Reports & Insights",
-    title: "Collection efficiency benchmark",
-    desc: "How top-performing lenders structure dunning, auto-debit, and field recovery to hit 95%+ collection rates.",
-    meta: "Insight",
-    accent: ACCENT["Reports & Insights"],
-  },
-  {
-    category: "Ebooks",
-    title: "The complete lending automation handbook",
-    desc: "A deep dive into automating origination, servicing, collections, and accounting on one platform.",
-    meta: "Ebook",
-    accent: ACCENT.Ebooks,
-  },
-  {
-    category: "Ebooks",
-    title: "From spreadsheets to systems",
-    desc: "The operator's guide to replacing scattered tools with a single, intelligent lending workflow.",
-    meta: "Ebook",
-    accent: ACCENT.Ebooks,
+    videos: [
+      {
+        label: "Other tasks",
+        href: "https://drive.google.com/file/d/1rz5BT6emqjmHZwF_q6oh77wAEfR5VjCp/view?usp=drive_link",
+      },
+      {
+        label: "Approval tasks",
+        href: "https://drive.google.com/file/d/1WX7uvOK-7kOrWHijOaR4q3AvrB9m3mid/view?usp=drive_link",
+      },
+      {
+        label: "Payment tasks",
+        href: "https://drive.google.com/file/d/15mKFXF54Xm7xnptMGOtT56eS0Va66xVy/view?usp=drive_link",
+      },
+      {
+        label: "Pendency tasks",
+        href: "https://drive.google.com/file/d/15Md8bmmsHl7Fc1AJqiYDXp2c9Aeyasr1/view?usp=drive_link",
+      },
+    ],
   },
 ];
 
@@ -104,20 +83,6 @@ const CategoryIcon = () => (
 );
 
 export default function GuidesPage() {
-  const [active, setActive] = useState("Guides");
-  const [query, setQuery] = useState("");
-
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return RESOURCES.filter(
-      (r) =>
-        r.category === active &&
-        (q === "" ||
-          r.title.toLowerCase().includes(q) ||
-          r.desc.toLowerCase().includes(q)),
-    );
-  }, [active, query]);
-
   return (
     <div
       className="min-h-screen bg-white text-slate-900 pb-24 relative overflow-hidden"
@@ -149,54 +114,10 @@ export default function GuidesPage() {
       </section>
 
       {/* ===== Content ===== */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        {/* floating search — overlaps the hero edge */}
-        <div className="relative z-20 -mt-7 sm:-mt-8 max-w-2xl mx-auto">
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search guides, blogs, templates…"
-            className="w-full rounded-full border border-slate-200 bg-white px-6 py-4 pr-12 text-sm text-slate-800 placeholder:text-slate-400 shadow-[0_12px_40px_rgba(0,0,0,0.1)] outline-none focus:border-[#2b7fff] focus:ring-2 focus:ring-[#2b7fff]/20 transition"
-          />
-          <span className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </span>
-        </div>
-
-        {/* ===== Tabs ===== */}
-        <div className="flex flex-wrap justify-center gap-3 mt-12 mb-10">
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActive(tab)}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 cursor-pointer ${
-                active === tab
-                  ? "bg-secondaryColor text-white shadow-lg shadow-[#2b7fff]/20"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
+      <div className="relative z-10 max-w-6xl mx-auto px-6 mt-16">
         {/* ===== Cards ===== */}
-        {filtered.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((r) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {RESOURCES.map((r) => (
               <article
                 key={r.title}
                 className="group rounded-[24px] border border-slate-200 bg-white overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
@@ -222,40 +143,62 @@ export default function GuidesPage() {
                   <p className="text-sm text-slate-500 leading-relaxed font-light mb-5">
                     {r.desc}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                      {r.meta}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-secondaryColor">
-                      Read more
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                        />
-                      </svg>
-                    </span>
-                  </div>
+                  {r.videos ? (
+                    <div>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                        {r.meta}
+                      </span>
+                      <ul className="mt-3 space-y-2">
+                        {r.videos.map((v) => (
+                          <li key={v.href}>
+                            <a
+                              href={v.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-sm font-semibold text-secondaryColor hover:underline"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-4 h-4 shrink-0"
+                              >
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                              Watch: {v.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                        {r.meta}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-xs font-bold text-secondaryColor">
+                        Read more
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={2}
+                          stroke="currentColor"
+                          className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  )}
                 </div>
               </article>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20">
-            <p className="text-slate-400 text-sm">
-              No {active.toLowerCase()} found
-              {query ? ` for “${query}”` : ""}.
-            </p>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );

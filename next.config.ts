@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Allow dev access from LAN devices (phone/other machines) without the
+  // Next.js cross-origin dev-resource warning.
+  allowedDevOrigins: ["192.168.1.27"],
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

@@ -54,10 +54,10 @@ export default function HRMSAIShowcard() {
             </h2>
 
             <p className="text-slate-300 text-sm sm:text-[15px] leading-relaxed max-w-md font-light">
-              Zia brings intelligent, privacy-focused support to every part of
+              Fundflick AI brings intelligent, privacy-focused support to every part of
               Fundflick HRMS. It answers, acts, and analyzes, helping HR teams
               move faster with less effort. From automating tasks to guiding
-              decisions, Zia ensures HR runs smoothly and efficiently at every
+              decisions, Fundflick AI ensures HR runs smoothly and efficiently at every
               step.
             </p>
 
@@ -67,7 +67,7 @@ export default function HRMSAIShowcard() {
                 variant="outline"
                 className="px-6 py-3 text-xs sm:text-sm border-white/30 text-white hover:bg-white/10 bg-transparent whitespace-nowrap"
               >
-                Explore Zia
+                Explore Fundflick AI
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -87,11 +87,11 @@ export default function HRMSAIShowcard() {
           </div>
         </div>
 
-        {/* RIGHT HALF — phone/Zia chat image covers full right side */}
+        {/* RIGHT HALF — phone/Fundflick AI chat image covers full right side */}
         <div className="relative overflow-hidden min-h-[280px] md:min-h-0">
           <img
             src="/rightextblackksky.jpg"
-            alt="AI HR Assistant — Zia"
+            alt="AI HR Assistant — Fundflick AI"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
