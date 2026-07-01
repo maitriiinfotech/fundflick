@@ -84,6 +84,18 @@ export default function AboutSolutions() {
                   : ""
               }`}
             >
+              {/* background image — shared with feature page hero cards */}
+              <img
+                src={`/reveal/${(i % 5) + 1}.jpg`}
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-55"
+              />
+              {/* dark overlay for text readability */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-linear-to-br from-[#0f1729]/70 to-[#2b3f6b]/55"
+              />
               {/* hover glow */}
               <div
                 aria-hidden

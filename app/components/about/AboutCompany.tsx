@@ -5,12 +5,6 @@
 import { useState } from "react";
 import Button from "../ui/Button";
 
-const STATS = [
-  { value: "8+", label: "Years building software" },
-  { value: "20+", label: "Products shipped" },
-  { value: "100+", label: "Clients served" },
-];
-
 export default function AboutCompany() {
   const [imgError, setImgError] = useState(false);
 
@@ -72,23 +66,6 @@ export default function AboutCompany() {
               Fundflick is the platform where that philosophy comes together —
               lending, HR, tasks, and collections, run as one.
             </p>
-          </div>
-
-          {/* stats */}
-          <div className="reveal mt-10 grid grid-cols-3 gap-4 max-w-md">
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <div
-                  className="text-2xl sm:text-3xl font-extrabold text-slate-900"
-                  style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-                >
-                  {s.value}
-                </div>
-                <div className="mt-1 text-[11px] sm:text-xs text-slate-500 leading-tight">
-                  {s.label}
-                </div>
-              </div>
-            ))}
           </div>
 
           <div className="reveal mt-10">

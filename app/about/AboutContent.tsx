@@ -4,7 +4,6 @@ import { useRef } from "react";
 import AboutCTA from "../components/about/AboutCTA";
 import AboutHero from "../components/about/AboutHero";
 import AboutSolutions from "../components/about/AboutSolutions";
-import AboutStats from "../components/about/AboutStats";
 import AboutStory from "../components/about/AboutStory";
 import AboutValues from "../components/about/AboutValues";
 import AboutJourney from "../components/about/AboutJourney";
@@ -25,7 +24,6 @@ export default function AboutPage() {
     >
       <AboutHero />
       <AboutStory />
-      <AboutStats />
       {/* <BrandMarquee /> */}
       <AboutValues />
       <AboutSolutions />

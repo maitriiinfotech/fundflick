@@ -1,11 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { SplitText } from "gsap/SplitText";
-
-gsap.registerPlugin(SplitText);
+import { useEffect, useRef, useState } from "react";
 
 interface Testimonial {
   quote: string;
@@ -59,94 +54,66 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-const DURATION = 6; // seconds per slide
+const DURATION = 6000; // ms per slide
 
 export default function AboutTestimonials() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const quoteRef = useRef<HTMLQuoteElement>(null);
-  const metaRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
-  const progTween = useRef<gsap.core.Tween | null>(null);
-
   const [active, setActive] = useState(0);
+  const [reduce, setReduce] = useState(false);
+
+  const barRef = useRef<HTMLDivElement>(null);
+
   const t = TESTIMONIALS[active];
+  const next = () => setActive((i) => (i + 1) % TESTIMONIALS.length);
 
-  useGSAP(
-    () => {
-      const reduce = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
+  useEffect(() => {
+    setReduce(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
-      // glow drifts to follow the active person
-      if (glowRef.current) {
-        gsap.to(glowRef.current, {
-          yPercent: (active / (TESTIMONIALS.length - 1)) * 80 - 40,
-          duration: 1.1,
-          ease: "power2.out",
-        });
+  // JS-driven auto-advance. rAF tracks elapsed time for the active slide and
+  // moves the progress bar, then advances to the next slide.
+  useEffect(() => {
+    if (reduce) {
+      if (barRef.current) barRef.current.style.transform = "scaleX(1)";
+      const id = setTimeout(next, DURATION);
+      return () => clearTimeout(id);
+    }
+
+    let raf = 0;
+    let elapsed = 0;
+    let last = 0;
+
+    const tick = (now: number) => {
+      if (!last) last = now;
+      const dt = now - last;
+      last = now;
+
+      elapsed += dt;
+      const p = Math.min(elapsed / DURATION, 1);
+      if (barRef.current) barRef.current.style.transform = `scaleX(${p})`;
+      if (p >= 1) {
+        next();
+        return;
       }
+      raf = requestAnimationFrame(tick);
+    };
 
-      // meta (avatar + name) fades up
-      if (metaRef.current) {
-        gsap.fromTo(
-          metaRef.current,
-          { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.1 },
-        );
-      }
-
-      // quote: masked word-by-word rise
-      let split: SplitText | null = null;
-      const quoteEl = quoteRef.current;
-      if (quoteEl) {
-        if (reduce) {
-          gsap.set(quoteEl, { opacity: 1 });
-        } else {
-          split = SplitText.create(quoteEl, { type: "words", mask: "words" });
-          gsap.set(split.words, { yPercent: 110 });
-          gsap.to(split.words, {
-            yPercent: 0,
-            duration: 0.7,
-            stagger: 0.022,
-            ease: "power3.out",
-          });
-        }
-      }
-
-      // progress bar drives the auto-advance
-      if (!reduce && progressRef.current) {
-        gsap.set(progressRef.current, { scaleX: 0, transformOrigin: "left center" });
-        progTween.current = gsap.to(progressRef.current, {
-          scaleX: 1,
-          duration: DURATION,
-          ease: "none",
-          onComplete: () =>
-            setActive((i) => (i + 1) % TESTIMONIALS.length),
-        });
-      }
-
-      return () => {
-        split?.revert();
-        progTween.current?.kill();
-      };
-    },
-    { scope: sectionRef, dependencies: [active] },
-  );
+    if (barRef.current) barRef.current.style.transform = "scaleX(0)";
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, reduce]);
 
   return (
-    <section
-      ref={sectionRef}
-      onMouseEnter={() => progTween.current?.pause()}
-      onMouseLeave={() => progTween.current?.resume()}
-      className="relative w-full overflow-hidden bg-[#131c33] py-20 md:py-28 text-white"
-    >
+    <section className="relative w-full overflow-hidden bg-[#131c33] py-20 md:py-28 text-white">
       {/* dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:26px_26px] pointer-events-none" />
-      {/* drifting glow */}
+      {/* drifting glow — follows the active person */}
       <div
-        ref={glowRef}
-        className="pointer-events-none absolute top-1/2 right-[8%] h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-secondaryColor/15 blur-[80px]"
+        className="pointer-events-none absolute top-1/2 right-[8%] h-[420px] w-[420px] rounded-full bg-secondaryColor/15 blur-[80px] transition-transform duration-1000 ease-out"
+        style={{
+          transform: `translateY(calc(-50% + ${
+            (active / (TESTIMONIALS.length - 1)) * 80 - 40
+          }%))`,
+        }}
       />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
@@ -174,14 +141,16 @@ export default function AboutTestimonials() {
 
             <blockquote
               key={active}
-              ref={quoteRef}
-              className="text-2xl sm:text-3xl md:text-[34px] font-semibold leading-snug tracking-tight text-white"
+              className="tm-quote text-2xl sm:text-3xl md:text-[34px] font-semibold leading-snug tracking-tight text-white"
               style={{ fontFamily: "var(--font-outfit), sans-serif" }}
             >
               {t.quote}
             </blockquote>
 
-            <div ref={metaRef} className="mt-8 flex items-center gap-4">
+            <div
+              key={`meta-${active}`}
+              className="tm-meta mt-8 flex items-center gap-4"
+            >
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondaryColor/20 text-sm font-bold text-white ring-1 ring-secondaryColor/30">
                 {t.initials}
               </div>
@@ -191,11 +160,12 @@ export default function AboutTestimonials() {
               </div>
             </div>
 
-            {/* progress */}
+            {/* progress — width driven by the rAF loop */}
             <div className="mt-8 h-[3px] w-full max-w-xs overflow-hidden rounded-full bg-white/10">
               <div
-                ref={progressRef}
+                ref={barRef}
                 className="h-full w-full origin-left rounded-full bg-secondaryColor"
+                style={{ transform: "scaleX(0)" }}
               />
             </div>
           </div>
@@ -241,6 +211,41 @@ export default function AboutTestimonials() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .tm-quote {
+          animation: tmRise 0.6s ease-out both;
+        }
+        .tm-meta {
+          animation: tmFade 0.5s ease-out 0.1s both;
+        }
+        @keyframes tmRise {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes tmFade {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .tm-quote,
+          .tm-meta {
+            animation: none;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -240,8 +240,14 @@ export default function WhyChoose() {
             {APP_TILES.map((p) => (
               <div
                 key={p.label}
-                className="flex flex-1 flex-col items-center gap-1.5 rounded-lg bg-slate-50 border border-slate-100 py-2.5"
+                className="relative flex flex-1 flex-col items-center gap-1.5 rounded-lg bg-slate-50 border border-slate-100 py-2.5"
               >
+                {p.label === "App Store" && (
+                  <span
+                    aria-label="Coming soon"
+                    className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-yellow-400 ring-2 ring-white"
+                  />
+                )}
                 <svg
                   className="w-5 h-5 text-[#2b7fff]"
                   viewBox="0 0 24 24"
