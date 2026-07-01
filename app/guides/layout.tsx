@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 
-// guides/page.tsx is a Client Component and can't export metadata —
-// this route-segment layout supplies the SEO metadata + canonical.
+// Route-segment layout supplies the SEO metadata + canonical for /guides.
 export const metadata: Metadata = {
-  title: "Resource Library",
+  title: "Video Tutorials",
   description:
-    "Guides, templates, reports and ebooks on digital lending, loan origination, collections and lending automation.",
+    "Step-by-step video tutorials for Fundflick — mark daily HRMS attendance and create and manage tasks across every task type.",
   alternates: { canonical: "/guides" },
   openGraph: {
-    title: "Resource Library | Fundflick",
+    title: "Video Tutorials | Fundflick",
     description:
-      "Guides, templates, reports and ebooks on digital lending, loan origination, collections and lending automation.",
+      "Step-by-step video tutorials for Fundflick — mark daily HRMS attendance and create and manage tasks across every task type.",
     url: "/guides",
   },
 };
