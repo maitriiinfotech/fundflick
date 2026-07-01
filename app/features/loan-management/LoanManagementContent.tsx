@@ -211,7 +211,7 @@ export default function LoanManagementPage() {
             title: "Your Entire Loan Portfolio, Live and in Full Detail",
             description:
               "The LMS Dashboard gives you an instant read on your entire loan book — total disbursed, outstanding balance, active loans, and monthly collections — with filters by loan type and status across your whole portfolio.",
-            img: "/lending_overview_minimal.png",
+            img: "/lmsImage/dasbord.png",
           },
           {
             label: "Loan Lifecycle",
@@ -219,6 +219,7 @@ export default function LoanManagementPage() {
             description:
               "Once a customer file is approved in the LOS, create the loan with repayment mode, processing fee, and start date. Approve with a disbursement date and the EMI schedule is auto-generated instantly.",
             img: "/lending_system_isometric.png",
+            disabled: true,
           },
           {
             label: "EMI Schedule",
@@ -226,6 +227,7 @@ export default function LoanManagementPage() {
             description:
               "Every loan gets a fully generated EMI schedule from day one — with per-instalment status, penalty tracking for overdue EMIs, and instant recalculation when a prepayment is made.",
             img: "/pipeline_overview.png",
+            disabled: true,
           },
           {
             label: "Payment Recording",
@@ -233,6 +235,7 @@ export default function LoanManagementPage() {
             description:
               "Record EMI payments, bulk advance payments, penalty settlements, and principal prepayments across all payment channels. Full payment history per loan with daily and monthly collection reports.",
             img: "/reports.png",
+            disabled: true,
           },
           {
             label: "PDC & NACH",
@@ -240,6 +243,7 @@ export default function LoanManagementPage() {
             description:
               "Set up post-dated cheques or NACH mandates linked directly to EMI instalments. Track every cheque from pending to cleared or bounced, and process bulk NACH payments via CSV upload.",
             img: "/lms_hrms.png",
+            disabled: true,
           },
         ]}
       />

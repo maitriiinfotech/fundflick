@@ -11,6 +11,8 @@ export interface ShowcaseTab {
   title: string;
   description: string;
   img: string;
+  /** Disabled tab — not clickable, shows a yellow "coming soon" dot */
+  disabled?: boolean;
 }
 
 interface ReusableShowcaseProps {
@@ -143,14 +145,22 @@ export default function ReusableShowcase({
           {tabs.map((tab, idx) => (
             <button
               key={idx}
-              onClick={() => setActiveTab(idx)}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide border transition-all duration-300 cursor-pointer select-none ${
-                activeTab === idx
-                  ? "bg-[#131c33] text-white border-[#131c33] shadow-lg shadow-slate-900/10"
-                  : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+              onClick={() => !tab.disabled && setActiveTab(idx)}
+              disabled={tab.disabled}
+              aria-disabled={tab.disabled}
+              title={tab.disabled ? "Coming soon" : undefined}
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide border transition-all duration-300 select-none inline-flex items-center gap-2 ${
+                tab.disabled
+                  ? "bg-white text-slate-400 border-slate-200 opacity-70 cursor-not-allowed"
+                  : activeTab === idx
+                    ? "bg-[#131c33] text-white border-[#131c33] shadow-lg shadow-slate-900/10 cursor-pointer"
+                    : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50 cursor-pointer"
               }`}
             >
               {tab.label}
+              {tab.disabled && (
+                <span className="h-2 w-2 rounded-full bg-amber-400" />
+              )}
             </button>
           ))}
         </div>

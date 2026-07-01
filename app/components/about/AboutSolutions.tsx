@@ -51,7 +51,7 @@ const SPEEDS = [0, 14, -10, 16, -8, 12];
 
 export default function AboutSolutions() {
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-20 md:pb-28">
+    <section className="max-w-6xl mx-auto px-6 pb-12 py-12 md:pb-20">
       <h2
         className="reveal text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-5 leading-tight"
         style={{ fontFamily: "var(--font-outfit), sans-serif" }}
