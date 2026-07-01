@@ -1,6 +1,6 @@
 export default function AboutStory() {
   return (
-    <section className="relative max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <section className="relative max-w-5xl mx-auto px-6 py-12 md:py-20 ">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-40" />
       <p className="reveal text-xs uppercase tracking-[0.18em] text-secondaryColor font-bold text-center mb-4">
         Our Story

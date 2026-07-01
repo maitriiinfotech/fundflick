@@ -103,7 +103,7 @@ export default function AboutTestimonials() {
   }, [active, reduce]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#131c33] py-20 md:py-28 text-white">
+    <section className="relative w-full overflow-hidden bg-[#131c33] py-12 md:py-20 text-white">
       {/* dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:26px_26px] pointer-events-none" />
       {/* drifting glow — follows the active person */}

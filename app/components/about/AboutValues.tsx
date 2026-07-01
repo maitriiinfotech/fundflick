@@ -2,7 +2,7 @@ import { ABOUT_VALUES } from "./aboutData";
 
 export default function AboutValues() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-20 md:py-28">
+    <section className="max-w-6xl mx-auto px-6 py-12 md:py-2">
       <p className="reveal text-xs uppercase tracking-[0.18em] text-secondaryColor font-bold text-center mb-4">
         What Drives Us
       </p>

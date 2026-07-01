@@ -18,7 +18,6 @@ const FEATURE_LINKS = [
 const HOME_LINK = { label: "Home", href: "/" };
 
 const MOBILE_LINKS = [
-  { label: "FAQ", href: "/#faq" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contactus" },
 ];
@@ -241,9 +240,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        <Link href="/#faq" className="text-sm hover:text-secondaryColor transition-colors cursor-pointer">
-          FAQ
-        </Link>
         <Link href="/about" className="text-sm hover:text-secondaryColor transition-colors cursor-pointer">
           About
         </Link>

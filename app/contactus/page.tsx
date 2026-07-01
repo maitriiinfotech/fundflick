@@ -171,12 +171,7 @@ export default function ContactUs() {
             </div>
 
             {/* Trust bar — updated to match live hours style */}
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-[#131c33]/10 bg-[#131c33]/[0.015] text-sm">
-              <div className="flex items-center -space-x-1">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              </div>
-              <span className="font-medium text-[#131c33] tracking-tight">Customer Care • 9:30 am – 7:00 pm (Mon–Fri)</span>
-            </div>
+            
           </div>
 
           {/* Right Column — The simple, beautiful form */}

@@ -20,7 +20,7 @@ const STAGES = [
 
 export default function AboutJourney() {
   return (
-    <section className="relative w-full overflow-hidden bg-white border-t border-slate-100 py-24 md:py-32 px-6">
+    <section className="relative w-full overflow-hidden bg-white border-t border-slate-100 py-12 md:py-20 px-6">
       {/* dotted texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-50 pointer-events-none" />
 

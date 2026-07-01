@@ -2,7 +2,7 @@ import Button from "../ui/Button";
 
 export default function AboutCTA() {
   return (
-    <section className="max-w-5xl mx-auto px-6 pb-24">
+    <section className="max-w-5xl mx-auto px-6 pb-20">
       <div className="reveal relative overflow-hidden rounded-3xl bg-[#131c33] px-8 py-16 md:py-20 text-center">
         <div
           aria-hidden
