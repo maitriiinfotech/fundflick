@@ -13,23 +13,23 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Fundflick cut our loan approval from days to minutes. Origination, verification and disbursal finally live in one place.",
-    name: "Rajesh Verma",
-    role: "CEO, Shree Krishna Associates",
-    initials: "RV",
+    name: "Basant Goyal ",
+    role: "MD, Mentor Finmart Private Limited",
+    initials: "Basant Goyal",
   },
   {
     quote:
       "Our recovery teams log every visit with PTP and proof. Broken commitments dropped the moment we switched to Fundflick.",
-    name: "Anita Sharma",
-    role: "Head of Collections, Maitriilons Finance",
+    name: "Arjun Singh",
+    role: "CEO, Shree Krishna Associate Private Limited",
     initials: "AS",
   },
   {
     quote:
       "Eight-step applications with OCR KYC and CIBIL checks built in. Our underwriting is faster and far more consistent.",
-    name: "Kavita Rao",
-    role: "Director, NBFC",
-    initials: "KR",
+    name: "Girrish Gupta",
+    role: "Director, GreenFin Private Limited",
+    initials: "GG",
   },
   {
     quote:
@@ -41,17 +41,11 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Double-entry books that reconcile themselves. Month-end went from a week of spreadsheets to a single afternoon.",
-    name: "Suresh Nair",
-    role: "Finance Controller",
-    initials: "SN",
+    name: "Radhika Meenakar",
+    role: "CS, ",
+    initials: "RM",
   },
-  {
-    quote:
-      "Role-based dashboards mean each team sees only what matters — one source of truth across lending, collection and tasks.",
-    name: "Meera Iyer",
-    role: "CFO",
-    initials: "MI",
-  },
+ 
 ];
 
 const DURATION = 6000; // ms per slide
