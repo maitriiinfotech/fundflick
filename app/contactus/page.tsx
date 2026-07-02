@@ -125,11 +125,11 @@ export default function ContactUs() {
                   </div>
                   <div className="flex-1">
                     <div className="text-[10px] font-mono uppercase tracking-[1px] text-slate-400 mb-1">CUSTOMER CARE</div>
-                    <a href="tel:+918946808080" className="text-[#131c33] font-semibold hover:text-[#2b7fff] transition-colors block">+91 8946 808080</a>
-                    <a href="tel:+918946888888" className="text-[#131c33] font-semibold hover:text-[#2b7fff] transition-colors block">+91 8946 888888</a>
+                    <a href="tel:+917792077777" className="text-[#131c33] font-semibold hover:text-[#2b7fff] transition-colors block">+91 7792077777</a>
+              
                     <div className="mt-2 text-xs text-slate-500 leading-tight">
-                      Hours: 9:30 am - 7:00 pm<br />
-                      Monday to Friday<br />
+                      Hours: 10:30 am - 7:00 pm<br />
+                      Monday to Saturday<br />
                       (excluding public holidays)
                     </div>
                   </div>
@@ -138,7 +138,7 @@ export default function ContactUs() {
 
               {/* Email Us */}
               <a 
-                href="mailto:info@fundflick.in"
+                href="utkarsh@maitriiinfotech.com"
                 className="group flex items-center gap-5 bg-white border border-slate-200/70 hover:border-[#131c33]/30 p-5 rounded-3xl transition-all duration-300 hover:shadow-lg"
               >
                 <div className="w-11 h-11 rounded-2xl bg-[#131c33] flex items-center justify-center text-white shrink-0">
@@ -148,7 +148,7 @@ export default function ContactUs() {
                 </div>
                 <div>
                   <div className="text-[10px] font-mono uppercase tracking-[1px] text-slate-400 mb-px">EMAIL US</div>
-                  <div className="text-[#131c33] font-semibold group-hover:text-[#2b7fff] transition-colors">info@fundflick.in</div>
+                  <div className="text-[#131c33] font-semibold group-hover:text-[#2b7fff] transition-colors">utkarsh@maitriiinfotech.com</div>
                 </div>
               </a>
 
@@ -196,7 +196,7 @@ export default function ContactUs() {
                     Request received.
                   </h3>
                   <p className="text-slate-600 max-w-[320px] leading-relaxed mb-10 text-[15px]">
-                    Our team will get back to you within 24 hours (Mon–Fri, 9:30am–7pm).
+                    Our team will get back to you within 24 hours (Monday Saturday, 10:30am–7pm).
                   </p>
                   <Button
                     onClick={handleReset}

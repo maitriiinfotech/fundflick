@@ -30,9 +30,8 @@ export const CONTACT = {
 };
 
 export const SOCIAL_LINKS: string[] = [
-  // Add verified brand profiles here — critical for E-E-A-T / sameAs.
-  // "https://www.linkedin.com/company/fundflick",
-  // "https://x.com/fundflick",
+  "https://www.linkedin.com/company/maitrii-infotech-solutions-private-limited/",
+  "https://www.instagram.com/maitrii_infotech/",
 ];
 
 export interface SeoPage {
