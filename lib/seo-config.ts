@@ -32,6 +32,7 @@ export const CONTACT = {
 export const SOCIAL_LINKS: string[] = [
   "https://www.linkedin.com/company/maitrii-infotech-solutions-private-limited/",
   "https://www.instagram.com/maitrii_infotech/",
+  "https://x.com/maitriiinfotech",
 ];
 
 export interface SeoPage {

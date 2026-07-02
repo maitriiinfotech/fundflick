@@ -138,7 +138,7 @@ export default function ContactUs() {
 
               {/* Email Us */}
               <a 
-                href="utkarsh@maitriiinfotech.com"
+                href="mailto:utkarsh@maitriiinfotech.com"
                 className="group flex items-center gap-5 bg-white border border-slate-200/70 hover:border-[#131c33]/30 p-5 rounded-3xl transition-all duration-300 hover:shadow-lg"
               >
                 <div className="w-11 h-11 rounded-2xl bg-[#131c33] flex items-center justify-center text-white shrink-0">
