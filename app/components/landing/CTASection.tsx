@@ -111,7 +111,7 @@ export default function CTASection() {
             </h3>
 
             <p className="text-slate-500 text-sm md:text-[15px] leading-relaxed mb-10 max-w-md relative z-10 font-normal">
-              Join thousands of financial institutions already using Fundflick to streamline their loan processes, reduce operational costs, and improve customer satisfaction.
+              Bring your entire lending operation onto one platform — streamline loan processing, cut operational costs, and give borrowers a faster, smoother experience.
             </p>
 
             <Button href="/contactus" variant="primary" className="relative z-10 px-8 py-3.5 text-sm">
