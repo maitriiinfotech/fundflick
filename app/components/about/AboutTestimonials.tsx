@@ -1,6 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  type CarouselApi,
+} from "../ui/carousel";
 
 interface Testimonial {
   quote: string;
@@ -47,22 +56,23 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-const DURATION = 5000; // ms per slide
-
 export default function AboutTestimonials() {
-  const [active, setActive] = useState(0);
-  const count = TESTIMONIALS.length;
+  const [autoplay] = useState(() =>
+    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }),
+  );
+  const [api, setApi] = useState<CarouselApi>();
+  const [selected, setSelected] = useState(0);
 
-  // Independent interval — always fires, reliable on mobile.
   useEffect(() => {
-    const id = setInterval(() => {
-      setActive((i) => (i + 1) % count);
-    }, DURATION);
-    return () => clearInterval(id);
-  }, [count]);
-
-  const go = (i: number) => setActive(((i % count) + count) % count);
-  const t = TESTIMONIALS[active];
+    if (!api) return;
+    const onSelect = () => setSelected(api.selectedScrollSnap());
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
 
   return (
     <section className="relative w-full overflow-hidden bg-[#131c33] py-16 md:py-24 text-white">
@@ -81,46 +91,61 @@ export default function AboutTestimonials() {
           Trusted by lenders who move fast
         </h2>
 
-        {/* Quote card */}
-        <div className="relative min-h-[240px] sm:min-h-[220px]">
-          <svg
-            className="mx-auto mb-6 h-10 w-10 text-secondaryColor/40"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden
-          >
-            <path d="M9.5 7C6.46 7 4 9.46 4 12.5V19h6.5v-6.5H7.5C7.5 11.12 8.62 10 10 10V7h-.5Zm10 0C16.46 7 14 9.46 14 12.5V19h6.5v-6.5h-3C17.5 11.12 18.62 10 20 10V7h-.5Z" />
-          </svg>
+        <Carousel
+          setApi={setApi}
+          plugins={[autoplay]}
+          opts={{ loop: true, align: "center" }}
+          className="mx-auto w-full"
+        >
+          <CarouselContent>
+            {TESTIMONIALS.map((t) => (
+              <CarouselItem key={t.name}>
+                <div className="px-1 text-center">
+                  <svg
+                    className="mx-auto mb-6 h-10 w-10 text-secondaryColor/40"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden
+                  >
+                    <path d="M9.5 7C6.46 7 4 9.46 4 12.5V19h6.5v-6.5H7.5C7.5 11.12 8.62 10 10 10V7h-.5Zm10 0C16.46 7 14 9.46 14 12.5V19h6.5v-6.5h-3C17.5 11.12 18.62 10 20 10V7h-.5Z" />
+                  </svg>
 
-          <div key={active} className="tm-slide">
-            <blockquote
-              className="text-xl sm:text-2xl md:text-[28px] font-semibold leading-snug tracking-tight text-white"
-              style={{ fontFamily: "var(--font-outfit), sans-serif" }}
-            >
-              {t.quote}
-            </blockquote>
+                  <blockquote
+                    className="mx-auto max-w-2xl text-xl sm:text-2xl md:text-[28px] font-semibold leading-snug tracking-tight text-white"
+                    style={{ fontFamily: "var(--font-outfit), sans-serif" }}
+                  >
+                    {t.quote}
+                  </blockquote>
 
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondaryColor/20 text-sm font-bold text-white ring-1 ring-secondaryColor/30">
-                {t.initials}
-              </div>
-              <div className="text-left">
-                <div className="text-base font-bold text-white">{t.name}</div>
-                <div className="text-sm text-slate-400">{t.role}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  <div className="mt-8 flex items-center justify-center gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondaryColor/20 text-sm font-bold text-white ring-1 ring-secondaryColor/30">
+                      {t.initials}
+                    </div>
+                    <div className="text-left">
+                      <div className="text-base font-bold text-white">
+                        {t.name}
+                      </div>
+                      <div className="text-sm text-slate-400">{t.role}</div>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
 
         {/* Dots */}
         <div className="mt-10 flex items-center justify-center gap-2.5">
           {TESTIMONIALS.map((item, i) => (
             <button
               key={item.name}
-              onClick={() => go(i)}
+              onClick={() => api?.scrollTo(i)}
               aria-label={`Show testimonial ${i + 1}`}
               className={`h-2 rounded-full transition-all duration-300 ${
-                i === active
+                i === selected
                   ? "w-7 bg-secondaryColor"
                   : "w-2 bg-white/25 hover:bg-white/50"
               }`}
@@ -128,27 +153,6 @@ export default function AboutTestimonials() {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        .tm-slide {
-          animation: tmIn 0.5s ease-out both;
-        }
-        @keyframes tmIn {
-          from {
-            opacity: 0;
-            transform: translateY(14px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .tm-slide {
-            animation: none;
-          }
-        }
-      `}</style>
     </section>
   );
 }
