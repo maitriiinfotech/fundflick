@@ -295,7 +295,7 @@ export default function WhyChoose() {
             </div>
             <div>
               <div className="font-bold text-slate-800">TLS 1.3 Secure</div>
-              <div className="text-[8px] text-slate-500">ISO-27001 Compliant</div>
+              <div className="text-[8px] text-slate-500">Encrypted end-to-end</div>
             </div>
           </div>
         </div>
