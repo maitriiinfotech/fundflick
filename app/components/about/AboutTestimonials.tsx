@@ -15,7 +15,7 @@ const TESTIMONIALS: Testimonial[] = [
       "Fundflick cut our loan approval from days to minutes. Origination, verification and disbursal finally live in one place.",
     name: "Basant Goyal ",
     role: "MD, Mentor Finmart Private Limited",
-    initials: "Basant Goyal",
+    initials: "BS",
   },
   {
     quote:
