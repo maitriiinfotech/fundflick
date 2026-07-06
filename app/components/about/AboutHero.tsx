@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../ui/Button";
 
 // Plain server-rendered hero — light, no overlays/shades. Background is the

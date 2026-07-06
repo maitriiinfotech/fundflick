@@ -1,3 +1,5 @@
+"use client";
+
 // Server Component — static, no client JS.
 
 const STAGES = [

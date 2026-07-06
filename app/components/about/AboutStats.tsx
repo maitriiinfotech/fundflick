@@ -1,3 +1,5 @@
+"use client";
+
 import { ABOUT_STATS } from "./aboutData";
 
 export default function AboutStats() {

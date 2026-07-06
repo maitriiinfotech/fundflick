@@ -1,3 +1,5 @@
+"use client";
+
 import { ABOUT_VALUES } from "./aboutData";
 
 export default function AboutValues() {
