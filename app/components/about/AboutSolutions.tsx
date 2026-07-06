@@ -1,3 +1,5 @@
+"use client";
+
 import { ABOUT_SOLUTIONS } from "./aboutData";
 
 // Minimal line icons (stroke = currentColor), one per solution by index.

@@ -1,3 +1,5 @@
+"use client";
+
 export default function AboutStory() {
   return (
     <section className="relative max-w-5xl mx-auto px-6 py-12 md:py-20 ">
