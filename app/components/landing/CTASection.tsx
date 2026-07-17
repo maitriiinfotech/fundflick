@@ -143,7 +143,7 @@ export default function CTASection() {
 
           {/* X (Twitter) */}
           <a
-            href="https://x.com/"
+            href="https://x.com/maitriiinfotech"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Maitrii Infotech on X"

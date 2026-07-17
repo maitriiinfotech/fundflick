@@ -13,7 +13,7 @@ const heroFeatures = [
   },
   {
     url: "/hero/hrmsandlms.gif",
-    label: "Loan Mangment System",
+    label: "Loan Management System",
     desc: "Ledgers, EMI & servicing",
   },
   {

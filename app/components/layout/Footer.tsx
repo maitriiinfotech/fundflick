@@ -15,7 +15,7 @@ const PRODUCT_LINKS = [
 ];
 
 const COMPANY_LINKS = [
-  { label: "About Us", href: "/aboutus" },
+  { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contactus" },
   { label: "Careers", href: "/contactus" },
   { label: "Blog", href: "/contactus" },
