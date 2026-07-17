@@ -13,7 +13,7 @@ export const SITE_TAGLINE = "The Operating System for Modern NBFCs";
 export const SITE_DESCRIPTION =
   "Fundflick is the AI-powered operating system for modern NBFCs — run loan origination, loan management, collections, HRMS, tasks, reporting and bookkeeping on one platform.";
 
-export const TWITTER_HANDLE = "@fundflick";
+export const TWITTER_HANDLE = "@maitriiinfotech";
 export const DEFAULT_OG_IMAGE = "/logo.png";
 
 export const CONTACT = {
